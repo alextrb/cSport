@@ -7,6 +7,6 @@
     {
         public function machin()
             {
-                $this->set("monNom", [1,2,3,4]);
+                $this->set("monNom", [1,2,3,4,5]);
             }
     }
