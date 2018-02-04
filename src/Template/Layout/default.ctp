@@ -29,6 +29,14 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
 
+    <?= $this->Html->script('jquery-3.3.1.js') ?>
+
+    <?= $this->Html->css('bootstrap.css') ?>
+    <?= $this->Html->script('bootstrap.js') ?>
+    
+    <?= $this->Html->css('datatables.css') ?>
+    <?= $this->Html->script('datatables.js') ?>
+    
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>

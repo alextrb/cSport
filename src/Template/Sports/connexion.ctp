@@ -1,2 +1,2 @@
 <?php
-$this->assign('title', 'connexion');?>
+$this->assign('title', 'Connexion');?>

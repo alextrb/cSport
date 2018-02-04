@@ -1,2 +1,2 @@
 <?php
-$this->assign('title', 'Equipe');?>
+$this->assign('title', 'Équipe');?>
