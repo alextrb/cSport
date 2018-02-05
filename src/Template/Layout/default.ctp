@@ -13,7 +13,6 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,7 +24,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css('base.css') ?>
+    <?= $this->Html->css('base.css') ?> <!--Ajouter les pages css ici-->
     <?= $this->Html->css('cake.css') ?>
 
     <?= $this->Html->script('jquery-3.3.1.js') ?>
@@ -36,7 +35,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->css('datatables.css') ?>
     <?= $this->Html->script('datatables.js') ?>
     
-    <?= $this->fetch('meta') ?>
+    <?= $this->fetch('meta') ?> <!--Ne pas toucher les 3 lignes -->
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
@@ -49,6 +48,17 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </ul>
         <div class="top-bar-section">
             <ul class="right">
+                <li><?= $this->Html->link("Accueil", ["controller"=>"Sports", "action"=>"index"])?></li>
+                <li><?= $this->Html->link("Mes séances", ["controller"=>"Sports", "action"=>"seance"])?></li>
+                <li><?= $this->Html->link("Connexion", ["controller"=>"Sports", "action"=>"connexion"])?></li>
+                <li><?= $this->Html->link("Contact", ["controller"=>"Sports", "action"=>"contact"])?></li>
+                <li><?= $this->Html->link("Equipe", ["controller"=>"Sports", "action"=>"equipe"])?></li>
+                <li><?= $this->Html->link("Mention", ["controller"=>"Sports", "action"=>"mention"])?></li>
+                <li><?= $this->Html->link("Mon compte", ["controller"=>"Sports", "action"=>"moncompte"])?></li>
+                <li><?= $this->Html->link("Objets Connectés", ["controller"=>"Sports", "action"=>"objetsco"])?></li>
+                <li><?= $this->Html->link("Tutoriels", ["controller"=>"Sports", "action"=>"tuto"])?></li>
+                <li><?= $this->Html->link("Classements", ["controller"=>"Sports", "action"=>"classements"])?></li>
+                
                 <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
                 <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
             </ul>
@@ -56,7 +66,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </nav>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
-        <?= $this->fetch('content') ?>
+        <?= $this->fetch('content') ?> <!--Ne pas toucher, correspond à la vue-->
     </div>
     <footer>
     </footer>
