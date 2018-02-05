@@ -2,11 +2,14 @@
     namespace App\Controller;
 
     use App\Controller\AppController;
-
+    
     class SportsController extends AppController
-    {  
+    {   
+        
         public function index(){
-            
+            $this->loadModel("Members");
+            $m=$this->Members->find();
+            $this->set("m",$m->toArray());
         }
         
         public function classements(){

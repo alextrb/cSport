@@ -1,5 +1,6 @@
 <?php
 $this->assign('title', 'Accueil');?>
+
 <script>
     var dataSet = [
     [ "Tiger Nixon", "System Architect", "Edinburgh", "5421", "2011/04/25", "$320,800" ],
@@ -65,3 +66,8 @@ $(document).ready(function(){
 <button type="button" class="btn btn-danger">Test bouton bootstrap</button>
 
 <table id="example" class="display" width="100%"></table>
+<table>
+    <?php foreach ($m as $user){
+        echo"<td>".$user->email."</td><td>".$user->password."</td>";
+    }?>
+</table>
