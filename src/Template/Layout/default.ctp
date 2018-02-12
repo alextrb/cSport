@@ -26,6 +26,7 @@
 
     <?= $this->Html->css('base.css') ?> <!--Ajouter les pages css ici-->
     <?= $this->Html->css('cake.css') ?>
+    <?= $this->Html->css('seance.css') ?>
 
     <?= $this->Html->script('jquery-3.3.1.js') ?>
 
