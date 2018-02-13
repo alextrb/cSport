@@ -3,7 +3,18 @@ Sports proposés :
 - Basketball
 - Musculation
 
+Pages objets conenctés : 
+- Affiche la liste des objets co autorisé a faire des modifs sur le compte
+- Affiche les objets en attente d'autorisation
+- Possibilité de supprimer un objet
+- Valider un objet en attente d'autorisation
 
+Les objets co vont accéder à leur API
+Première API questionnable par l'objet: un objet essaye de se connecter, ca sous entend qu'il ai l'adresse du site et notre identifiant à nous. Donc à travers l'API les objets co peuvent s'enregistrer sur le site pour l'utilisateur
+2eme : l'objet co est définit avec un serial, ensuite on aura la possibilité de validé cet objet co sur la page de l'utilisateur.
+3ème : pour que l'API ai le droit d'envoyer les logs. 
+
+On doit être pret a ce qu'on nous appelle, que le serial existe, créé un log qui correspond à l'user auquel on se co et afficher ce log. 
 
 
 
