@@ -29,5 +29,13 @@
         <button type="button" onclick="alert('Vous voulez ajouter une séance')">Ajouter une séance</button>
         <button type="button" onclick="alert('Vous voulez reporter une séance')">Reporter une séance</button>
         <button type="button" onclick="alert('Vous voulez annulé une séance')">Supprimer une Séance</button> 
+        <?= $this->Form->create($new)?>
+        <?= $this->Form->input("date")?>        
+        <?= $this->Form->input("end_date")?>
+        <?= $this->Form->input("location_name")?>
+        <?= $this->Form->input("description")?>
+        <?= $this->Form->input("sport")?>
+        <?= $this->Form->submit("Ajouter")?>
+        <?= $this->Form->end()?>
     </body>
 </html>
