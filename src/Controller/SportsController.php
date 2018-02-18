@@ -13,7 +13,22 @@
         }
         
         public function classements(){
+            $this->loadModel("Members");
+            $this->loadModel("Logs");
             
+            $classement_array = array(); // tableau qui va contenir des membres et leur score
+            $members = $this->Members->getAllMembers(); // on récupère tous les membres
+            foreach($members as $member) // pour chaque membre
+            {
+                $member_score = $this->Logs->CalculMemberScore($member->id); // on calcule leur score
+                ///On crée une nouvelle ligne contenant le membre et son score
+                $new_row = array(
+                                'member' => $member->email,
+                                'score' => $member_score
+                                );
+                    array_push($classement_array, $new_row); // on push cette ligne dans le tableau
+            }
+            $this->set("classement_array", $classement_array); // on partage ce tableau avec la vue
         }
         
         public function connexion(){

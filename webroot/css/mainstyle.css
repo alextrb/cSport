@@ -1,0 +1,53 @@
+.navbar-default
+{
+    background-color: #2A875C;
+}
+.mynavbar .navbar-brand
+{
+    font-size: 1.6em;
+    color: white;
+}
+.navbar-default li
+{
+    font-size: 1.4em;
+    color: #fff;
+   
+}
+.mynavbar
+{
+    margin-left: 0px;
+}
+.mynavbar .mynavbarnav li a
+{
+    color: #fff;
+}
+
+.mynavbar .mynavbarnav li a:hover
+{
+    background-color: #1F6041;
+    color: #fff;
+}
+.mynavbar .mynavbarnavright li a 
+{
+    color: #fff;
+    padding-right: 30px;
+}
+.mynavbar .mynavbarnavright li a:hover 
+{
+    background-color: #1F6041;
+    color: #fff;
+}
+
+.mynavbar .mynavbarheader 
+{
+    min-width: 250px;
+    background-color: #1F6041;
+}
+.mynavbar .mynavbarheader .navbar-brand:hover
+{
+    color: white;
+}
+.mynavbar .mynavbarheader a
+{
+    background-color: #1F6041;
+}

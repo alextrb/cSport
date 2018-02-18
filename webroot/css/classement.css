@@ -1,0 +1,29 @@
+#clasTitle
+{
+    text-align: center;
+}
+
+#clasTableDiv
+{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    background-color: white;
+    
+}
+
+#clasTable thead
+{
+    background-color: #303030;
+    
+}
+#clasTable th
+{
+    color: white;
+    font-size: 1em;
+}
+
+#clasTable td
+{
+    font-size: 1em;
+}
+
