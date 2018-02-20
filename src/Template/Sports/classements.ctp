@@ -15,8 +15,8 @@ $this->assign('title', 'Classements');?>
         </figure> 
 
     <div id="clasTableDiv" class="col-md-11">
-        <table id="clasTable" class="table table-hover table-striped table-responsive" >
-            <thead id="clasTableHead">
+        <table id="clasTable" class="table table-hover table-striped table-responsive tableBlackHead" >
+            <thead>
                 <tr>
                     <th>MEMBRE</th>
                     <th>SCORE</th>

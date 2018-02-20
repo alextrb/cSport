@@ -1,3 +1,4 @@
+/* CSS POUR LA BARRE DE NAVIGATION */
 .navbar-default
 {
     background-color: #2A875C;
@@ -40,7 +41,7 @@
 
 .mynavbar .mynavbarheader 
 {
-    min-width: 250px;
+    min-width: 260px;
     background-color: #1F6041;
 }
 .mynavbar .mynavbarheader .navbar-brand:hover
@@ -50,4 +51,23 @@
 .mynavbar .mynavbarheader a
 {
     background-color: #1F6041;
+}
+
+
+/* CSS POUR LES TABLEAUX */
+
+.tableBlackHead thead
+{
+    background-color: #303030;
+    
+}
+.tableBlackHead th
+{
+    color: white;
+    font-size: 1em;
+}
+
+.tableBlackHead td
+{
+    font-size: 1em;
 }

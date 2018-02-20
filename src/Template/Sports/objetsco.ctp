@@ -3,7 +3,12 @@ $this->assign('title', 'Mes Objets Connectés');?>
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
-        $('#clasTable').DataTable( {
+        $('#objeAllowedTable').DataTable( {
+            "order": [[ 1, "desc" ]]
+        } );
+    });
+    $(document).ready(function () {
+        $('#objeWaitingTable').DataTable( {
             "order": [[ 1, "desc" ]]
         } );
     });
@@ -11,8 +16,8 @@ $this->assign('title', 'Mes Objets Connectés');?>
 
 <div>
     <h2>Liste des objets authorisés sur votre compte :</h2>
-    <table id="clasTable" class="table table-hover table-striped table-responsive" >
-        <thead id="clasTableHead">
+    <table id="objeAllowedTable" class="table table-hover table-striped table-responsive tableBlackHead" >
+        <thead>
             <tr>
                 <th>DEVICE ID</th>
                 <th>OBJETS</th>
@@ -30,8 +35,8 @@ $this->assign('title', 'Mes Objets Connectés');?>
     </table>
     
     <h2>Liste des objets attendant une authorisation de votre part :</h2>
-    <table id="clasTable" class="table table-hover table-striped table-responsive" >
-        <thead id="clasTableHead">
+    <table id="objeWaitingTable" class="table table-hover table-striped table-responsive tableBlackHead" >
+        <thead>
             <tr>
                 <th>DEVICE ID</th>
                 <th>OBJETS</th>
