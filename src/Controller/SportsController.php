@@ -63,11 +63,14 @@
         public function objetsco(){
             $this->loadModel("devices");
             
-            $all_auth_devices = array(); // Tableau qui va contenir la liste des objets authorisés
-            $waiting_devices = array(); // Tableau contenant les objets_co en attente de confirmation
+            $all_auth_devices = array(); // Tableau des objets_co authorisés
+            $waiting_devices = array(); // Tableau des objets_co en attente de confirmation
             
-            $auth_devices = $this->devices->find();
-            $this->set("auth_devices",$auth_devices->toArray());
+            $auth_devices = $this->devices->getAuthDevices();
+            $this->set("auth_devices",$auth_devices);
+            
+            $waiting_devices = $this->devices->getWaitingDevices();
+            $this->set("waiting_devices", $waiting_devices);
         }
       
         public function contact(){
