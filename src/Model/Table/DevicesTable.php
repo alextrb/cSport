@@ -20,4 +20,16 @@ class DevicesTable extends Table {
                 ->where(['trusted =' => 0]);
         return $waiting_devices;
     }
+    
+    public function deleteDevice($device_id)
+    {
+        return $this->deleteall(['id' => $device_id],$cascade = true, $callbacks = false);
+    }
+    
+    public function validateDevice($device_id)
+    {
+        $asking_device = $this->get($device_id);
+        $asking_device->trusted = 1;
+        return $this->save($asking_device);
+    }
 }

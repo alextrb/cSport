@@ -88,4 +88,24 @@
         public function tuto(){
             
         }
+        
+        public function deleteOC($device) {
+            $this->loadModel("Devices");
+            
+            if ($this->Devices->deleteDevice($device)) 
+            {
+                $this->Flash->success(__('Le device avec id: {0} a été supprimé.', h($device)));
+                return $this->redirect(['controller' => 'Sports', 'action' => 'objetsco']);
+            }
+        }
+        
+        public function validateOC($device) {
+            $this->loadModel("Devices");
+            
+            if($this->Devices->validateDevice($device))
+            {
+                $this->Flash->success(__('Le device avec id: {0} a été appareillé.', h($device)));
+                return $this->redirect(['controller' => 'Sports', 'action' => 'objetsco']);
+            }
+        }
     }
