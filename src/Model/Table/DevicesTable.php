@@ -23,7 +23,8 @@ class DevicesTable extends Table {
     
     public function deleteDevice($device_id)
     {
-        return $this->deleteall(['id' => $device_id],$cascade = true, $callbacks = false);
+        $entity_device = $this->get($device_id);
+        return $this->delete($entity_device);
     }
     
     public function validateDevice($device_id)

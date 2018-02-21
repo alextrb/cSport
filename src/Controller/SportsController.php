@@ -40,19 +40,26 @@
         }
         
         public function seance(){
-             $this->loadModel("Workouts");
+            $this->loadModel("Workouts");
+            
             $new = $this->Workouts->newEntity();
+            
             if($this->request->is("post")){
-                $d = \Cake\I18n\Time::create($this->request->data['date']['year'],$this->request->data['date']['month'],
-                        $this->request->data['date']['day'],$this->request->data['date']['hour'],$this->request->data['date']['minute']);
-                //$this->request->data("date");
-                //$ed = $this->request->data("end_date");
-                $ed = \Cake\I18n\Time::create($this->request->data['date']['year'],$this->request->data['date']['month'],
-                        $this->request->data['date']['day'],$this->request->data['date']['hour'],$this->request->data['date']['minute']);
+                $d = \Cake\I18n\Time::create(
+                        $this->request->data['date']['year'],
+                        $this->request->data['date']['month'],
+                        $this->request->data['date']['day'],
+                        $this->request->data['date']['hour'],
+                        $this->request->data['date']['minute']);
+                $ed = \Cake\I18n\Time::create(
+                        $this->request->data['date']['year'],
+                        $this->request->data['date']['month'],
+                        $this->request->data['date']['day'],
+                        $this->request->data['date']['hour'],
+                        $this->request->data['date']['minute']);
                 $ln = $this->request->data("location_name");
                 $des = $this->request->data("description");
                 $s = $this->request->data("sport");
-                
                 $mi = "56eb38a4-ee50-421f-bf6e-26beb38f37ff";
                    
                 $this->Workouts->addWorkouts($d, $ed, $ln, $des, $s, $mi);
@@ -62,9 +69,6 @@
         
         public function objetsco(){
             $this->loadModel("devices");
-            
-            $all_auth_devices = array(); // Tableau des objets_co authorisés
-            $waiting_devices = array(); // Tableau des objets_co en attente de confirmation
             
             $auth_devices = $this->devices->getAuthDevices();
             $this->set("auth_devices",$auth_devices);
@@ -91,7 +95,7 @@
         
         public function deleteOC($device) {
             $this->loadModel("Devices");
-            
+                        
             if ($this->Devices->deleteDevice($device)) 
             {
                 $this->Flash->success(__('Le device avec id: {0} a été supprimé.', h($device)));
