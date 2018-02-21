@@ -55,6 +55,12 @@ Router::scope('/', function (RouteBuilder $routes) {
      * ...and connect the rest of 'Pages' controller's URLs.
      */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+    
+    
+    /*
+     * ROUTES POUR LES API
+     */
+    $routes->connect('/api/registerdevice/:id_member/:id_device/:description', ['controller' => 'Sports', 'action'=>'apiRegisterDevice'],['pass' =>['id_member','id_device','description']]);
 
     /**
      * Connect catchall routes for all controllers.

@@ -112,4 +112,18 @@
                 return $this->redirect(['controller' => 'Sports', 'action' => 'objetsco']);
             }
         }
+        
+        public function apiRegisterDevice($id_member, $id_device, $description)
+        {
+            $this->loadModel("Devices");
+            $new = $this->Devices->newEntity();
+            $new->member_id = $id_member;
+            $new->serial = $id_device;
+            $new->description = $description;
+            $new->trusted = 0;
+            $this->Devices->save($new);
+
+            return $this->redirect(['controller' => 'Sports', 'action' => 'index']);
+
+        }
     }
