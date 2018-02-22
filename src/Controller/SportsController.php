@@ -126,4 +126,15 @@
             return $this->redirect(['controller' => 'Sports', 'action' => 'index']);
 
         }
+        
+        public function apiWorkoutParameters($id_device, $id_workout)
+        {
+            $this->loadModel("Workouts");
+
+            $workouts_parameters = $this->Workouts->findById($id_workout);
+            $this->set(array(
+                'workouts_parameters' => $workouts_parameters,
+                '_serialize' => array('workouts_parameters')
+            ));
+        }
     }

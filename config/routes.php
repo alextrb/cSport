@@ -49,6 +49,10 @@ Router::scope('/', function (RouteBuilder $routes) {
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
+    $routes->setExtensions(['json']);
+    
+    //$routes->parseExtensions(array('json')); // CETTE LIGNE LA DEVRAIT PERMETTRE D'ENLEVER LE ".json" COMME DEMANDÉ
+    
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
 
     /**
@@ -62,6 +66,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->connect('/api/registerdevice/:id_member/:id_device/:description', ['controller' => 'Sports', 'action'=>'apiRegisterDevice'],['pass' =>['id_member','id_device','description']]);
 
+    $routes->connect('/api/workoutparameters/:id_device/:id_workout', ['controller' => 'Sports', 'action'=>'apiWorkoutParameters'],['pass' =>['id_device','id_workout']])->setMethods(['GET']);
     /**
      * Connect catchall routes for all controllers.
      *
