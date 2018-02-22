@@ -129,12 +129,19 @@
         public function apiWorkoutParameters($id_device, $id_workout)
         {
             $this->loadModel("Workouts");
+            $this->loadModel("Devices");
             $this->viewBuilder()->className('Json');
-
-            $workouts_parameters = $this->Workouts->findById($id_workout);
-            $this->set(array(
-                'workouts_parameters' => $workouts_parameters,
-                '_serialize' => array('workouts_parameters')
-            ));                      
+            
+            if($this->Devices->checkAuthDevice($id_device)){
+                $workouts_parameters = $this->Workouts->findById($id_workout);
+                $this->set(array(
+                    'workouts_parameters' => $workouts_parameters,
+                    '_serialize' => array('workouts_parameters')
+                ));   
+            }
+            else{
+                $this->Flash->error(__("Le device avec le serial : {0} ne possède pas les authorisations nécéssaires. Vous avez été redirigé vers la page d accueil", h($id_device)));
+                return $this->redirect(['controller' => 'Sports', 'action' => 'index']);
+            }                 
         }
     }
