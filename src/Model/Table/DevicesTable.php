@@ -33,4 +33,17 @@ class DevicesTable extends Table {
         $asking_device->trusted = 1;
         return $this->save($asking_device);
     }
+    
+    public function checkAuthDevice($serial)
+    {
+        $statusDevice = $this
+                ->find()
+                ->select(['serial','trusted'])
+                ->where(['serial =' => $serial]);
+        $row = $statusDevice->first();
+        
+        if ((int)$row->trusted){
+            return true;
+        }
+    }
 }

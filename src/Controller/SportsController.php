@@ -81,6 +81,9 @@
             
             $waiting_devices = $this->devices->getWaitingDevices();
             $this->set("waiting_devices", $waiting_devices);
+            
+            $encoded_locations = $this->logs->getAllSeancesLocations();
+            $this->set("encoded_locations", $encoded_locations);
         }
       
         public function contact(){

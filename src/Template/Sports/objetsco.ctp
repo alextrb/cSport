@@ -57,4 +57,10 @@ $this->assign('title', 'Mes Objets Connectés');?>
             }?>
         </tbody>
     </table>
+    
+    <div id='map'></div>
+    <?php
+    echo $this->Html->script(['googleMap']);
+    echo $this->Html->script('https://maps.googleapis.com/maps/api/js?key=AIzaSyClw2W8vDjAdeSJkPnDO9CCI-01RLjYQcw&callback=initMap', ['defer']);
+    ?>         
  </div>

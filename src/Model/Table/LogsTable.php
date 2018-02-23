@@ -40,6 +40,24 @@ class LogsTable extends Table {
         
         return $final_score;    
     }
-
+public function getAllSeancesLocations(){
+        $allLocations = $this
+                ->find()
+                ->select(['workout_id','location_latitude','location_logitude'])
+                ->distinct(['workout_id'])
+                ->toArray();
+        
+        $locations_array=array();
+        
+        foreach($allLocations as $workoutLocation){
+            $new_row = array( 
+                        'lat' => $workoutLocation->location_latitude,
+                        'lng' => $workoutLocation->location_logitude
+            );
+            array_push($locations_array, $new_row);
+        }
+        pr(json_encode($locations_array));
+        return json_encode($locations_array);
+    }
 }
 
