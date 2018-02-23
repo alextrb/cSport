@@ -42,6 +42,12 @@
         public function seance(){
             $this->loadModel("Workouts");
             
+            $workout_coming = $this->Workouts->getWorkComing();
+            $this->set("workout_coming", $workout_coming);
+            
+            $workout_done = $this->Workouts->getWorkDone();
+            $this->set("workout_done", $workout_done);
+            
             $new = $this->Workouts->newEntity();
             
             if($this->request->is("post")){
