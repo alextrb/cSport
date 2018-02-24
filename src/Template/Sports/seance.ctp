@@ -13,12 +13,13 @@
      <script type="text/javascript" charset="utf-8">
             $(document).ready(function () {
                 $('#workoutsComing').DataTable( {
-                "order": [[ Workouts.date, "desc" ]]
+                "order": [[ 2, "asc"]]
+                //"order" => array('date' => 'desc')
                 } );
             });
             $(document).ready(function () {
                 $('#workoutsDone').DataTable( {
-                "order": [[ Workouts.date, "desc" ]]
+                "order": [[ 2, "desc" ]]
                 } );
             });
         </script>
@@ -34,7 +35,7 @@
         
          <h2 id="seanT2">Séances à venir</h2>
          
-        <table id="workoutsDone" class="table table-hover table-striped table-responsive tableBlackHead">
+        <table id="workoutsComing" class="table table-hover table-striped table-responsive tableBlackHead">
             <thead>
                 <tr>
                 <th>Sport</th>
