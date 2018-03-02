@@ -28,6 +28,15 @@ class WorkoutsTable extends Table {
         return $workout_coming;       
     }
     
+    public function getWorknow(){
+        $date_courante = Time::now();
+        $workout_done = $this
+                ->find()
+                ->select(['date', 'sport', 'location_name', 'description'])                
+                ->where(["date <" => $date_courante, "end_date >" => $date_courante]);
+        return $workout_done;   
+    }
+    
     public function getWorkDone(){
         $date_courante = Time::now();         
         $workout_done = $this

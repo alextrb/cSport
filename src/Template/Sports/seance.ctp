@@ -18,6 +18,11 @@
                 } );
             });
             $(document).ready(function () {
+                $('#workoutsNow').DataTable( {
+                "order": [[ 2, "desc" ]]
+                } );
+            });
+            $(document).ready(function () {
                 $('#workoutsDone').DataTable( {
                 "order": [[ 2, "desc" ]]
                 } );
@@ -47,6 +52,27 @@
             <tbody>
             <!-- Remplissage du tableau-->
             <?php foreach ($workout_coming as $workout){
+                echo"<tr><td>".$workout->sport."</td><td>"
+                              .$workout->date."</td><td>"
+                              .$workout->location_name."</td><td>"
+                              .$workout->descritpion."</td></tr>";
+            }?>
+            </tbody>
+        </table>
+         
+          <h2 id="seanT2">Séances en cours</h2>
+        <table id="workoutsNow" class="table table-hover table-striped table-responsive tableBlackHead">
+            <thead>
+                <tr>
+                <th>Sport</th>
+                <th>Date</th>
+                <th>Lieu</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Remplissage du tableau-->
+            <?php foreach ($workout_now as $workout){
                 echo"<tr><td>".$workout->sport."</td><td>"
                               .$workout->date."</td><td>"
                               .$workout->location_name."</td><td>"

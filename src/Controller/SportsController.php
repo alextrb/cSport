@@ -45,6 +45,9 @@
             $workout_coming = $this->Workouts->getWorkComing();
             $this->set("workout_coming", $workout_coming);
             
+            $workout_now = $this->Workouts->getWorknow();
+            $this->set("workout_now", $workout_now);
+            
             $workout_done = $this->Workouts->getWorkDone();
             $this->set("workout_done", $workout_done);
             
@@ -58,11 +61,11 @@
                         $this->request->data['date']['hour'],
                         $this->request->data['date']['minute']);
                 $ed = \Cake\I18n\Time::create(
-                        $this->request->data['date']['year'],
-                        $this->request->data['date']['month'],
-                        $this->request->data['date']['day'],
-                        $this->request->data['date']['hour'],
-                        $this->request->data['date']['minute']);
+                        $this->request->data['end_date']['year'],
+                        $this->request->data['end_date']['month'],
+                        $this->request->data['end_date']['day'],
+                        $this->request->data['end_date']['hour'],
+                        $this->request->data['end_date']['minute']);
                 $ln = $this->request->data("location_name");
                 $des = $this->request->data("description");
                 $s = $this->request->data("sport");
