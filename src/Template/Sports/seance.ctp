@@ -105,13 +105,18 @@
         
         <h2 id="seanT2">Pour ajouter une séance, remplir le formulaire</h2>
         
-        <?= $this->Form->create($new)?>
-        <?= $this->Form->input("date")?>     
-        <?= $this->Form->input("end_date")?>
-        <?= $this->Form->input("location_name")?>
-        <?= $this->Form->input("description")?>
-        <?= $this->Form->input("sport")?>
-        <?= $this->Form->submit("Ajouter")?>
-        <?= $this->Form->end()?>
+        <?= $this->Form->create($new)."<ul><li>"
+             .$this->Form->input("date", array("label" => "Date et heure du début de la séance : "))."</li><li>"
+             .$this->Form->input("end_date", array("label" => "Date et heure de fin de la séance : "))."</li><li>"
+             .$this->Form->input("location_name", array("label" => "Lieu : "))."</li><li>"             
+             .$this->Form->select("sport", array(
+                 'label' => "Selectionnez le sport souhaité : ",
+                 'Course' => "Course",
+                 'BasketBall' => "BasketBall",
+                 'Entrainement' => "Entrainement",
+                 'Tennis' => "Tennis"))."</li><li>"                
+             .$this->Form->input("description", array("label" => "Commentaires : "))."</li><li>"             
+             .$this->Form->submit("Ajouter")."</li></ul>"
+             .$this->Form->end();?>
     </body>
 </html>

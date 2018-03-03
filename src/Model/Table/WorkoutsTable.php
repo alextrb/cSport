@@ -9,14 +9,22 @@ class WorkoutsTable extends Table {
 
     public function addWorkouts($d, $ed, $ln, $des, $s, $mi) {
         //pr("addWorkouts($d, $ed, $ln, $des, $s)");die();
-        $new = $this->newEntity();
-        $new->date = $d;
-        $new->end_date = $ed;
-        $new->location_name = $ln;
-        $new->description = $des;
-        $new->sport = $s;
-        $new->member_id = $mi;
-        $this->save($new);     
+        if($s == 'label'){
+            echo 'Veuillez Indiquer le sport';
+        }
+        elseif($ln == ''){
+            echo 'Veuillez Indiquer le lieu de la seance';
+        }
+        else{
+            $new = $this->newEntity();
+            $new->date = $d;
+            $new->end_date = $ed;
+            $new->location_name = $ln;
+            $new->description = $des;
+            $new->sport = $s;
+            $new->member_id = $mi;
+            $this->save($new);
+        }     
     }
     
     public function getWorkComing(){
