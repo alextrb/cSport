@@ -55,7 +55,7 @@
                 echo"<tr><td>".$workout->sport."</td><td>"
                               .$workout->date."</td><td>"
                               .$workout->location_name."</td><td>"
-                              .$workout->descritpion."</td></tr>";
+                              .$workout->description."</td></tr>";
             }?>
             </tbody>
         </table>
@@ -76,7 +76,7 @@
                 echo"<tr><td>".$workout->sport."</td><td>"
                               .$workout->date."</td><td>"
                               .$workout->location_name."</td><td>"
-                              .$workout->descritpion."</td></tr>";
+                              .$workout->description."</td></tr>";
             }?>
             </tbody>
         </table>
@@ -98,7 +98,7 @@
                 echo"<tr><td>".$workout->sport."</td><td>"
                               .$workout->date."</td><td>"
                               .$workout->location_name."</td><td>"
-                              .$workout->descritpion."</td></tr>";                              
+                              .$workout->description."</td></tr>";                              
             }?>
             </tbody>
         </table>
