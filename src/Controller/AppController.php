@@ -66,7 +66,7 @@ class AppController extends Controller
             ],
             'logoutRedirect' => [
                 'controller' => 'Sports',
-                'action' => 'index'
+                'action' => 'login'
             ],
         ]);
         /*

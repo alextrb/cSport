@@ -76,7 +76,8 @@
         }
         
         public function moncompte(){
-            
+            $this->set("user_id", $this->Auth->user('id'));
+            $this->set("user_email", $this->Auth->user('email'));
         }
         
         public function seance(){
