@@ -5,6 +5,50 @@
     
     class SportsController extends AppController
     {   
+        public function login()
+        {
+            $this->loadModel("Members");
+            if ($this->request->is('post')) {
+                $user = $this->Auth->identify(); // On regarde si le membre existe bien
+                if ($user) {
+                    $this->Auth->setUser($user); // On le connecte
+                    return $this->redirect($this->Auth->redirectUrl());
+                } else {
+                    $this->Flash->error(__("Nom d'utilisateur ou mot de passe incorrect"));
+                }
+            }
+        }
+
+        public function logout()
+        {
+            $this->redirect($this->Auth->logout());
+        }
+
+        public function register()
+        {
+            $this->loadModel("Members");
+            $new = $this->Members->newEntity();
+            if($this->request->is("post"))
+            {
+                $email = $this->request->data("email");
+                $password = $this->request->data("password");
+
+                $result = $this->Members->registerMember($email, $password);
+
+                if($result) // On vérifie si un utilisateur avec le même email n'existe pas déjà
+                {
+                    $authUser = $this->Members->get($result->id)->toArray();
+                    $this->Auth->setUser($authUser); // On connecte l'utilisateur qui vient de s'inscrire
+                     $this->redirect(['controller' => 'Sports', 'action' => 'index']);
+                }
+                else
+                {
+                    $this->Flash->error(__("Email déjà utilisé"));
+                }
+            }
+            $this->set("new", $new);
+        }
+
         
         public function index(){
             $this->loadModel("Members");
@@ -29,10 +73,6 @@
                     array_push($classement_array, $new_row); // on push cette ligne dans le tableau
             }
             $this->set("classement_array", $classement_array); // on partage ce tableau avec la vue
-        }
-        
-        public function connexion(){
-            
         }
         
         public function moncompte(){
@@ -78,6 +118,7 @@
         
         public function objetsco(){
             $this->loadModel("devices");
+            $this->loadModel("logs");
             
             $auth_devices = $this->devices->getAuthDevices();
             $this->set("auth_devices",$auth_devices);
