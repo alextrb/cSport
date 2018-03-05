@@ -1,24 +1,27 @@
-var map, i, myLatLng = {lat: -25.363, lng: 131.044};
-        //myLatLng = [{"lat":48.49,"lng":2.26},{"lat":152,"lng":145}];
+var map, i; //myLatLng = {lat: -10, lng: 131.044};
+var myLatLng = [{"lat": 50, "lng": 90}, {"lat": -15, "lng": 110}];
 
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
-        });
-        
+window.alert(json_locations[0]);
+window.alert(myLatLng[0]);
+
+
+function initMap() {
+    var uluru = {lat: -10, lng: 100.044};
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 4,
+        center: uluru
+    });
+
+    var marker = new google.maps.Marker({
+        position: uluru,
+        map: map
+    });
+
+    myLatLng.forEach(function(coords) {
+        var test = {lat: coords.lat, lng: coords.lng};
         var marker = new google.maps.Marker({
-          position: myLatLng,
-          map: map,
-          title: 'Hello World!'
+            position: test,
+            map: map
         });
-        /*
-        for(i in myLatLng){
-            var marker = new google.maps.Marker({
-              position: i,
-              map: map,
-              title: 'Hello World!'
-            });
-        } */
-    }
-
+    });
+}

@@ -1,16 +1,17 @@
 <?php
+
 $this->assign('title', 'Mes Objets Connectés');?>
 
 <script type="text/javascript" charset="utf-8">
-    $(document).ready(function () {
-        $('#objeAllowedTable').DataTable( {
-            "order": [[ 1, "desc" ]]
-        } );
+    $(document).ready(function() {
+        $('#objeAllowedTable').DataTable({
+            "order": [[1, "desc"]]
+        });
     });
-    $(document).ready(function () {
-        $('#objeWaitingTable').DataTable( {
-            "order": [[ 1, "desc" ]]
-        } );
+    $(document).ready(function() {
+        $('#objeWaitingTable').DataTable({
+            "order": [[1, "desc"]]
+        });
     });
 </script>
 
@@ -57,10 +58,15 @@ $this->assign('title', 'Mes Objets Connectés');?>
             }?>
         </tbody>
     </table>
-    
+
+    <script type="text/javascript">
+        var json_locations = '<?php echo $encoded_locations ?>';
+    </script>
+
     <div id='map'></div>
     <?php
-    echo $this->Html->script(['googleMap']);
-    echo $this->Html->script('https://maps.googleapis.com/maps/api/js?key=AIzaSyClw2W8vDjAdeSJkPnDO9CCI-01RLjYQcw&callback=initMap', ['defer']);
-    ?>         
- </div>
+    echo $this->Html->script(['googleMap']);?>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClw2W8vDjAdeSJkPnDO9CCI-01RLjYQcw&callback=initMap">
+    </script>
+</div>
