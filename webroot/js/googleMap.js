@@ -1,27 +1,18 @@
-var map, i; //myLatLng = {lat: -10, lng: 131.044};
-var myLatLng = [{"lat": 50, "lng": 90}, {"lat": -15, "lng": 110}];
-
-window.alert(json_locations[0]);
-window.alert(myLatLng[0]);
-
+var map, i;
 
 function initMap() {
-    var uluru = {lat: -10, lng: 100.044};
+    var paris = {lat: 48.86, lng: 2.33};
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 4,
-        center: uluru
+        zoom: 8,
+        center: paris
     });
 
-    var marker = new google.maps.Marker({
-        position: uluru,
-        map: map
-    });
-
-    myLatLng.forEach(function(coords) {
-        var test = {lat: coords.lat, lng: coords.lng};
+    json_locations.forEach(function(coords) {
+        var json_coords = {lat: coords.lat, lng: coords.lng};
         var marker = new google.maps.Marker({
-            position: test,
-            map: map
+            position: json_coords,
+            map: map,
+            title: 'Votre entrainement'
         });
     });
 }

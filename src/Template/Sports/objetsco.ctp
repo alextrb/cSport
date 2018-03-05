@@ -59,14 +59,14 @@ $this->assign('title', 'Mes Objets Connectés');?>
         </tbody>
     </table>
 
-    <script type="text/javascript">
-        var json_locations = '<?php echo $encoded_locations ?>';
-    </script>
 
+    <script type="text/javascript">
+        var json_locations = <?php echo $encoded_locations ?>;
+    </script>
     <div id='map'></div>
-    <?php
-    echo $this->Html->script(['googleMap']);?>
+    <?php echo $this->Html->script(['googleMap']);?>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClw2W8vDjAdeSJkPnDO9CCI-01RLjYQcw&callback=initMap">
     </script>
+
 </div>
