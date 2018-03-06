@@ -53,4 +53,13 @@ class WorkoutsTable extends Table {
                 ->where(["end_date <" => $date_courante]);
         return $workout_done;        
     }
+    
+    public function getComments() {
+        $allComments = $this
+                ->find()
+                ->select(['location_name', 'description'])
+                ->toArray();
+
+        return $allComments;
+    }
 }

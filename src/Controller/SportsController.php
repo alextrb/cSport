@@ -120,6 +120,7 @@
         public function objetsco(){
             $this->loadModel("devices");
             $this->loadModel("logs");
+            $this->loadModel("workouts");
             
             $auth_devices = $this->devices->getAuthDevices();
             $this->set("auth_devices",$auth_devices);
@@ -129,6 +130,9 @@
             
             $encoded_locations = $this->logs->getAllSeancesLocations();
             $this->set("encoded_locations", $encoded_locations);
+            
+            $comments = $this->workouts->getComments();
+            $this->set("comments", $comments);
         }
       
         public function contact(){

@@ -59,7 +59,6 @@ $this->assign('title', 'Mes Objets Connectés');?>
         </tbody>
     </table>
 
-
     <script type="text/javascript">
         var json_locations = <?php echo $encoded_locations ?>;
     </script>
