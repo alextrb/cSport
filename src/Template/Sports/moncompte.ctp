@@ -19,7 +19,7 @@ $this->assign('title', 'Mon Compte');?>
     </li>
 </ul>
 <?= $this->Form->create('User', array('type' => 'file')); ?>
-<?= $this->Form->input('avatar_file', array('label' => 'Télécharger une image', 'type' => 'file')); ?>
-<?= $this->Form->submit('Modifier votre avatar'); ?>
+<?= $this->Form->input('avatar_file', array('label' => 'Télécharger une image (.jpg, .jpeg, .png)', 'type' => 'file')); ?>
+<?= $this->Form->submit('Modifier votre photo de profil'); ?>
 <?= $this->Form->end(); ?>
-<?= $this->Form->postButton("Supprimer la photo", ["controller"=>"Sports", "action"=>"deleteProfilePicture"]);
+<?= $this->Form->postButton("Supprimer votre photo", ["controller"=>"Sports", "action"=>"deleteProfilePicture"]);
