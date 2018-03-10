@@ -136,7 +136,10 @@
         }
       
         public function contact(){
-            
+             if ($this->request->is('post')){
+              
+       
+             }
         }
         
         public function equipe(){
