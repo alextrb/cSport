@@ -2,6 +2,8 @@
     namespace App\Controller;
 
     use App\Controller\AppController;
+    use Cake\Filesystem\Folder;
+    use Cake\Filesystem\File;
     
     class SportsController extends AppController
     {   
@@ -76,8 +78,48 @@
         }
         
         public function moncompte(){
-            $this->set("user_id", $this->Auth->user('id'));
-            $this->set("user_email", $this->Auth->user('email'));
+            $current_user_id = $this->Auth->user('id');
+            $current_user_email = $this->Auth->user('email');
+            
+            $dir = new Folder(WWW_ROOT . 'img/photo_profil');            
+
+            if($this->request->is("post"))
+            {
+                $extension = strtolower(pathinfo($this->request->data['avatar_file']['name'], PATHINFO_EXTENSION));
+
+                if( !empty($this->request->data['avatar_file']['tmp_name']) && in_array($extension, array('jpg', 'jpeg', 'png')) )
+                {
+                    $files = $dir->find($this->Auth->user('id').'\.(?:jpg|jpeg|png)$');
+                    if(!empty($files))
+                    {
+                        foreach($files as $file)
+                        {
+                            $file = new File($dir->pwd() . DS . $file);
+                            $file->delete();
+                            $file->close();
+                        }
+                    }
+                    move_uploaded_file($this->request->data['avatar_file']['tmp_name'], 'img/photo_profil/' . DS . $this->Auth->user('id') . '.' . $extension);
+                }
+                else
+                {
+                    $this->Flash->error(__("Modification de l'image invalide"));
+                }
+            }
+            $files = $dir->find($current_user_id.'\.(?:jpg|jpeg|png)$');
+            if(empty($files))
+            {
+                $user_image_extension = "none";
+            }
+            else
+            {
+                $user_image_extension = strtolower(pathinfo($files[0], PATHINFO_EXTENSION));
+            }
+            
+            $this->set("user_id", $current_user_id);
+            $this->set("user_email", $current_user_email);
+            $this->set("user_image", $files);
+            $this->set("user_image_extension", $user_image_extension);
         }
         
         public function seance(){
@@ -172,6 +214,21 @@
                 $this->Flash->success(__('Le device avec id: {0} a été appareillé.', h($device)));
                 return $this->redirect(['controller' => 'Sports', 'action' => 'objetsco']);
             }
+        }
+        
+        public function deleteProfilePicture() {
+            $dir = new Folder(WWW_ROOT . 'img/photo_profil');  
+            $files = $dir->find($this->Auth->user('id').'\.(?:jpg|jpeg|png)$');
+            if(!empty($files))
+            {
+                foreach($files as $file)
+                {
+                    $file = new File($dir->pwd() . DS . $file);
+                    $file->delete();
+                    $file->close();
+                }
+            }
+            return $this->redirect(['controller' => 'Sports', 'action' => 'moncompte']);
         }
         
         public function apiRegisterDevice($id_member, $id_device, $description)
