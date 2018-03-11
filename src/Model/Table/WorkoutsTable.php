@@ -30,7 +30,7 @@ class WorkoutsTable extends Table {
     public function getWorkComing(){
         $date_courante = Time::now();         
         $workout_coming = $this
-                ->find()
+                ->find('all', array('order' => array('Workouts.date' => 'asc')))
                 ->select(['date', 'sport', 'location_name', 'description'])                
                 ->where(["date >" => $date_courante]);
         return $workout_coming;       
@@ -39,7 +39,7 @@ class WorkoutsTable extends Table {
     public function getWorknow(){
         $date_courante = Time::now();
         $workout_done = $this
-                ->find()
+                ->find('all', array('order' => array('Workouts.date' => 'asc')))
                 ->select(['date', 'sport', 'location_name', 'description'])                
                 ->where(["date <" => $date_courante, "end_date >" => $date_courante]);
         return $workout_done;   
@@ -48,7 +48,7 @@ class WorkoutsTable extends Table {
     public function getWorkDone(){
         $date_courante = Time::now();         
         $workout_done = $this
-                ->find()
+                ->find('all', array('order' => array('Workouts.date' => 'desc')))
                 ->select(['date', 'sport', 'location_name', 'description'])                
                 ->where(["end_date <" => $date_courante]);
         return $workout_done;        

@@ -9,26 +9,7 @@
     <title>
         <?php $this->assign('title', 'Mes Séances');?>
     </title>
-    
-     <script type="text/javascript" charset="utf-8">
-            $(document).ready(function () {
-                $('#workoutsComing').DataTable( {
-                "order": [[ 2, "asc"]]
-                //"order" => array('date' => 'desc')
-                } );
-            });
-            $(document).ready(function () {
-                $('#workoutsNow').DataTable( {
-                "order": [[ 2, "desc" ]]
-                } );
-            });
-            $(document).ready(function () {
-                $('#workoutsDone').DataTable( {
-                "order": [[ 2, "desc" ]]
-                } );
-            });
-        </script>
-        
+
         <?= $this->Html->css('seance.css') ?>
     
     <body>
