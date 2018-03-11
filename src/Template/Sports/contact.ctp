@@ -8,18 +8,16 @@ $this->assign('title', 'Contact');?>
         <div class="col-sm-12 justify-content-md-center row">
           <?= $this->Form->create() ?>
             <div class="row">
-                <div class="form-group col-sm-6">
-                    <label for="name" class="h4">Nom</label>
-                    <input type="text" class="form-control" id="name" placeholder="Entrer votre nom" required>
+                <div class="col-sm-6">
+                     <?php echo $this->Form->input('nom', array('label' => "Votre nom")); ?>
                 </div>
-                <div class="form-group col-sm-6">
-                    <?= $this->Form->control('email') ?>
+                <div class="col-sm-6">
+                    <?php echo $this->Form->input('email', array('label' => "Votre email")); ?>
                 </div>
             </div>
                
-            <div class="form-group">
-                <label for="message" class="h4 ">Message</label>
-                <textarea id="message" class="form-control" rows="5" placeholder="Entrer votre message" required></textarea>
+            <div class="">
+                 <?php echo $this->Form->input('contentl', array('label' => "Votre message", "type"=>"textarea")); ?>
             </div>
             <?= $this->Form->submit('Envoyer'); ?>
            </form><?= $this->Form->end() ?>
