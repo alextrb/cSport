@@ -179,8 +179,8 @@
       
         public function contact(){
              if ($this->request->is('post')){
-              
-       
+                 $email = $this->request->data('email');
+                 debug($email);
              }
         }
         
