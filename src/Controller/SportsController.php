@@ -4,6 +4,7 @@
     use App\Controller\AppController;
     use Cake\Filesystem\Folder;
     use Cake\Filesystem\File;
+     use Cake\Mailer\Email;
     
     class SportsController extends AppController
     {   
@@ -180,7 +181,17 @@
         public function contact(){
              if ($this->request->is('post')){
                  $email = $this->request->data('email');
-                 debug($email);
+                 $nom = $this->request->data('nom');
+                 $content = $this->request->data('content');
+                 
+               
+                 
+                /* $email = new Email('default');
+                    $email->from(['antoine.seweryn@gmail.com' => 'My Site'])
+                                ->to('antoine.seweryn@gmail.com')
+                                ->subject('About')
+                                 ->send('My message');*/
+                
              }
         }
         
