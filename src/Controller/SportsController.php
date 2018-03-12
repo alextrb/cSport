@@ -183,8 +183,8 @@
                  $email = $this->request->data('email');
                  $nom = $this->request->data('nom');
                  $content = $this->request->data('content');
-                 
-               
+                 $test = $this->request->data('exampleTextarea');
+               debug($test);
                  
                 /* $email = new Email('default');
                     $email->from(['antoine.seweryn@gmail.com' => 'My Site'])
