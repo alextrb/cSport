@@ -72,6 +72,7 @@
                 <th>Lieu</th>
                 <th>Description</th>
                 <th>Relevés</th>
+                <th>Ajouter un relevé</th>
             </tr>
             </thead>
             <tbody>
@@ -86,9 +87,22 @@
                 //pr($logs);
                 echo"<tr><td>".$workout->sport."</td><td>"
                               .$workout->date."</td><td>"
-                              .$workout->location."</td><td>"
+                              .$workout->location_name."</td><td>"
                               .$workout->description."</td><td>"
-                              .$this->Html->nestedList($logs)."</td></tr>";                
+                              .$this->Html->nestedList($logs)."</td><td>"
+                              .$this->Form->create(null, array('url'=>array('controller' => 'sports', 'action' => 'addLog')))
+                              .$this->Form->hidden("id_workout", array(
+                                  "value" => $workout['id']))                              
+                              .$this->Form->input("location_latitude", array(
+                                  "label" => "Latitude : "))
+                              .$this->Form->input("location_logitude", array(
+                                  "label" => "Longitude : "))
+                              .$this->Form->input("log_type", array(
+                                  "label" => "Type de relevé : "))
+                              .$this->Form->input("log_value", array(
+                                  "label" => "Nombre : "))
+                              .$this->Form->submit("Ajouter")."</td></tr>"
+                              .$this->Form->end();              
             }?>
             </tbody>
         </table>

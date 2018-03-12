@@ -4,7 +4,10 @@
     use App\Controller\AppController;
     use Cake\Filesystem\Folder;
     use Cake\Filesystem\File;
-     use Cake\Mailer\Email;
+    use Cake\Mailer\Email;
+    use Cake\ORM\Table;
+    use Cake\I18n\Time;
+    use Cake\I18n\Date;
     
     class SportsController extends AppController
     {   
@@ -169,6 +172,24 @@
                 $this->Workouts->addWorkouts($d, $ed, $ln, $des, $s, $mi);
             }
             $this->set("new", $new);
+        }
+        
+        public function addLog(){        
+            $this->loadModel("Logs");
+            $new_log = $this->Logs->newEntity();
+            if ($this->request->is("post")) {
+                $mi = $this->Auth->user('id');
+                $wi = $this->request->data("id_workout");
+                $di = 0;
+                $date = Time::now();
+                $lat = $this->request->data("location_latitude");
+                $long = $this->request->data("location_logitude");
+                $type = $this->request->data("log_type");
+                $value = $this->request->data("log_value");       
+                $this->Logs->addLogs($mi, $wi, $di, $date, $lat, $long, $type, $value);
+            }
+            $this->set("new_log", $new_log);
+            $this->redirect(['controller' => 'Sports', 'action' => 'seance']);        
         }
         
         public function objetsco(){

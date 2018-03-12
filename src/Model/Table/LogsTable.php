@@ -14,6 +14,24 @@ class LogsTable extends Table {
               ->where(["workout_id" => $id]);
       return $logs;
   }
+  
+    public function addLogs($mi, $wi, $di, $date, $lat, $long, $type, $value){
+        if($lat == '' || $long == '' || $type == '' || $value == ''){
+              echo 'Veuillez remplir tous les champs';
+          }
+          else{
+              $new_log = $this->newEntity();
+              $new_log->member_id = $mi;
+              $new_log->workout_id = $wi;
+              $new_log->device_id = $di;
+              $new_log->date = $date;
+              $new_log->location_latitude = $lat;
+              $new_log->location_logitude = $long;
+              $new_log->log_type = $type;
+              $new_log->log_value = $value;           
+              $this->save($new_log);
+          }   
+    }
     
     public function getLogsOfMember($id_member) {
 
