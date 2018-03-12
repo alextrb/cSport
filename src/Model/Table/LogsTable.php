@@ -8,7 +8,13 @@ class LogsTable extends Table {
     /*
      * Getter pour récupérer tous les relevés d'un membre
      */
-
+    public function getLogs($id){
+      $logs = $this
+              ->find()              
+              ->where(["workout_id" => $id]);
+      return $logs;
+  }
+    
     public function getLogsOfMember($id_member) {
 
         $logs_member = $this->find('all', array('conditions' => array('member_id' => $id_member)));

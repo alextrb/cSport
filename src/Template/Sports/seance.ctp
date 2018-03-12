@@ -71,15 +71,24 @@
                 <th>Date</th>
                 <th>Lieu</th>
                 <th>Description</th>
+                <th>Relevés</th>
             </tr>
             </thead>
             <tbody>
             <!-- Remplissage du tableau-->
-            <?php foreach ($workout_done as $workout){
+            <?php foreach ($workDone_tab as $details){
+                $workout=$details['workout'];
+                $logs=[];
+                
+                foreach($details['logs'] as $log){
+                  $logs[]=$log->log_type." : ".$log->log_value;  
+                }
+                //pr($logs);
                 echo"<tr><td>".$workout->sport."</td><td>"
                               .$workout->date."</td><td>"
-                              .$workout->location_name."</td><td>"
-                              .$workout->description."</td></tr>";                              
+                              .$workout->location."</td><td>"
+                              .$workout->description."</td><td>"
+                              .$this->Html->nestedList($logs)."</td></tr>";                
             }?>
             </tbody>
         </table>

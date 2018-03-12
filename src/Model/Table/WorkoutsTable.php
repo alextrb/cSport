@@ -48,8 +48,7 @@ class WorkoutsTable extends Table {
     public function getWorkDone(){
         $date_courante = Time::now();         
         $workout_done = $this
-                ->find('all', array('order' => array('Workouts.date' => 'desc')))
-                ->select(['date', 'sport', 'location_name', 'description'])                
+                ->find('all', array('order' => array('Workouts.date' => 'desc')))                              
                 ->where(["end_date <" => $date_courante]);
         return $workout_done;        
     }
