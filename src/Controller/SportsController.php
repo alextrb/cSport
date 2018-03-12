@@ -125,6 +125,7 @@
         
         public function seance(){
             $this->loadModel("Workouts");
+            $this->loadModel("Logs");
             
             $workout_coming = $this->Workouts->getWorkComing();
             $this->set("workout_coming", $workout_coming);
@@ -132,8 +133,18 @@
             $workout_now = $this->Workouts->getWorknow();
             $this->set("workout_now", $workout_now);
             
+            $workDone_tab = array();
             $workout_done = $this->Workouts->getWorkDone();
-            $this->set("workout_done", $workout_done);
+            //pr($workout_done);
+            $list=[];
+            foreach ($workout_done as $idw => $work) { // pour chaque membre
+                $seanceLogs = $this->Logs->getLogs($work->id);
+                $list[$idw] = [
+                    'workout' => $work,
+                    'logs' => $seanceLogs,
+                ];
+            }
+            $this->set("workDone_tab", $list);
             
             $new = $this->Workouts->newEntity();
             
