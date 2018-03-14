@@ -24,23 +24,10 @@
     </title>
     <?= $this->Html->meta('icon') ?>
     
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <?= $this->Html->css('bootstrap.min') ?>
+    <?= $this->Html->script('bootstrap.min') ?>    
     
-    
-    <?= $this->Html->script('jquery-3.3.1.js') ?>
-
-    <?= $this->Html->css('bootstrap.css') ?>
-    <?= $this->Html->script('bootstrap.js') ?>
-    
-    <?= $this->Html->css('datatables.css') ?>
-    <?= $this->Html->script('datatables.js') ?>
-    
-    <?= $this->Html->css('mainstyle.css') ?>
-    <?= $this->Html->css('seance.css') ?>
-    <?= $this->Html->css('classement.css') ?>
-    <?= $this->Html->css('objetsco.css') ?>
-    
+        <?= $this->Html->css('mainstyle.css') ?>    
     <?= $this->fetch('meta') ?> <!--Ne pas toucher les 3 lignes -->
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
@@ -56,6 +43,7 @@
             echo $this->element('navbar_disconnected');
         }
     ?>
+    
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
         <?= $this->fetch('content') ?> <!--Ne pas toucher, correspond à la vue-->
