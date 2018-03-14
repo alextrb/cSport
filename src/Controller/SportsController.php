@@ -130,14 +130,26 @@
             $this->loadModel("Workouts");
             $this->loadModel("Logs");
             
-            $workout_coming = $this->Workouts->getWorkComing();
+            $currentId = $this->Auth->user('id');
+            
+            $workout_coming = $this->Workouts->getWorkComing($currentId);
             $this->set("workout_coming", $workout_coming);
             
-            $workout_now = $this->Workouts->getWorknow();
-            $this->set("workout_now", $workout_now);
+            $workout_now = $this->Workouts->getWorknow($currentId);
+            
+            $list1=[];
+            foreach ($workout_now as $idw => $work) { // pour chaque membre
+                $seanceLogs = $this->Logs->getLogs($work->id);
+                $list1[$idw] = [
+                    'workout' => $work,
+                    'logs' => $seanceLogs,
+                ];
+            }
+            
+            $this->set("workNow_tab", $list1);
             
             $workDone_tab = array();
-            $workout_done = $this->Workouts->getWorkDone();
+            $workout_done = $this->Workouts->getWorkDone($currentId);
             //pr($workout_done);
             $list=[];
             foreach ($workout_done as $idw => $work) { // pour chaque membre
