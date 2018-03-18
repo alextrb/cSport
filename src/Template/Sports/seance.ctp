@@ -145,11 +145,12 @@
                 <tr>
                     <th>Date de la séance</th> 
                     <th>Pompes réalisées pendant chaque séance (en %)</th>
+                    <th>Pas réalisés pendant chaque séance (en %)</th>
                 </tr>
             </thead>
             <tbody>
               <?php foreach ($stat_array as $row){
-               echo "<tr><td>".$row['date']."</td><td>".$row['stat']."</td></tr>";
+               echo "<tr><td>".$row['date']."</td><td>".$row['stat']."</td><td>".$row['pas']."</td></tr>";
                    }                            
                ?>  
             </tbody>

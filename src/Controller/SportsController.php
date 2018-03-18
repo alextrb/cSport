@@ -142,9 +142,11 @@
             {              
                 //$member_score = $this->Logs->CalculMemberScore($member->id); // on calcule leur score
                 $pompesPourcent = $this->Logs->getPompes($w->id);
+                $pasPourcent = $this->Logs->getPas($w->id);
                 ///On crée une nouvelle ligne contenant le membre et son score
                 $new_row = array('date' => $w->date,
-                                 'stat' => $pompesPourcent);
+                                 'stat' => $pompesPourcent,
+                                 'pas' => $pasPourcent);
                     array_push($stat_array, $new_row); // on push cette ligne dans le tableau
             }
             $this->set("stat_array", $stat_array); 

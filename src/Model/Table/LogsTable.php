@@ -106,6 +106,29 @@ class LogsTable extends Table {
         //pr($pompes_total);
         return $pompesPourcent;
     }
+    
+    public function getPas($id){
+    $pas_total = 0;
+    $pasPourcent = 0;
+    $pas_logs = $this
+            ->find()
+            ->where(["log_type =" => "Pas"]);
+    foreach ($pas_logs as $p){
+        $pas_total = $pas_total + $p->log_value;
+        //pr($pompes_total);
+    }    
+    $pas_logs1 = $this
+            ->find()
+            ->where(["log_type =" => "Pas", "workout_id =" => $id]);
+    foreach ($pas_logs1 as $p){
+        $pasPourcent = ($p->log_value/$pas_total)*100;
+        //pr($p->log_value);
+        //pr($pompes_total);
+        //pr($pompesPourcent);
+    }
+    //pr($pompes_total);
+    return $pasPourcent;
+  }
 
     public function getPompesTotal($id){
         $pompes_total = 0;
