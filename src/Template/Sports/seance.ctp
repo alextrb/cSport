@@ -9,6 +9,17 @@
     <title>
         <?php $this->assign('title', 'Mes Séances');?>
     </title>
+    
+    <script type="text/javascript" charset="utf-8">
+            $(document).ready(function () {
+                //$.fn.dataTable.moment('MMMM Do YYYY, h:mm:ss a');
+                $('#pompes').DataTable({
+                    "order": [[ 1, "asc" ]]
+                    //"columnDefs": [{ "type": "de_date", targets: 2 }]                
+                });
+            });
+
+        </script>
 
         <?= $this->Html->css('seance.css') ?>
     
@@ -125,6 +136,37 @@
                               .$this->Form->submit("Ajouter")."</td></tr>"
                               .$this->Form->end();              
             }?>
+            </tbody>
+        </table>
+        
+        <h2 id="seanT2">Statistiques des relevés depuis l'inscription</h2>
+        <table id="pompes" class="table table-hover table-striped table-responsive tableBlackHead">
+            <thead>
+                <tr>
+                    <th>Date de la séance</th> 
+                    <th>Pompes réalisées pendant chaque séance (en %)</th>
+                </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($stat_array as $row){
+               echo "<tr><td>".$row['date']."</td><td>".$row['stat']."</td></tr>";
+                   }                            
+               ?>  
+            </tbody>
+        </table>
+        
+        <table id="stat" class="table table-hover table-striped table-responsive tableBlackHead">
+            <thead>
+                <tr>
+                    <th>Relevés</th> 
+                    <th>Pourcentage sur l'ensemble des relevés</th>
+                </tr>
+            </thead>
+            <tbody>
+              <?php //foreach ($stat_array as $row){
+               echo "<tr><td>Pompes</td><td>".(($pompesTotal/$logsTotal)*100)."</td></tr>";
+                   //}                            
+               ?>  
             </tbody>
         </table>
         

@@ -6,6 +6,11 @@ use Cake\ORM\Table;
 use Cake\I18n\Time;
 
 class WorkoutsTable extends Table {
+    
+    public function getAllWorkouts($id){
+        $work = $this->find()->where(["member_id =" => $id]);
+        return $work;
+    }
 
     public function addWorkouts($d, $ed, $ln, $des, $s, $mi) {
         //pr("addWorkouts($d, $ed, $ln, $des, $s)");die();

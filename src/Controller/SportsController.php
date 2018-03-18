@@ -135,6 +135,27 @@
             $workout_coming = $this->Workouts->getWorkComing($currentId);
             $this->set("workout_coming", $workout_coming);
             
+            //Pourcentage de pompes par séance
+            $stat_array = array(); // tableau qui va contenir des membres et leur score
+            $workout = $this->Workouts->getAllWorkouts($currentId); // on récupère tous les membres
+            foreach($workout as $w) // pour chaque membre
+            {              
+                //$member_score = $this->Logs->CalculMemberScore($member->id); // on calcule leur score
+                $pompesPourcent = $this->Logs->getPompes($w->id);
+                ///On crée une nouvelle ligne contenant le membre et son score
+                $new_row = array('date' => $w->date,
+                                 'stat' => $pompesPourcent);
+                    array_push($stat_array, $new_row); // on push cette ligne dans le tableau
+            }
+            $this->set("stat_array", $stat_array); 
+        
+            //¨prcentage de chaque relevé depuis l'inscription
+            $pompesTotal = $this->Logs->getPompesTotal($currentId);
+            $this->set("pompesTotal", $pompesTotal);
+
+            $logsTotal = $this->Logs->getLogsTotal($currentId);
+            $this->set("logsTotal", $logsTotal);
+            
             $workout_now = $this->Workouts->getWorknow($currentId);
             
             $list1=[];
