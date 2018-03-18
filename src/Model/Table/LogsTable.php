@@ -81,5 +81,54 @@ class LogsTable extends Table {
         pr(json_encode($locations_array));
         return json_encode($locations_array);
     }
+    
+    public function getPompes($id){
+        $pompes_total = 0;
+        $pompesPourcent = 0;
+        $pompes_logs = $this
+                ->find()
+                ->where(["log_type =" => "Pompes"]);
+        foreach ($pompes_logs as $p){
+            $pompes_total = $pompes_total + $p->log_value;
+            //pr($pompes_total);
+        }
+        //pr($pompes_total);
+
+        $pompes_logs1 = $this
+                ->find()
+                ->where(["log_type =" => "Pompes", "workout_id =" => $id]);
+        foreach ($pompes_logs1 as $p){
+            $pompesPourcent = ($p->log_value/$pompes_total)*100;
+            //pr($p->log_value);
+            //pr($pompes_total);
+            //pr($pompesPourcent);
+        }
+        //pr($pompes_total);
+        return $pompesPourcent;
+    }
+
+    public function getPompesTotal($id){
+        $pompes_total = 0;
+        $pompes_logs = $this
+              ->find()
+              ->where(["log_type =" => "Pompes", "member_id =" => $id]);
+        foreach ($pompes_logs as $p){
+            $pompes_total = $pompes_total + $p->log_value;       
+        }
+        return $pompes_total;
+    }
+  
+    public function getLogsTotal($id) {
+        $logs_total = 0;
+        $logs = $this->find()
+                ->where(["member_id =" => $id]);
+        foreach ($logs as $l){
+            $logs_total = $logs_total + $l->log_value;
+            //pr($l->log_value);
+            //pr($logs_total);
+        }
+        //pr($logs_total);
+        return $logs_total;   
+    }
 
 }

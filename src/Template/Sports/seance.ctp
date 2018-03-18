@@ -9,6 +9,17 @@
     <title>
         <?php $this->assign('title', 'Mes Séances');?>
     </title>
+    
+    <script type="text/javascript" charset="utf-8">
+            $(document).ready(function () {
+                //$.fn.dataTable.moment('MMMM Do YYYY, h:mm:ss a');
+                $('#pompes').DataTable({
+                    "order": [[ 1, "asc" ]]
+                    //"columnDefs": [{ "type": "de_date", targets: 2 }]                
+                });
+            });
+
+        </script>
 
         <?= $this->Html->css('seance.css') ?>
     
@@ -49,15 +60,36 @@
                 <th>Date</th>
                 <th>Lieu</th>
                 <th>Description</th>
+                <th>Relevé</th>
+                <th>Ajouter un relevé</th>
             </tr>
             </thead>
             <tbody>
-            <!-- Remplissage du tableau-->
-            <?php foreach ($workout_now as $workout){
+           <?php foreach ($workNow_tab as $details){
+                $workout=$details['workout'];
+                $logs=[];
+                
+                foreach($details['logs'] as $log){
+                  $logs[]=$log->log_type." : ".$log->log_value;  
+                }
                 echo"<tr><td>".$workout->sport."</td><td>"
                               .$workout->date."</td><td>"
                               .$workout->location_name."</td><td>"
-                              .$workout->description."</td></tr>";
+                              .$workout->description."</td><td>"
+                              .$this->Html->nestedList($logs)."</td><td>"
+                              .$this->Form->create(null, array('url'=>array('controller' => 'sports', 'action' => 'addLog')))
+                              .$this->Form->hidden("id_workout", array(
+                                  "value" => $workout['id']))                              
+                              .$this->Form->input("location_latitude", array(
+                                  "label" => "Latitude : "))
+                              .$this->Form->input("location_logitude", array(
+                                  "label" => "Longitude : "))
+                              .$this->Form->input("log_type", array(
+                                  "label" => "Type de relevé : "))
+                              .$this->Form->input("log_value", array(
+                                  "label" => "Nombre : "))
+                              .$this->Form->submit("Ajouter")."</td></tr>"
+                              .$this->Form->end();
             }?>
             </tbody>
         </table>
@@ -104,6 +136,37 @@
                               .$this->Form->submit("Ajouter")."</td></tr>"
                               .$this->Form->end();              
             }?>
+            </tbody>
+        </table>
+        
+        <h2 id="seanT2">Statistiques des relevés depuis l'inscription</h2>
+        <table id="pompes" class="table table-hover table-striped table-responsive tableBlackHead">
+            <thead>
+                <tr>
+                    <th>Date de la séance</th> 
+                    <th>Pompes réalisées pendant chaque séance (en %)</th>
+                </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($stat_array as $row){
+               echo "<tr><td>".$row['date']."</td><td>".$row['stat']."</td></tr>";
+                   }                            
+               ?>  
+            </tbody>
+        </table>
+        
+        <table id="stat" class="table table-hover table-striped table-responsive tableBlackHead">
+            <thead>
+                <tr>
+                    <th>Relevés</th> 
+                    <th>Pourcentage sur l'ensemble des relevés</th>
+                </tr>
+            </thead>
+            <tbody>
+              <?php //foreach ($stat_array as $row){
+               echo "<tr><td>Pompes</td><td>".(($pompesTotal/$logsTotal)*100)."</td></tr>";
+                   //}                            
+               ?>  
             </tbody>
         </table>
         

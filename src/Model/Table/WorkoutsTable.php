@@ -6,6 +6,11 @@ use Cake\ORM\Table;
 use Cake\I18n\Time;
 
 class WorkoutsTable extends Table {
+    
+    public function getAllWorkouts($id){
+        $work = $this->find()->where(["member_id =" => $id]);
+        return $work;
+    }
 
     public function addWorkouts($d, $ed, $ln, $des, $s, $mi) {
         //pr("addWorkouts($d, $ed, $ln, $des, $s)");die();
@@ -27,29 +32,27 @@ class WorkoutsTable extends Table {
         }     
     }
     
-    public function getWorkComing(){
+    public function getWorkComing($id){
         $date_courante = Time::now();         
         $workout_coming = $this
-                ->find('all', array('order' => array('Workouts.date' => 'asc')))
-                ->select(['date', 'sport', 'location_name', 'description'])                
-                ->where(["date >" => $date_courante]);
+                ->find('all', array('order' => array('Workouts.date' => 'asc')))                               
+                ->where(["date >" => $date_courante, "member_id =" => $id]);
         return $workout_coming;       
     }
     
-    public function getWorknow(){
+    public function getWorknow($id){
         $date_courante = Time::now();
         $workout_done = $this
-                ->find('all', array('order' => array('Workouts.date' => 'asc')))
-                ->select(['date', 'sport', 'location_name', 'description'])                
-                ->where(["date <" => $date_courante, "end_date >" => $date_courante]);
+                ->find('all', array('order' => array('Workouts.date' => 'asc')))                               
+                ->where([ "end_date >" => $date_courante, "date <" => $date_courante, "member_id =" => $id]);
         return $workout_done;   
     }
     
-    public function getWorkDone(){
+    public function getWorkDone($id){
         $date_courante = Time::now();         
         $workout_done = $this
                 ->find('all', array('order' => array('Workouts.date' => 'desc')))                              
-                ->where(["end_date <" => $date_courante]);
+                ->where(["end_date <" => $date_courante, "member_id =" => $id]);
         return $workout_done;        
     }
     

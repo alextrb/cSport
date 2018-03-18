@@ -130,14 +130,47 @@
             $this->loadModel("Workouts");
             $this->loadModel("Logs");
             
-            $workout_coming = $this->Workouts->getWorkComing();
+            $currentId = $this->Auth->user('id');
+            
+            $workout_coming = $this->Workouts->getWorkComing($currentId);
             $this->set("workout_coming", $workout_coming);
             
-            $workout_now = $this->Workouts->getWorknow();
-            $this->set("workout_now", $workout_now);
+            //Pourcentage de pompes par séance
+            $stat_array = array(); // tableau qui va contenir des membres et leur score
+            $workout = $this->Workouts->getAllWorkouts($currentId); // on récupère tous les membres
+            foreach($workout as $w) // pour chaque membre
+            {              
+                //$member_score = $this->Logs->CalculMemberScore($member->id); // on calcule leur score
+                $pompesPourcent = $this->Logs->getPompes($w->id);
+                ///On crée une nouvelle ligne contenant le membre et son score
+                $new_row = array('date' => $w->date,
+                                 'stat' => $pompesPourcent);
+                    array_push($stat_array, $new_row); // on push cette ligne dans le tableau
+            }
+            $this->set("stat_array", $stat_array); 
+        
+            //¨prcentage de chaque relevé depuis l'inscription
+            $pompesTotal = $this->Logs->getPompesTotal($currentId);
+            $this->set("pompesTotal", $pompesTotal);
+
+            $logsTotal = $this->Logs->getLogsTotal($currentId);
+            $this->set("logsTotal", $logsTotal);
+            
+            $workout_now = $this->Workouts->getWorknow($currentId);
+            
+            $list1=[];
+            foreach ($workout_now as $idw => $work) { // pour chaque membre
+                $seanceLogs = $this->Logs->getLogs($work->id);
+                $list1[$idw] = [
+                    'workout' => $work,
+                    'logs' => $seanceLogs,
+                ];
+            }
+            
+            $this->set("workNow_tab", $list1);
             
             $workDone_tab = array();
-            $workout_done = $this->Workouts->getWorkDone();
+            $workout_done = $this->Workouts->getWorkDone($currentId);
             //pr($workout_done);
             $list=[];
             foreach ($workout_done as $idw => $work) { // pour chaque membre
