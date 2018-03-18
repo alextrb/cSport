@@ -165,6 +165,9 @@
             <tbody>
               <?php //foreach ($stat_array as $row){
                echo "<tr><td>Pompes</td><td>".(($pompesTotal/$logsTotal)*100)."</td></tr>";
+               echo "<tr><td>Pas</td><td>".(($pasTotal/$logsTotal)*100)."</td></tr>";
+               echo "<tr><td>Abdos</td><td>".(($abdosTotal/$logsTotal)*100)."</td></tr>";
+               echo "<tr><td>Squats</td><td>".(($squatsTotal/$logsTotal)*100)."</td></tr>";
                    //}                            
                ?>  
             </tbody>

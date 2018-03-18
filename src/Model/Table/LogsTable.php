@@ -117,6 +117,39 @@ class LogsTable extends Table {
         }
         return $pompes_total;
     }
+    
+    public function getPasTotal($id){
+        $pas_total = 0;
+        $pas_logs = $this
+              ->find()
+              ->where(["log_type =" => "Pas", "member_id =" => $id]);
+        foreach ($pas_logs as $p){
+            $pas_total = $pas_total + $p->log_value;       
+        }
+        return $pas_total;
+    }
+  
+    public function getAbdosTotal($id){
+        $abdos_total = 0;
+        $abdos_logs = $this
+                ->find()
+                ->where(["log_type =" => "Abdos", "member_id =" => $id]);
+        foreach ($abdos_logs as $p){
+            $abdos_total = $abdos_total + $p->log_value;       
+        }        
+        return $abdos_total;
+    }
+  
+    public function getSquatsTotal($id){
+        $squats_total = 0;
+        $squats_logs = $this
+            ->find()
+            ->where(["log_type =" => "Squats", "member_id =" => $id]);
+        foreach ($squats_logs as $p){
+            $squats_total = $squats_total + $p->log_value;       
+        }
+        return $squats_total;
+    }
   
     public function getLogsTotal($id) {
         $logs_total = 0;
@@ -130,5 +163,5 @@ class LogsTable extends Table {
         //pr($logs_total);
         return $logs_total;   
     }
-
+    
 }

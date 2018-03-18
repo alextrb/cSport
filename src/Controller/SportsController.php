@@ -152,6 +152,15 @@
             //¨prcentage de chaque relevé depuis l'inscription
             $pompesTotal = $this->Logs->getPompesTotal($currentId);
             $this->set("pompesTotal", $pompesTotal);
+            
+            $pasTotal = $this->Logs->getPasTotal($currentId);
+            $this->set("pasTotal", $pasTotal);
+        
+            $abdosTotal = $this->Logs->getAbdosTotal($currentId);
+            $this->set("abdosTotal", $abdosTotal);
+        
+            $squatsTotal = $this->Logs->getSquatsTotal($currentId);
+            $this->set("squatsTotal", $squatsTotal);
 
             $logsTotal = $this->Logs->getLogsTotal($currentId);
             $this->set("logsTotal", $logsTotal);
