@@ -209,7 +209,7 @@
                 $ln = $this->request->data("location_name");
                 $des = $this->request->data("description");
                 $s = $this->request->data("sport");
-                $mi = "56eb38a4-ee50-421f-bf6e-26beb38f37ff";
+                $mi = $this->Auth->user('id');
                    
                 $this->Workouts->addWorkouts($d, $ed, $ln, $des, $s, $mi);
             }
