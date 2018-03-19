@@ -127,20 +127,51 @@ class LogsTable extends Table {
             ->find()
             ->where(["log_type =" => "Pas"]);
     foreach ($pas_logs as $p){
-        $pas_total = $pas_total + $p->log_value;
-        //pr($pompes_total);
+        $pas_total = $pas_total + $p->log_value;        
     }    
     $pas_logs1 = $this
             ->find()
             ->where(["log_type =" => "Pas", "workout_id =" => $id]);
     foreach ($pas_logs1 as $p){
-        $pasPourcent = ($p->log_value/$pas_total)*100;
-        //pr($p->log_value);
-        //pr($pompes_total);
-        //pr($pompesPourcent);
-    }
-    //pr($pompes_total);
+        $pasPourcent = ($p->log_value/$pas_total)*100;        
+    }    
     return $pasPourcent;
+  }
+  
+  public function getAbdos($id){
+    $abdos_total = 0;
+    $abdosPourcent = 0;
+    $abdos_logs = $this
+            ->find()
+            ->where(["log_type =" => "Abdos"]);
+    foreach ($abdos_logs as $a){
+        $abdos_total = $abdos_total + $a->log_value;        
+    }    
+    $abdos_logs1 = $this
+            ->find()
+            ->where(["log_type =" => "Abdos", "workout_id =" => $id]);
+    foreach ($abdos_logs1 as $a){
+        $abdosPourcent = ($a->log_value/$abdos_total)*100;
+    }    
+    return $abdosPourcent;
+  }
+  
+  public function getSquats($id){
+    $squats_total = 0;
+    $squatsPourcent = 0;
+    $squats_logs = $this
+            ->find()
+            ->where(["log_type =" => "Squats"]);
+    foreach ($squats_logs as $s){
+        $squats_total = $squats_total + $s->log_value;
+    }    
+    $squats_logs1 = $this
+            ->find()
+            ->where(["log_type =" => "Squats", "workout_id =" => $id]);
+    foreach ($squats_logs1 as $s){
+        $squatsPourcent = ($s->log_value/$squats_total)*100;
+    }
+    return $squatsPourcent;
   }
 
     public function getPompesTotal($id){

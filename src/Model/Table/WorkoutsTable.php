@@ -9,7 +9,10 @@ use Cake\I18n\Time;
 class WorkoutsTable extends Table {
     
     public function getAllWorkouts($id){
-        $work = $this->find()->where(["member_id =" => $id]);
+        $work = $this
+                //->find()
+                ->find('all', array('order' => array('Workouts.date' => 'asc')))
+                ->where(["member_id =" => $id]);
         return $work;
     }
 
