@@ -182,9 +182,12 @@
              .$this->Form->input("location_name", array("label" => "Lieu : "))."</li><li>"             
              .$this->Form->select("sport", array(
                  'label' => "Selectionnez le sport souhaité : ",
-                 'Course' => "Course",
-                 'BasketBall' => "BasketBall",
-                 'Entrainement' => "Entrainement",
+                 'Badminton' => "Badminton",
+                 'Boxe' => "Boxe",
+                 'Canne de combat' => "Canne de combat",
+                 'GRS' => "GRS",
+                 'Judo' => "Judo",
+                 'Taekwondo' => "Taekwondo",
                  'Tennis' => "Tennis"))."</li><li>"                
              .$this->Form->input("description", array("label" => "Commentaires : "))."</li><li>"             
              .$this->Form->submit("Ajouter")."</li></ul>"
