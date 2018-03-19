@@ -9,6 +9,7 @@
             <li><?= $this->Html->link("Mes séances", ["controller"=>"Sports", "action"=>"seance"])?></li>
             <li><?= $this->Html->link("Mes objets connectés", ["controller"=>"Sports", "action"=>"objetsco"])?></li>
             <li><?= $this->Html->link("Classement", ["controller"=>"Sports", "action"=>"classements"])?></li>
+            <li><?= $this->Html->link("Compétitions", ["controller"=>"Sports", "action"=>"competition"])?></li>
             
             <li><?= $this->Html->link("Contact", ["controller"=>"Sports", "action"=>"contact"])?></li>
             <li><?= $this->Html->link("Équipe", ["controller"=>"Sports", "action"=>"equipe"])?></li>

@@ -27,7 +27,7 @@
         <h1 id="seanTitle">Mes Séances</h1>
         
         <figure>
-            <div class="header-image"><?= $this->Html->image('seance.jpg') ?></div> 
+            <div class="header-image"><?= $this->Html->image('seance.jpg', ['width' => '1150px']) ?></div> 
         </figure> 
         
          <h2 id="seanT2">Séances à venir</h2>

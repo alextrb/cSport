@@ -1,36 +1,182 @@
 <?php
 $this->assign('title', 'Classements');?>
-<script type="text/javascript" charset="utf-8">
-    $(document).ready(function () {
-        $('#clasTable').DataTable( {
-            "order": [[ 1, "desc" ]]
-        } );
-    });
-</script>
+
 
 <div class="container-fluid">
-    <h1 id="clasTitle">Classement des membres</h1>
+    <h1 id="clasTitle">Classement :</h1>
         <figure>
-            <div class="header-image"><?= $this->Html->image('classement.jpg') ?></div> 
+            <div class="header-image"><?= $this->Html->image('classement.jpg', ['width' => '1030px']) ?></div> 
         </figure> 
 
+    
+
     <div id="clasTableDiv" class="col-md-11">
-        <table id="clasTable" class="table table-hover table-striped table-responsive tableBlackHead" >
+        <h3>Classement : BADMINTON </h3>
+        <table id="clasTableBadminton" class="table table-hover table-striped table-responsive tableBlackHead" >
             <thead>
                 <tr>
+                    <th>RANG</th>
                     <th>MEMBRE</th>
-                    <th>SCORE</th>
+                    <th>VICTOIRES</th>
+                    <th>ÉGALITÉS</th>
+                    <th>DÉFAITES</th>
+                    <th>POINTS ASSAUTS</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- Remplissage du tableau-->
                 <?php
-                   foreach ($classement_array as $row){
-                        echo "<tr><td>".$row['member']."</td><td>".$row['score']."</td></tr>";
+                $rang = 1;
+                   foreach ($badminton_rankings as $row){
+                        echo "<tr><td>".$rang."</td><td>".$row['member']."</td><td>".$row['nb_victories']."</td><td>".$row['nb_equalities']."</td><td>".$row['nb_loses']."</td><td>".$row['score']."</td></tr>";
+                        $rang = $rang +1;
+                   }
+                ?>
+            </tbody>
+        </table>
+
+        <h3>Classement : BOXE </h3>
+        <table id="clasTableBoxe" class="table table-hover table-striped table-responsive tableBlackHead" >
+            <thead>
+                <tr>
+                    <th>RANG</th>
+                    <th>MEMBRE</th>
+                    <th>VICTOIRES</th>
+                    <th>ÉGALITÉS</th>
+                    <th>DÉFAITES</th>
+                    <th>POINTS ASSAUTS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Remplissage du tableau-->
+                <?php
+                $rang = 1;
+                   foreach ($boxe_rankings as $row){
+                        echo "<tr><td>".$rang."</td><td>".$row['member']."</td><td>".$row['nb_victories']."</td><td>".$row['nb_equalities']."</td><td>".$row['nb_loses']."</td><td>".$row['score']."</td></tr>";
+                        $rang = $rang +1;
+                   }
+                ?>
+            </tbody>
+        </table>
+
+        <h3>Classement : CANNE DE COMBAT </h3>
+        <table id="clasTableCanne" class="table table-hover table-striped table-responsive tableBlackHead" >
+            <thead>
+                <tr>
+                    <th>RANG</th>
+                    <th>MEMBRE</th>
+                    <th>VICTOIRES</th>
+                    <th>ÉGALITÉS</th>
+                    <th>DÉFAITES</th>
+                    <th>POINTS ASSAUTS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Remplissage du tableau-->
+                <?php
+                $rang = 1;
+                   foreach ($canne_rankings as $row){
+                        echo "<tr><td>".$rang."</td><td>".$row['member']."</td><td>".$row['nb_victories']."</td><td>".$row['nb_equalities']."</td><td>".$row['nb_loses']."</td><td>".$row['score']."</td></tr>";
+                        $rang = $rang +1;
+                   }
+                ?>
+            </tbody>
+        </table>
+
+        <h3>Classement : GRS </h3>
+        <table id="clasTableGRS" class="table table-hover table-striped table-responsive tableBlackHead" >
+            <thead>
+                <tr>
+                    <th>RANG</th>
+                    <th>MEMBRE</th>
+                    <th>VICTOIRES</th>
+                    <th>ÉGALITÉS</th>
+                    <th>DÉFAITES</th>
+                    <th>POINTS ASSAUTS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Remplissage du tableau-->
+                <?php
+                $rang = 1;
+                   foreach ($grs_rankings as $row){
+                        echo "<tr><td>".$rang."</td><td>".$row['member']."</td><td>".$row['nb_victories']."</td><td>".$row['nb_equalities']."</td><td>".$row['nb_loses']."</td><td>".$row['score']."</td></tr>";
+                        $rang = $rang +1;
+                   }
+                ?>
+            </tbody>
+        </table>
+
+        <h3>Classement : JUDO </h3>
+        <table id="clasTableJudo" class="table table-hover table-striped table-responsive tableBlackHead" >
+            <thead>
+                <tr>
+                    <th>RANG</th>
+                    <th>MEMBRE</th>
+                    <th>VICTOIRES</th>
+                    <th>ÉGALITÉS</th>
+                    <th>DÉFAITES</th>
+                    <th>POINTS ASSAUTS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Remplissage du tableau-->
+                <?php
+                $rang = 1;
+                   foreach ($judo_rankings as $row){
+                        echo "<tr><td>".$rang."</td><td>".$row['member']."</td><td>".$row['nb_victories']."</td><td>".$row['nb_equalities']."</td><td>".$row['nb_loses']."</td><td>".$row['score']."</td></tr>";
+                        $rang = $rang +1;
+                   }
+                ?>
+            </tbody>
+        </table>
+
+        <h3>Classement : TAEKWONDO </h3>
+        <table id="clasTableTaekwondo" class="table table-hover table-striped table-responsive tableBlackHead" >
+            <thead>
+                <tr>
+                    <th>RANG</th>
+                    <th>MEMBRE</th>
+                    <th>VICTOIRES</th>
+                    <th>ÉGALITÉS</th>
+                    <th>DÉFAITES</th>
+                    <th>POINTS ASSAUTS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Remplissage du tableau-->
+                <?php
+                $rang = 1;
+                   foreach ($taekwondo_rankings as $row){
+                        echo "<tr><td>".$rang."</td><td>".$row['member']."</td><td>".$row['nb_victories']."</td><td>".$row['nb_equalities']."</td><td>".$row['nb_loses']."</td><td>".$row['score']."</td></tr>";
+                        $rang = $rang +1;
+                   }
+                ?>
+            </tbody>
+        </table>
+
+        <h3>Classement : TENNIS </h3>
+        <table id="clasTableTennis" class="table table-hover table-striped table-responsive tableBlackHead" >
+            <thead>
+                <tr>
+                    <th>RANG</th>
+                    <th>MEMBRE</th>
+                    <th>VICTOIRES</th>
+                    <th>ÉGALITÉS</th>
+                    <th>DÉFAITES</th>
+                    <th>POINTS ASSAUTS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Remplissage du tableau-->
+                <?php
+                $rang = 1;
+                   foreach ($tennis_rankings as $row){
+                        echo "<tr><td>".$rang."</td><td>".$row['member']."</td><td>".$row['nb_victories']."</td><td>".$row['nb_equalities']."</td><td>".$row['nb_loses']."</td><td>".$row['score']."</td></tr>";
+                        $rang = $rang +1;
                    }
                 ?>
             </tbody>
         </table>
     </div>
 </div>
-        

@@ -17,6 +17,32 @@ class MembersTable extends Table {
         return $all_members->toArray();
     }
     
+    public function getOtherMembersEmail($id) {
+        $email_members = $this
+                ->find()
+                ->select(['email'])
+                ->where(['id !=' => $id]);
+        return $email_members->toArray();
+
+    }
+
+    public function getMemberByEmail($email) {
+        $member = $this->find()->where(['email' => $email])->first();
+
+        return $member;
+
+    }
+
+    public function getMemberEmail($id) {
+        $email_member = $this
+                ->find()
+                ->select(['email'])
+                ->where(['id =' => $id])
+                ->first();
+        return $email_member;
+
+    }
+    
     public function registerMember($email, $password) {
         $new_member = $this->newEntity();
         $new_member->email=$email;

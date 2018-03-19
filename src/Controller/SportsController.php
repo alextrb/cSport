@@ -64,21 +64,27 @@
         
         public function classements(){
             $this->loadModel("Members");
+            $this->loadModel("Workouts");
             $this->loadModel("Logs");
             
-            $classement_array = array(); // tableau qui va contenir des membres et leur score
             $members = $this->Members->getAllMembers(); // on récupère tous les membres
-            foreach($members as $member) // pour chaque membre
-            {
-                $member_score = $this->Logs->CalculMemberScore($member->id); // on calcule leur score
-                ///On crée une nouvelle ligne contenant le membre et son score
-                $new_row = array(
-                                'member' => $member->email,
-                                'score' => $member_score
-                                );
-                    array_push($classement_array, $new_row); // on push cette ligne dans le tableau
-            }
-            $this->set("classement_array", $classement_array); // on partage ce tableau avec la vue
+
+            $badminton_rankings = $this->buildSportRankings("Badminton");
+            $boxe_rankings = $this->buildSportRankings("Boxe");
+            $canne_rankings = $this->buildSportRankings("Canne de combat");
+            $grs_rankings = $this->buildSportRankings("GRS");
+            $judo_rankings = $this->buildSportRankings("Judo");
+            $taekwondo_rankings = $this->buildSportRankings("Taekwondo");
+            $tennis_rankings = $this->buildSportRankings("Tennis");
+
+
+            $this->set("badminton_rankings", $badminton_rankings);
+            $this->set("boxe_rankings", $boxe_rankings);
+            $this->set("canne_rankings", $canne_rankings);
+            $this->set("grs_rankings", $grs_rankings);
+            $this->set("judo_rankings", $judo_rankings);
+            $this->set("taekwondo_rankings", $taekwondo_rankings);
+            $this->set("tennis_rankings", $tennis_rankings);
         }
         
         public function moncompte(){
@@ -283,6 +289,213 @@
             
         }
         
+        public function competition(){
+            $this->loadModel("Contests");
+            $this->loadModel("Workouts");
+            $contests = $this->Contests->getAllContests();
+            $this->set("contests", $contests);
+
+            $new = $this->Contests->newEntity();
+            
+            if ($this->request->is('post')){
+                $name = $this->request->data("name"); // compet
+                $type = $this->request->data("type");
+                $description = $this->request->data("description");
+                   
+                $this->Contests->addContest($name, $type, $description);
+
+                $this->redirect(['controller' => 'Sports', 'action' => 'competition']);
+            }
+
+            $this->set("new", $new);
+            
+        }
+
+        public function singlecompetition($contest_id){
+            $this->loadModel("Workouts");
+            $this->loadModel("Members");
+            $this->loadModel("Logs");
+            $this->loadModel("Contests");
+
+
+            $this_contest = $this->Contests->getContest($contest_id);
+            $this->set("this_contest", $this_contest);
+
+            $matchs_array = $this->Workouts->getAllMatchsFromContest($contest_id);
+            $final_matchs_array = array();
+            foreach($matchs_array as $match)
+            {
+                $second_match = $this->Workouts->findSecondMemberOfMatch($match->id, $match->date, $match->end_date, $match->location_name, $contest_id);
+
+                if(count($second_match) > 0)
+                {
+                    $new_row = array(
+                                'workout_id1' => $match->id,
+                                'member_id1' => $match->member_id,
+                                'member_email1' => $this->Members->getMemberEmail($match->member_id)->email,
+                                'workout_id2' => $second_match->id,
+                                'member_id2' => $second_match->member_id,
+                                'member_email2' => $this->Members->getMemberEmail($second_match->member_id)->email,
+                                'date' => $match->date,
+                                'end_date' => $match->end_date,
+                                'location_name' => $match->location_name,
+                                'description' => $match->description,
+                                'sport' => $match->sport
+                                );
+                    array_push($final_matchs_array, $new_row); // on push cette ligne dans le tableau
+                }
+            }
+
+            $this->set("matchs", $final_matchs_array);
+
+            /* --------------------------- CLASSEMENT DES JOUEURS DE LA COMPÉTITION ------------------------*/
+
+            /// On récupère tous les logs "Résultats" de la compétition
+            $result_logs_array = array(); // Tableau contenant tous les logs Résultats de la compétition
+            foreach($matchs_array as $match)
+            {
+                $log_row = $this->Logs->getLogResultOfMatch($match->id);
+                array_push($result_logs_array, $log_row);
+            }
+
+            $contest_members_array = $this->Workouts->getContestMembers($contest_id); // Tableau contenant les ID uniquement des membres participants
+
+            $rankings_list=array(); // Tableau contenant le classement
+
+            /// On initialise la liste
+            foreach($contest_members_array as $member)
+            {
+                $rankings_list[$member->member_id] = [
+                    'member_id' => $member->member_id,
+                    'member_email' => $this->Members->getMemberEmail($member->member_id)->email,
+                    'member_score' => 0
+                ];
+            }
+
+            foreach($contest_members_array as $member)
+            {
+                foreach($result_logs_array as $log_result)
+                {
+                    if($rankings_list[$member->member_id]['member_id'] == $log_result->member_id)
+                    {
+                        $rankings_list[$member->member_id] = [
+                            'member_id' => $member->member_id,
+                            'member_email' => $this->Members->getMemberEmail($member->member_id)->email,
+                            'member_score' => $rankings_list[$member->member_id]['member_score'] + $log_result->log_value
+                        ];
+                    }
+                }
+            }
+
+            usort($rankings_list, function($a, $b) {
+                return $a['member_score'] - $b['member_score'];
+            });
+            $rankings_list = array_reverse($rankings_list);
+
+            $this->set("rankings_list", $rankings_list);
+
+            /* ----- RÉCUPÉRATION DES EMAILS POUR LES AFFICHER DANS LA LISTE DÉROULANTE DU FORMULAIRE ---- */
+            $members = $this->Members->getAllMembers();
+            $emails_array = array(); 
+            foreach($members as $member) 
+            {
+                    $emails_array[$member->email] = $member->email; 
+            }
+            $this->set("emails_array", $emails_array);
+
+            /* -------------- -------------------------- FORMULAIRE -----------------------------------------*/
+            $new = $this->Workouts->newEntity();            
+            if ($this->request->is('post')){
+                $member1_email = $this->request->data("m1_email");
+                $member2_email = $this->request->data("m2_email");
+                if($member1_email == $member2_email)
+                {
+                    $this->Flash->error(__("Veuillez choisir deux participants distincts"));
+                    $this->redirect(['controller' => 'Sports', 'action' => 'singlecompetition/'.$contest_id]);
+                }
+                else
+                {
+                    $d = \Cake\I18n\Time::create(
+                        $this->request->data['date']['year'],
+                        $this->request->data['date']['month'],
+                        $this->request->data['date']['day'],
+                        $this->request->data['date']['hour'],
+                        $this->request->data['date']['minute']);
+                    $ed = \Cake\I18n\Time::create(
+                        $this->request->data['end_date']['year'],
+                        $this->request->data['end_date']['month'],
+                        $this->request->data['end_date']['day'],
+                        $this->request->data['end_date']['hour'],
+                        $this->request->data['end_date']['minute']);
+                    $ln = $this->request->data("location_name");
+                    $des_workout = "- / -";
+
+                    $member1 = $this->Members->getMemberByEmail($member1_email);
+                    $member2 = $this->Members->getMemberByEmail($member2_email);
+                       
+                    $m1_workout = $this->Workouts->addMatch($d, $ed, $ln, $des_workout, $this_contest->type, $member1->id, $contest_id);
+                    $m2_workout = $this->Workouts->addMatch($d, $ed, $ln, $des_workout, $this_contest->type, $member2->id, $contest_id);
+
+                    $this->Logs->addLogResultat($member1->id, $m1_workout->id, 0, $d, 0, 0, "Résultat", 0);
+                    $this->Logs->addLogResultat($member2->id, $m2_workout->id, 0, $d, 0, 0, "Résultat", 0);
+
+                    $this->redirect(['controller' => 'Sports', 'action' => 'singlecompetition/'.$contest_id]);
+                }
+                
+            }
+            $this->set("new", $new);
+
+        }
+
+        public function endMatch($contest_id, $member1_id, $member2_id, $member1_workout, $member2_workout, $member1_email, $member2_email)
+        {
+            $this->loadModel("Logs");
+            $this->loadModel("Workouts");
+            
+            $member1_score = $this->Logs->calculateScoreOfMatch($member1_id, $member1_workout)->score;
+            $member2_score = $this->Logs->calculateScoreOfMatch($member2_id, $member2_workout)->score;
+            $member1_score = $member1_score + 0;
+            $member2_score = $member2_score + 0;
+
+            if($member1_score > $member2_score)
+            {
+                $member1_log_row = $this->Logs->getLogResultOfMatch($member1_workout);
+                $member2_log_row = $this->Logs->getLogResultOfMatch($member2_workout);
+                $this->Logs->setLogResultOfMatch($member1_log_row->id, 3);
+                $this->Logs->setLogResultOfMatch($member2_log_row->id, 1);
+            }
+            elseif($member2_score > $member1_score)
+            {
+                $member1_log_row = $this->Logs->getLogResultOfMatch($member1_workout);
+                $member2_log_row = $this->Logs->getLogResultOfMatch($member2_workout);
+                $this->Logs->setLogResultOfMatch($member1_log_row->id, 1);
+                $this->Logs->setLogResultOfMatch($member2_log_row->id, 3);
+            }
+            elseif(($member1_score == $member2_score) && ($member1_score > 0))
+            {
+                $member1_log_row = $this->Logs->getLogResultOfMatch($member1_workout);
+                $member2_log_row = $this->Logs->getLogResultOfMatch($member2_workout);
+                $this->Logs->setLogResultOfMatch($member1_log_row->id, 2);
+                $this->Logs->setLogResultOfMatch($member2_log_row->id, 2);
+            }
+            else
+            {
+                $member1_log_row = $this->Logs->getLogResultOfMatch($member1_workout);
+                $member2_log_row = $this->Logs->getLogResultOfMatch($member2_workout);
+                $this->Logs->setLogResultOfMatch($member1_log_row->id, 0);
+                $this->Logs->setLogResultOfMatch($member2_log_row->id, 0);
+            }
+            
+            $this->Workouts->setMatchDescriptionWithScores($member1_workout, $member1_score, $member2_score, $member1_email, $member2_email);
+            $this->Workouts->setMatchDescriptionWithScores($member2_workout, $member1_score, $member2_score, $member1_email, $member2_email);
+
+            $this->Workouts->setEndDateOfMatch($member1_workout);
+            $this->Workouts->setEndDateOfMatch($member2_workout);
+
+            $this->redirect(['controller' => 'Sports', 'action' => 'singlecompetition/'.$contest_id]);
+            
+        }
+        
         public function deleteOC($device) {
             $this->loadModel("Devices");
                         
@@ -316,6 +529,62 @@
                 }
             }
             return $this->redirect(['controller' => 'Sports', 'action' => 'moncompte']);
+        }
+        
+        public function buildSportRankings($sport)
+        {
+            $this->loadModel("Members");
+            $this->loadModel("Workouts");
+            $this->loadModel("Logs");
+
+            $members = $this->Members->getAllMembers(); // on récupère tous les membres
+
+            $sport_rankings = array();
+
+            foreach($members as $member)
+            {
+                $member_sport_matchs = $this->Workouts->getAllMemberMatchsOfSport($member->id, $sport);
+                
+                
+                //if(count($member_sport_matchs) > 0)
+                //{
+                    $nb_victories = 0;
+                    $nb_equalities = 0;
+                    $nb_loses = 0;
+                    foreach($member_sport_matchs as $sport_match) // on récupère tous les matchs de Badminton du membre
+                    {
+                        
+                        if($this->Logs->getLogResultOfMatch($sport_match->id)->log_value == 3)
+                        {
+                            $nb_victories = $nb_victories + 1;
+                        }
+                        elseif($this->Logs->getLogResultOfMatch($sport_match->id)->log_value == 2)
+                        {
+                            $nb_equalities = $nb_equalities + 1;
+                        }
+                        elseif($this->Logs->getLogResultOfMatch($sport_match->id)->log_value == 1)
+                        {
+                            $nb_loses = $nb_loses + 1; 
+                        }
+                    }
+                    $member_sport_row = array(
+                                                    'member' => $member->email,
+                                                    'nb_victories' => $nb_victories,
+                                                    'nb_equalities' => $nb_equalities,
+                                                    'nb_loses' => $nb_loses,
+                                                    'score' => $nb_victories*3 + $nb_equalities*2 + $nb_loses*1
+                                                );
+                    array_push($sport_rankings, $member_sport_row);
+                //}
+                
+            }
+
+            usort($sport_rankings, function($a, $b) {
+                return $a['score'] - $b['score'];
+            });
+            $sport_rankings = array_reverse($sport_rankings);
+
+            return $sport_rankings;
         }
         
         public function apiRegisterDevice($id_member, $id_device, $description)

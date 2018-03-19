@@ -17,7 +17,7 @@ $this->assign('title', 'Mes Objets Connectés');?>
 
 
 <div>
-    <h2>Liste des objets authorisés sur votre compte :</h2>
+    <h2>Liste des objets autorisés sur votre compte :</h2>
     <table id="objeAllowedTable" class="table table-hover table-striped table-responsive tableBlackHead" >
         <thead>
             <tr>
@@ -38,7 +38,7 @@ $this->assign('title', 'Mes Objets Connectés');?>
         </tbody>
     </table>
 
-    <h2>Liste des objets attendant une authorisation de votre part :</h2>
+    <h2>Liste des objets attendant une autorisation de votre part :</h2>
     <table id="objeWaitingTable" class="table table-hover table-striped table-responsive tableBlackHead" >
         <thead>
             <tr>

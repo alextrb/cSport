@@ -33,6 +33,19 @@ class LogsTable extends Table {
           }   
     }
     
+    public function addLogResultat($mi, $wi, $di, $date, $lat, $long, $type, $value){
+      $new_log = $this->newEntity();
+        $new_log->member_id = $mi;
+        $new_log->workout_id = $wi;
+        $new_log->device_id = $di;
+        $new_log->date = $date;
+        $new_log->location_latitude = $lat;
+        $new_log->location_logitude = $long;
+        $new_log->log_type = $type;
+        $new_log->log_value = $value;           
+        $this->save($new_log);
+    }
+    
     public function getLogsOfMember($id_member) {
 
         $logs_member = $this->find('all', array('conditions' => array('member_id' => $id_member)));
@@ -78,7 +91,7 @@ class LogsTable extends Table {
             );
             array_push($locations_array, $new_row);
         }
-        pr(json_encode($locations_array));
+        
         return json_encode($locations_array);
     }
     
@@ -185,6 +198,35 @@ class LogsTable extends Table {
         }
         //pr($logs_total);
         return $logs_total;   
+    }
+    
+    public function calculateScoreOfMatch($member_id, $workout_id)
+    {
+        $query = $this->find();
+        $scoreSum = $query->select(['score' => $query->func()->sum('log_value')])
+                          ->where(['member_id =' => $member_id, 'workout_id =' => $workout_id, 'log_type =' => strtolower("points")])
+                          ->first();
+
+        return $scoreSum;
+    }
+
+    public function getLogResultOfMatch($workout_id)
+    {
+        $log_row = $this
+                ->find()
+                ->where([
+                    'workout_id =' => $workout_id,
+                    'log_type =' => "Résultat"
+                ])
+                ->first();
+        return $log_row;
+    }
+
+    public function setLogResultOfMatch($log_id, $result)
+    {
+        $log_row = $this->get($log_id);
+        $log_row->log_value = $result;
+        return $this->save($log_row);
     }
     
 }
