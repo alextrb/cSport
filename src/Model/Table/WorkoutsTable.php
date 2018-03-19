@@ -116,6 +116,12 @@ class WorkoutsTable extends Table {
     public function setEndDateOfMatch($workout_id)
     {
         $workout_row = $this->get($workout_id);
+        if($workout_row->date > Time::now())
+        {
+            $new_date = Time::now();
+            $new_date->modify("-1 minute");
+            $workout_row->date = $new_date;
+        }
         $workout_row->end_date = Time::now();
         return $this->save($workout_row);
     }
