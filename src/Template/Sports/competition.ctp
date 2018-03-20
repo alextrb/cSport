@@ -35,19 +35,22 @@ $this->assign('title', 'Compétitions');?>
 
 <div>
     <h2 id="singForm">Créer une compétition</h2>
+
+        <?php $options = array(
+           'Badminton'=>__('Badminton'), 
+           'Boxe'=>__('Boxe'), 
+           'Canne de combat'=>__('Canne de combat'), 
+           'GRS'=>__('GRS'), 
+           'Judo'=>__('Judo'), 
+           'Taekwondo'=>__('Taekwondo'), 
+           'Tennis'=>__('Tennis')); 
+        ?>
         
-        <?= $this->Form->create($new)."<ul><li>"
+        <?= $this->Form->create($new, array("class" => "form-horizontal"))
             
-            .$this->Form->input("name", array("label" => "Nom : "))."</li><li>". 
-            "Sélectionner le sport : ".$this->Form->select("type", array(
-                 'Badminton' => "Badminton",
-                 'Boxe' => "Boxe",
-                 'Canne de combat' => "Canne de combat",
-                 'GRS' => "GRS",
-                 'Judo' => "Judo",
-                 'Taekwondo' => "Taekwondo",
-                 'Tennis' => "Tennis"))."</li><li>"                        
-            .$this->Form->input("description", array("label" => "Description : "))."</li><li>"             
-            .$this->Form->submit("Créer")."</li></ul>"
+            .$this->Form->input("name", array("label" => "Nom : ", "class" => "form-control"))
+            .$this->Form->input("type", array("label" => "Type : ", "type" => "select", "options" => $options, "class" => "form-control"))                      
+            .$this->Form->input("description", array("label" => "Description : ", "type" => "textarea", "class" => "form-control"))            
+            .$this->Form->submit("Créer", ['class' => 'btn btn-primary'])
             .$this->Form->end(); ?>
 </div>

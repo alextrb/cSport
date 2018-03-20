@@ -90,7 +90,3 @@ $this->assign('title', 'Compétition');?>
     </tbody>
 </table>
 
-<?php 
-$str = "h<br>ello";
-echo $str;
-?>
