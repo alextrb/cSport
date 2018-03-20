@@ -623,6 +623,40 @@
             }                 
         }
         
+        public function apiGetSummary($serial_device)
+        {
+            $this->loadModel("Workouts");
+            $this->loadModel("Devices");
+            $this->viewBuilder()->className('Json');
+            
+            if($this->Devices->checkAuthDevice($serial_device)){
+
+                $member_id = $this->Devices->getDeviceFromSerial($serial_device)->member_id;
+                $previous_array = $this->Workouts->getPreviousWorkouts($member_id)->toArray();
+                $next_array = $this->Workouts->getNextWorkout($member_id)->toArray();
+
+                $final_array = array();
+
+                if(count($next_array) > 0)
+                {
+                    array_push($final_array, $next_array[0]);
+                }
+                foreach($previous_array as $idw => $w)
+                {
+                    array_push($final_array, $previous_array[$idw]->description);
+                }
+
+                $this->set(array(
+                    'final_array' => $final_array,
+                    '_serialize' => array('final_array')
+                ));   
+            }
+            else{
+                $this->Flash->error(__("Le device avec le serial : {0} ne possède pas les autorisations nécéssaires. Vous avez été redirigé vers la page d accueil", h($serial_device)));
+                return $this->redirect(['controller' => 'Sports', 'action' => 'index']);
+            }                 
+        }
+        
         public function apiAddLog($serial_device, $id_workout, $id_member, $log_type, $log_value)
         {
             $this->loadModel("Devices");

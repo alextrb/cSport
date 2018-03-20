@@ -15,7 +15,7 @@ class WorkoutsTable extends Table {
                 ->where(["member_id =" => $id]);
         return $work;
     }
-
+    
     public function addWorkouts($d, $ed, $ln, $des, $s, $mi) {
         //pr("addWorkouts($d, $ed, $ln, $des, $s)");die();
         if($s == 'label'){
@@ -145,6 +145,25 @@ class WorkoutsTable extends Table {
                               ->where(['member_id =' => $member_id, 'contest_id >' => 0, 'sport =' => $sport])
                               ->toArray();
         return $member_matchs;
+    }
+    
+    
+    public function getPreviousWorkouts($id){
+        $work = $this
+                    ->find()
+                    ->where(["end_date <" => Time::now(), "date <" => Time::now(), "member_id =" => $id])
+                    ->order(['end_date' => 'DESC'])
+                    ->limit(3);
+        return $work;
+    }
+
+    public function getNextWorkout($id){
+        $work = $this
+                    ->find()
+                    ->where(["date >" => Time::now(),"end_date >" => Time::now(), "member_id =" => $id])
+                    ->order(['date' => 'ASC'])
+                    ->limit(1);
+        return $work;
     }
 
 
