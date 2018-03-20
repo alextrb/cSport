@@ -45,7 +45,8 @@ $this->assign('title', 'Compétition');?>
             }
             else
             {
-              echo $this->Form->postButton("Terminer le match", ["controller"=>"Sports", "action"=>"endMatch/".$this_contest->id."/".$match['member_id1']."/".$match['member_id2']."/".$match['workout_id1']."/".$match['workout_id2']."/".$match['member_email1']."/".$match['member_email2']])."</td><tr>";
+              echo $this->Html->Link("Terminer le match", ["controller"=>"Sports", "action"=>"endMatch/".$this_contest->id."/".$match['member_id1']."/".$match['member_id2']."/".$match['workout_id1']."/".$match['workout_id2']."/".$match['member_email1']."/".$match['member_email2']], ["class" => "btn btn-danger"])."</td><tr>";
+              
             }
             
         } ?>
@@ -57,13 +58,13 @@ $this->assign('title', 'Compétition');?>
 <div>
     <h2 id="singForm">Ajouter un match : </h2>
         
-        <?= $this->Form->create($new)."<ul><li>"  
-            ."Joueur 1 : " . $this->Form->select("m1_email", $emails_array)."</li><li>"
-            ."Joueur 2 : " . $this->Form->select("m2_email", $emails_array)."</li><li>"
-            .$this->Form->input("date", array("label" => "Date et heure du début de la séance : "))."</li><li>"
-            .$this->Form->input("end_date", array("label" => "Date et heure de fin de la séance : "))."</li><li>"
-            .$this->Form->input("location_name", array("label" => "Lieu : "))."</li><li>"            
-            .$this->Form->submit("Ajouter")."</li></ul>"
+        <?= $this->Form->create($new, array("class" => "form-horizontal")) 
+            .$this->Form->input("m1_email", array("label" => "Joueur 1 : ", "type" => "select", "options" => $emails_array, "class" => "form-control"))
+            .$this->Form->input("m2_email", array("label" => "Joueur 2 : ", "type" => "select", "options" => $emails_array, "class" => "form-control"))
+            .$this->Form->input("date", array("label" => "Date et heure du début de la séance : ", "type" => "datetime", "class" => "form-control"))
+            .$this->Form->input("end_date", array("label" => "Date et heure de fin de la séance : "))
+            .$this->Form->input("location_name", array("label" => "Lieu : ", "type" => "text", "class" => "form-control"))           
+            .$this->Form->submit("Ajouter", ['class' => 'btn btn-primary'])
             .$this->Form->end(); ?>
 </div>
 
