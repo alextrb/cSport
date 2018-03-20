@@ -67,6 +67,10 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/api/registerdevice/:id_member/:id_device/:description', ['controller' => 'Sports', 'action'=>'apiRegisterDevice'],['pass' =>['id_member','id_device','description']]);
 
     $routes->connect('/api/workoutparameters/:id_device/:id_workout', ['controller' => 'Sports', 'action'=>'apiWorkoutParameters'],['pass' =>['id_device','id_workout']])->setMethods(['GET']);
+    
+    // API 4
+    $routes->connect('/api/addlog/:serial_device/:id_workout/:id_member/:log_type/:log_value', ['controller' => 'Sports', 'action'=>'apiAddLog'],['pass' =>['serial_device','id_workout','id_member','log_type','log_value']]);
+    
     /**
      * Connect catchall routes for all controllers.
      *

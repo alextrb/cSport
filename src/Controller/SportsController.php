@@ -618,8 +618,27 @@
                 ));   
             }
             else{
-                $this->Flash->error(__("Le device avec le serial : {0} ne possède pas les authorisations nécéssaires. Vous avez été redirigé vers la page d accueil", h($id_device)));
+                $this->Flash->error(__("Le device avec le serial : {0} ne possède pas les autorisations nécéssaires. Vous avez été redirigé vers la page d'accueil", h($id_device)));
                 return $this->redirect(['controller' => 'Sports', 'action' => 'index']);
             }                 
+        }
+        
+        public function apiAddLog($serial_device, $id_workout, $id_member, $log_type, $log_value)
+        {
+            $this->loadModel("Devices");
+            $this->loadModel("Logs");
+
+            if($this->Devices->checkAuthDevice($serial_device)){
+                $device = $this->Devices->getDeviceFromSerial($serial_device);
+                $date_courante = Time::now();
+                $lat = 10;
+                $long = 10;
+                $this->Logs->addLogs($id_member, $id_workout, $device->id, $date_courante, $lat, $long, $log_type, $log_value);
+                return $this->redirect(['controller' => 'Sports', 'action' => 'index']);
+            }
+            else{
+                $this->Flash->error(__("Le device avec le serial : {0} ne possède pas les autorisations nécéssaires. Vous avez été redirigé vers la page d'accueil", h($serial_device)));
+                return $this->redirect(['controller' => 'Sports', 'action' => 'index']);
+            } 
         }
     }

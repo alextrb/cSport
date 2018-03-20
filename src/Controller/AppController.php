@@ -30,7 +30,7 @@ class AppController extends Controller
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['index', 'login', 'register', 'classements', 'contact', 'equipe', 'mention', 'tuto', 'apiRegisterDevice', 'apiWorkoutParameters']);
+        $this->Auth->allow(['index', 'login', 'register', 'classements', 'contact', 'equipe', 'mention', 'tuto', 'apiRegisterDevice', 'apiWorkoutParameters', 'apiAddLog']);
     }
     /**
      * Initialization hook method.
@@ -52,7 +52,7 @@ class AppController extends Controller
                 'controller' => 'Sports',
                 'action' => 'login'
             ],
-            'authError' => 'Vous croyez vraiment que vous pouvez faire cela?',
+            'authError' => 'Veuillez vous identifier pour accéder à cette page',
             'authenticate' => [
                 'Form' => [
                     'fields' => ['username' => 'email', 'password' => 'password'],

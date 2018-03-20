@@ -6,6 +6,14 @@ use Cake\ORM\Table;
 
 class DevicesTable extends Table {
     
+    public function getDeviceFromSerial($device_serial)
+    {
+        $device = $this->find()
+                       ->where(['serial =' => $device_serial])
+                       ->first();
+        return $device;
+    }
+    
     public function getAuthDevices() {
         $auth_devices = $this
                 ->find()
@@ -41,9 +49,12 @@ class DevicesTable extends Table {
                 ->select(['serial','trusted'])
                 ->where(['serial =' => $serial]);
         $row = $statusDevice->first();
-        
-        if ((int)$row->trusted){
-            return true;
+        if(count($row) > 0)
+        {
+            if ((int)$row->trusted)
+            {
+                return true;
+            }
         }
     }
 }
