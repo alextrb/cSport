@@ -33,7 +33,7 @@ $this->assign('title', 'Mes Objets Connectés');?>
                 echo"<tr><td>".$objetco->id."</td><td>"
                               .$objetco->serial."</td><td>"
                               .(int)$objetco->trusted."</td><td>"
-                              .$this->Form->postLink("Supprimer", ["controller"=>"Sports", "action"=>"deleteOC/".$objetco->id],['confirm'=>__('Voulez vous vraiment supprimer le device "{0}" (n°ID = {1}) ?', h($objetco->serial),h($objetco->id))])."</td></tr>";
+                              .$this->Html->Link("Supprimer", ["controller"=>"Sports", "action"=>"deleteOC/".$objetco->id],['confirm'=>__('Voulez vous vraiment supprimer le device "{0}" (n°ID = {1}) ?', h($objetco->serial),h($objetco->id)), "class" => "btn btn-danger"])."</td></tr>";
             }?>
         </tbody>
     </table>
@@ -54,7 +54,7 @@ $this->assign('title', 'Mes Objets Connectés');?>
                 echo"<tr><td>".$objetco->id."</td><td>"
                               .$objetco->serial."</td><td>"
                               .(int)$objetco->trusted."</td><td>"
-                              .$this->Form->postLink("Valider", ["controller"=>"Sports", "action"=>"validateOC/".$objetco->id])."</td></tr>";
+                              .$this->Html->Link("Valider", ["controller"=>"Sports", "action"=>"validateOC/".$objetco->id], ["class" => "btn btn-success"])."</td></tr>";
             }?>
         </tbody>
     </table>

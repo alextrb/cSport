@@ -46,11 +46,11 @@ $this->assign('title', 'Compétitions');?>
            'Tennis'=>__('Tennis')); 
         ?>
         
-        <?= $this->Form->create($new, array("class" => "form-horizontal"))
+        <?= $this->Form->create($new, array("class" => "form-horizontal"))."<ul style='list-style-type: none;'><li>"
             
-            .$this->Form->input("name", array("label" => "Nom : ", "class" => "form-control"))
-            .$this->Form->input("type", array("label" => "Type : ", "type" => "select", "options" => $options, "class" => "form-control"))                      
-            .$this->Form->input("description", array("label" => "Description : ", "type" => "textarea", "class" => "form-control"))            
+            .$this->Form->input("name", array("label" => "Nom : ", "class" => "form-control"))."</li><li>"
+            .$this->Form->input("type", array("label" => "Type : ", "type" => "select", "options" => $options, "class" => "form-control"))."</li><li>"                  
+            .$this->Form->input("description", array("label" => "Description : ", "type" => "textarea", "class" => "form-control"))."</li><li>"    
             .$this->Form->submit("Créer", ['class' => 'btn btn-primary'])
             .$this->Form->end(); ?>
 </div>

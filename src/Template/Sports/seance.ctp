@@ -88,7 +88,7 @@
                                   "label" => "Type de relevé : "))
                               .$this->Form->input("log_value", array(
                                   "label" => "Nombre : "))
-                              .$this->Form->submit("Ajouter")."</td></tr>"
+                              .$this->Form->submit("Ajouter", array("class" => "btn btn-success"))."</td></tr>"
                               .$this->Form->end();
             }?>
             </tbody>
@@ -133,7 +133,7 @@
                                   "label" => "Type de relevé : "))
                               .$this->Form->input("log_value", array(
                                   "label" => "Nombre : "))
-                              .$this->Form->submit("Ajouter")."</td></tr>"
+                              .$this->Form->submit("Ajouter", array("class" => "btn btn-success"))."</td></tr>"
                               .$this->Form->end();              
             }?>
             </tbody>
@@ -182,21 +182,24 @@
         
         <h2 id="seanT2">Pour ajouter une séance, remplir le formulaire</h2>
         
-        <?= $this->Form->create($new)."<ul><li>"
+        <?php $options = array(
+           'Badminton'=>__('Badminton'), 
+           'Boxe'=>__('Boxe'), 
+           'Canne de combat'=>__('Canne de combat'), 
+           'GRS'=>__('GRS'), 
+           'Judo'=>__('Judo'), 
+           'Taekwondo'=>__('Taekwondo'), 
+           'Tennis'=>__('Tennis')); 
+        ?>
+        
+        <?= $this->Form->create($new)."<ul style='list-style-type: none;'><li>"
              .$this->Form->input("date", array("label" => "Date et heure du début de la séance : "))."</li><li>"
              .$this->Form->input("end_date", array("label" => "Date et heure de fin de la séance : "))."</li><li>"
-             .$this->Form->input("location_name", array("label" => "Lieu : "))."</li><li>"             
-             .$this->Form->select("sport", array(
-                 'label' => "Selectionnez le sport souhaité : ",
-                 'Badminton' => "Badminton",
-                 'Boxe' => "Boxe",
-                 'Canne de combat' => "Canne de combat",
-                 'GRS' => "GRS",
-                 'Judo' => "Judo",
-                 'Taekwondo' => "Taekwondo",
-                 'Tennis' => "Tennis"))."</li><li>"                
-             .$this->Form->input("description", array("label" => "Commentaires : "))."</li><li>"             
-             .$this->Form->submit("Ajouter")."</li></ul>"
+             .$this->Form->input("location_name", array("label" => "Lieu : ", "class" => "form-control"))."</li><li>"             
+             .$this->Form->input("sport", array(
+                 'label' => "Selectionnez le sport souhaité : ", "type" => "select", "options" => $options, "class" => "form-control"))."</li><li>"                
+             .$this->Form->input("description", array("label" => "Commentaires : ", "class" => "form-control", "type" => "textarea"))."</li><li>"             
+             .$this->Form->submit("Ajouter", array("class" => "btn btn-primary"))."</li></ul>"
              .$this->Form->end();?>
     </body>
 </html>
