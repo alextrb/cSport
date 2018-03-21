@@ -158,6 +158,11 @@
             $workout_coming = $this->Workouts->getWorkComing($currentId);
             $this->set("workout_coming", $workout_coming);
             
+            //Séances manquées
+            $workout_missed = $this->Workouts->getWorkMissed($currentId);
+            $this->set("workout_missed", $workout_missed);
+            //pr($workout_missed);            
+            
             //Pourcentage de pompes par séance
             $stat_array = array(); // tableau qui va contenir des membres et leur score
             $workout = $this->Workouts->getAllWorkouts($currentId); // on récupère tous les membres

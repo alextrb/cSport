@@ -180,6 +180,26 @@
             </tbody>
         </table>
         
+        <h2 id="seanT2">Séances manquées</h2>
+        <table id="manque" class="table table-hover table-striped table-responsive tableBlackHead">
+            <thead>
+                <tr>
+                    <th>Sport</th> 
+                    <th>Date</th>
+                    <th>Lieu</th> 
+                    <th>Description</th>                    
+                </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($workout_missed as $workout){
+                echo"<tr><td>".$workout->sport."</td><td>"
+                              .$workout->date."</td><td>"
+                              .$workout->location_name."</td><td>"
+                              .$workout->description."</td></tr>";                              
+            }?>   
+            </tbody>
+        </table>
+        
         <h2 id="seanT2">Pour ajouter une séance, remplir le formulaire</h2>
         
         <?php $options = array(

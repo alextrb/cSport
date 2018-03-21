@@ -60,6 +60,20 @@ class WorkoutsTable extends Table {
         return $workout_done;        
     }
     
+    public function getWorkMissed($id){
+        $date_courante = Time::now();
+        $work_done = $this->getWorkDone($id)->toArray();
+        $final_array = array();
+        foreach ($work_done as $w){
+            //pr($w['date']);
+            //pr($w['end_date']);
+            if ($w['date'] == $w['end_date']){                
+                    array_push($final_array, $w); // on push cette ligne dans le tableau
+            }
+        }        
+        return $final_array;       
+    }
+    
     public function getComments() {
         $allComments = $this
                 ->find()
