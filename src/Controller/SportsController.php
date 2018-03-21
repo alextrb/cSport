@@ -13,6 +13,9 @@
     {   
         public function login()
         {
+            $page = "login";
+            $this->set("page", $page);
+            
             $this->loadModel("Members");
             if ($this->request->is('post')) {
                 $user = $this->Auth->identify(); // On regarde si le membre existe bien
@@ -32,6 +35,8 @@
 
         public function register()
         {
+            $page = "register";
+            $this->set("page", $page);
             $this->loadModel("Members");
             $new = $this->Members->newEntity();
             if($this->request->is("post"))
@@ -57,12 +62,18 @@
 
         
         public function index(){
+            $page = "index";
+            $this->set("page", $page);
+            
             $this->loadModel("Members");
             $m=$this->Members->find();
             $this->set("m",$m->toArray());
         }
         
         public function classements(){
+            $page = "classements";
+            $this->set("page", $page);
+            
             $this->loadModel("Members");
             $this->loadModel("Workouts");
             $this->loadModel("Logs");
@@ -88,6 +99,9 @@
         }
         
         public function moncompte(){
+            $page = "moncompte";
+            $this->set("page", $page);
+            
             $current_user_id = $this->Auth->user('id');
             $current_user_email = $this->Auth->user('email');
             
@@ -133,6 +147,9 @@
         }
         
         public function seance(){
+            $page = "seance";
+            $this->set("page", $page);
+            
             $this->loadModel("Workouts");
             $this->loadModel("Logs");
             
@@ -247,6 +264,9 @@
         }
         
         public function objetsco(){
+            $page = "objetsco";
+            $this->set("page", $page);
+            
             $this->loadModel("devices");
             $this->loadModel("logs");
             $this->loadModel("workouts");
@@ -265,6 +285,9 @@
         }
       
         public function contact(){
+            $page = "contact";
+            $this->set("page", $page);
+            
              if ($this->request->is('post')){
                  $email = $this->request->data('email');
                  $nom = $this->request->data('nom');
@@ -282,18 +305,26 @@
         }
         
         public function equipe(){
+            $page = "equipe";
+            $this->set("page", $page);
             
         }
         
         public function mention(){
+            $page = "mention";
+            $this->set("page", $page);
             
         }
         
         public function tuto(){
-            
+            $page = "tuto";
+            $this->set("page", $page);
         }
         
         public function competition(){
+            $page = "competition";
+            $this->set("page", $page);
+            
             $this->loadModel("Contests");
             $this->loadModel("Workouts");
             $contests = $this->Contests->getAllContests();
@@ -316,6 +347,9 @@
         }
 
         public function singlecompetition($contest_id){
+            $page = "singlecompetition";
+            $this->set("page", $page);
+            
             $this->loadModel("Workouts");
             $this->loadModel("Members");
             $this->loadModel("Logs");

@@ -10,7 +10,7 @@
 }
 .navbar-default li
 {
-    font-size: 1.4em;
+    font-size: 1em;
     color: #fff;
    
 }
@@ -25,7 +25,17 @@
 
 .mynavbar .mynavbarnav li a:hover
 {
-    background-color: #1F6041;
+    background-color: #25734e;
+    color: #fff;
+}
+.mynavbar .mynavbarnav .active a
+{
+    background-color: #25734e;
+    color: #fff;
+}
+.mynavbar .mynavbarnav .active a:hover
+{
+    background-color: #25734e;
     color: #fff;
 }
 .mynavbar .mynavbarnavright li a 
@@ -35,13 +45,25 @@
 }
 .mynavbar .mynavbarnavright li a:hover 
 {
-    background-color: #1F6041;
+    background-color: #25734e;
+    color: #fff;
+}
+
+.mynavbar .mynavbarnavright .active a
+{
+    background-color: #25734e;
+    color: #fff;
+}
+.mynavbar .mynavbarnavright .active a:hover
+{
+    background-color: #25734e;
     color: #fff;
 }
 
 .mynavbar .mynavbarheader 
 {
-    min-width: 260px;
+    min-width: 200px;
+    padding-left: 30px;
     background-color: #1F6041;
 }
 .mynavbar .mynavbarheader .navbar-brand:hover
