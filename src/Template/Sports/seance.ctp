@@ -84,8 +84,12 @@
                                   "label" => "Latitude : "))
                               .$this->Form->input("location_logitude", array(
                                   "label" => "Longitude : "))
-                              .$this->Form->input("log_type", array(
-                                  "label" => "Type de relevé : "))
+                              .$this->Form->select("log_type",array(
+                                  'label' => "Selectionnez le relevé : ",
+                                  'Pas' => "Pas",
+                                  'Pompes' => "Pompes",
+                                  'Abdos' => "Abdos",
+                                  'Squats' => "Squats"))
                               .$this->Form->input("log_value", array(
                                   "label" => "Nombre : "))
                               .$this->Form->submit("Ajouter", array("class" => "btn btn-success"))."</td></tr>"
@@ -129,8 +133,12 @@
                                   "label" => "Latitude : "))
                               .$this->Form->input("location_logitude", array(
                                   "label" => "Longitude : "))
-                              .$this->Form->input("log_type", array(
-                                  "label" => "Type de relevé : "))
+                              .$this->Form->select("log_type",array(
+                                  'label' => "Selectionnez le relevé : ",
+                                  'Pas' => "Pas",
+                                  'Pompes' => "Pompes",
+                                  'Abdos' => "Abdos",
+                                  'Squats' => "Squats"))
                               .$this->Form->input("log_value", array(
                                   "label" => "Nombre : "))
                               .$this->Form->submit("Ajouter", array("class" => "btn btn-success"))."</td></tr>"

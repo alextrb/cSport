@@ -16,10 +16,7 @@ class LogsTable extends Table {
   }
   
     public function addLogs($mi, $wi, $di, $date, $lat, $long, $type, $value){
-        if($lat == '' || $long == '' || $type == '' || $value == ''){
-              echo 'Veuillez remplir tous les champs';
-          }
-          else{
+        
               $new_log = $this->newEntity();
               $new_log->member_id = $mi;
               $new_log->workout_id = $wi;
@@ -29,8 +26,7 @@ class LogsTable extends Table {
               $new_log->location_logitude = $long;
               $new_log->log_type = $type;
               $new_log->log_value = $value;           
-              $this->save($new_log);
-          }   
+              $this->save($new_log);  
     }
     
     public function addLogResultat($mi, $wi, $di, $date, $lat, $long, $type, $value){

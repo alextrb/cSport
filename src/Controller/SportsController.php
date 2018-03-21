@@ -252,8 +252,25 @@
         
         public function addLog(){        
             $this->loadModel("Logs");
-            $new_log = $this->Logs->newEntity();
-            if ($this->request->is("post")) {
+        $a = 0;
+        $new_log = $this->Logs->newEntity();
+        if(empty($this->request->data("location_latitude"))){
+            $this->Flash->error(__("Indiquer la latitude"));
+            $a = 1;
+        }
+        if(empty($this->request->data("location_logitude"))){
+            $this->Flash->error(__("Indiquer la longitude"));
+            $a = 1;
+        }
+        if($this->request->data("log_type") == 'label'){
+            $this->Flash->error(__("Indiquer le type de relevé"));
+            $a = 1;
+        }
+        if(empty($this->request->data("log_value"))){
+            $this->Flash->error(__("Indiquer la valeur de relevé"));
+            $a = 1;
+        }
+        if ($this->request->is("post") && $a == 0) {
                 $mi = $this->Auth->user('id');
                 $wi = $this->request->data("id_workout");
                 $di = 0;
