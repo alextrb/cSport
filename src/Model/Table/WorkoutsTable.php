@@ -18,11 +18,11 @@ class WorkoutsTable extends Table {
     
     public function addWorkouts($d, $ed, $ln, $des, $s, $mi) {
         //pr("addWorkouts($d, $ed, $ln, $des, $s)");die();
-        if($s == 'label'){
-            echo 'Veuillez Indiquer le sport';
+        if($ln == ''){
+            echo 'Pour ajouter une séance: veuillez indiquer le sport et le lieu de la séance.';
         }
-        elseif($ln == ''){
-            echo 'Veuillez Indiquer le lieu de la seance';
+        elseif($d > $ed){
+            echo 'Problème de date!';
         }
         else{
             $new = $this->newEntity();

@@ -257,7 +257,7 @@
         if(empty($this->request->data("location_latitude"))){
             $this->Flash->error(__("Indiquer la latitude"));
             $a = 1;
-        }
+        }  
         if(empty($this->request->data("location_logitude"))){
             $this->Flash->error(__("Indiquer la longitude"));
             $a = 1;
