@@ -66,16 +66,16 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     
     // API1
-    $routes->connect('/api/registerdevice/:id_member/:id_device/:description', ['controller' => 'Sports', 'action'=>'apiRegisterDevice'],['pass' =>['id_member','id_device','description']]);
+    $routes->connect('/api/registerdevice/:id_member/:id_device/:description', ['controller' => 'Apis', 'action'=>'apiRegisterDevice'],['pass' =>['id_member','id_device','description']]);
     
     // API2
-    $routes->connect('/api/workoutparameters/:id_device/:id_workout', ['controller' => 'Sports', 'action'=>'apiWorkoutParameters'],['pass' =>['id_device','id_workout']])->setMethods(['GET']);
+    $routes->connect('/api/workoutparameters/:id_device/:id_workout', ['controller' => 'Apis', 'action'=>'apiWorkoutParameters'],['pass' =>['id_device','id_workout']])->setMethods(['GET']);
     
     // API3
-    $routes->connect('/api/getsummary/:serial_device', ['controller' => 'Sports', 'action'=>'apiGetSummary'],['pass' =>['serial_device']])->setMethods(['GET']);
+    $routes->connect('/api/getsummary/:serial_device', ['controller' => 'Apis', 'action'=>'apiGetSummary'],['pass' =>['serial_device']])->setMethods(['GET']);
     
     // API 4
-    $routes->connect('/api/addlog/:serial_device/:id_workout/:id_member/:log_type/:log_value', ['controller' => 'Sports', 'action'=>'apiAddLog'],['pass' =>['serial_device','id_workout','id_member','log_type','log_value']]);
+    $routes->connect('/api/addlog/:serial_device/:id_workout/:id_member/:log_type/:log_value', ['controller' => 'Apis', 'action'=>'apiAddLog'],['pass' =>['serial_device','id_workout','id_member','log_type','log_value']]);
     
     /**
      * Connect catchall routes for all controllers.
