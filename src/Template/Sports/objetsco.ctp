@@ -2,18 +2,6 @@
 
 $this->assign('title', 'Mes Objets Connectés');?>
 
-<script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-        $('#objeAllowedTable').DataTable({
-            "order": [[1, "desc"]]
-        });
-    });
-    $(document).ready(function() {
-        $('#objeWaitingTable').DataTable({
-            "order": [[1, "desc"]]
-        });
-    });
-</script>
 
 
 <div>

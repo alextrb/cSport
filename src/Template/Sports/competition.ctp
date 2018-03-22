@@ -2,14 +2,6 @@
 
 $this->assign('title', 'Compétitions');?>
 
-<script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-        $('#compTable').DataTable({
-            "order": [[0, "desc"]]
-        });
-    });
-</script>
-
 
 <div>
     <h2>Compétitions :</h2>

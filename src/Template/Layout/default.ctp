@@ -24,10 +24,15 @@
     </title>
     <?= $this->Html->meta('icon') ?>
     
-        <?= $this->Html->css('bootstrap.min') ?>
-    <?= $this->Html->script('bootstrap.min') ?>    
+    <?= $this->Html->script('jquery-3.3.1.js') ?>
     
-        <?= $this->Html->css('mainstyle.css') ?>    
+    <?= $this->Html->css('bootstrap.min') ?>
+    <?= $this->Html->script('bootstrap.min') ?>    
+    <?= $this->Html->css('mainstyle.css') ?>   
+    <?= $this->Html->css('seance.css') ?>
+    <?= $this->Html->css('classement.css') ?>
+    <?= $this->Html->css('objetsco.css') ?>
+    
     <?= $this->fetch('meta') ?> <!--Ne pas toucher les 3 lignes -->
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
