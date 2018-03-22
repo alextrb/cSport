@@ -55,7 +55,7 @@
     </div>
     <footer class="footer text-center">
         <div id="div_footer">
-            <p> OCRES </p>
+            <p> PROJET OCRES : CSPORT </p>
             <p> TRBOVIC Alexandre - LYONNARD DE LA GIRENNERIE Noémie - SEWERYN Antoine - ONG Philippe </p>
             <p> OPTION C : Gestion de compétition  -  OPTION F : Cartographie </p>
         </div>

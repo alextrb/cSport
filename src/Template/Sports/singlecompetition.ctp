@@ -53,7 +53,6 @@ $this->assign('title', 'Compétition');?>
     </tbody>
 </table>
 
-<p style="color: red;"> Pour ajouter des points de match à un joueur, il faut entrer le log_type "points". </p>
 
 <div>
     <h2 id="singForm">Ajouter un match : </h2>
