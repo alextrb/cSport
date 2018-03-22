@@ -498,19 +498,24 @@
                         $this->request->data['end_date']['minute']);
                     $ln = $this->request->data("location_name");
                     $des_workout = "- / -";
+                    if($d > $ed)
+                    {
+                        echo 'Problème de date!';
+                        $this->redirect(['controller' => 'Sports', 'action' => 'singlecompetition/'.$contest_id]);
+                    }
+                    else
+                    {
+                        $member1 = $this->Members->getMemberByEmail($member1_email);
+                        $member2 = $this->Members->getMemberByEmail($member2_email);
 
-                    $member1 = $this->Members->getMemberByEmail($member1_email);
-                    $member2 = $this->Members->getMemberByEmail($member2_email);
-                       
-                    $m1_workout = $this->Workouts->addMatch($d, $ed, $ln, $des_workout, $this_contest->type, $member1->id, $contest_id);
-                    $m2_workout = $this->Workouts->addMatch($d, $ed, $ln, $des_workout, $this_contest->type, $member2->id, $contest_id);
+                        $m1_workout = $this->Workouts->addMatch($d, $ed, $ln, $des_workout, $this_contest->type, $member1->id, $contest_id);
+                        $m2_workout = $this->Workouts->addMatch($d, $ed, $ln, $des_workout, $this_contest->type, $member2->id, $contest_id);
 
-                    $this->Logs->addLogResultat($member1->id, $m1_workout->id, 0, $d, 0, 0, "Résultat", 0);
-                    $this->Logs->addLogResultat($member2->id, $m2_workout->id, 0, $d, 0, 0, "Résultat", 0);
-
-                    $this->redirect(['controller' => 'Sports', 'action' => 'singlecompetition/'.$contest_id]);
+                        $this->Logs->addLogResultat($member1->id, $m1_workout->id, 0, $d, 0, 0, "Résultat", 0);
+                        $this->Logs->addLogResultat($member2->id, $m2_workout->id, 0, $d, 0, 0, "Résultat", 0);
+                        $this->redirect(['controller' => 'Sports', 'action' => 'singlecompetition/'.$contest_id]);
+                    }
                 }
-                
             }
             $this->set("new", $new);
 
