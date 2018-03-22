@@ -21,3 +21,12 @@ $this->assign('title', 'Mon Compte');?>
 <?= $this->Form->submit('Modifier votre photo de profil', ['class' => 'btn btn-warning']); ?>
 <?= $this->Form->end(); ?>
 <?= $this->Html->Link("Supprimer votre photo", ["controller"=>"Sports", "action"=>"deleteProfilePicture"], ["class" => "btn btn-danger"])?>
+
+<details>
+    <summary>Modifier votre mot de passe</summary>
+    <?= $this->Form->create($new, array('url'=>array('controller' => 'sports', 'action' => 'changepassword'))); ?>
+    <?= $this->Form->input('new_pw', array('label' => 'Nouveau mot de passe : ', 'type' => 'password')); ?>
+    <?= $this->Form->input('confirm_new_pw', array('label' => 'Confirmer votre nouveau mot de passe : ', 'type' => 'password')); ?>
+    <?= $this->Form->submit('Modifier votre mot de passe', ['class' => 'btn btn-primary']); ?>
+    <?= $this->Form->end(); ?>
+</details>

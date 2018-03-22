@@ -102,6 +102,8 @@
             $page = "moncompte";
             $this->set("page", $page);
             
+            $this->loadModel("Members");
+            
             $current_user_id = $this->Auth->user('id');
             $current_user_email = $this->Auth->user('email');
             
@@ -144,6 +146,9 @@
             $this->set("user_email", $current_user_email);
             $this->set("user_image", $files);
             $this->set("user_image_extension", $user_image_extension);
+            
+            $new = $this->Members->newEntity();
+            $this->set('new', $new);
         }
         
         public function seance(){
@@ -591,6 +596,29 @@
                 }
             }
             return $this->redirect(['controller' => 'Sports', 'action' => 'moncompte']);
+        }
+        
+        public function changepassword(){
+
+            $this->loadModel("Members");
+
+            if ($this->request->is('post')){
+                $new_pw = $this->request->data("new_pw");
+                $confirm_new_pw = $this->request->data("confirm_new_pw");
+
+                if($new_pw == $confirm_new_pw)
+                {
+                    $member_id = $this->Auth->user('id');
+
+                    $this->Members->updateMemberPassword($member_id, $new_pw);
+
+                    $this->redirect(['controller' => 'Sports', 'action' => 'moncompte']);
+                }
+                else
+                {
+                    $this->redirect(['controller' => 'Sports', 'action' => 'moncompte']);
+                }
+            }
         }
         
         public function buildSportRankings($sport)

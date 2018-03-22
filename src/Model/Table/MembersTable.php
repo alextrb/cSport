@@ -43,6 +43,16 @@ class MembersTable extends Table {
 
     }
     
+    public function updateMemberPassword($member_id, $new_password) {
+        $member_array = $this->findById($member_id)->toArray();
+        $member = $member_array[0];
+        $hashedpassword = (new DefaultPasswordHasher)->hash($new_password);
+        $member->password = $hashedpassword;
+
+        return $this->save($member);
+
+    }
+    
     public function registerMember($email, $password) {
         $new_member = $this->newEntity();
         $new_member->email=$email;
@@ -63,9 +73,14 @@ class MembersTable extends Table {
 
     public function validationDefault(Validator $validator){
         $validator = new Validator();
+        
         $validator
             ->notEmpty('email', 'Ce champs ne doit pas être vide')
             ->notEmpty('password', 'Ce champs ne doit pas être vide');
+
+        $validator
+            ->notEmpty('new_pw', 'Ce champs ne doit pas être vide')
+            ->notEmpty('confirm_new_pw', 'Ce champs ne doit pas être vide');
         return $validator;
     }
 
