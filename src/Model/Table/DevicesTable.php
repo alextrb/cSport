@@ -14,18 +14,18 @@ class DevicesTable extends Table {
         return $device;
     }
     
-    public function getAuthDevices() {
+    public function getAuthDevices($member_id) {
         $auth_devices = $this
                 ->find()
-                ->where(['trusted =' => 1]);
+                ->where(['trusted =' => 1, 'member_id =' => $member_id]);
         return $auth_devices;
     }
     
-    public function getWaitingDevices() {
+    public function getWaitingDevices($member_id) {
         $waiting_devices = $this
                 ->find()
                 ->select(['id', 'serial', 'description', 'trusted'])
-                ->where(['trusted =' => 0]);
+                ->where(['trusted =' => 0, 'member_id =' => $member_id]);
         return $waiting_devices;
     }
     

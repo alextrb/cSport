@@ -293,10 +293,12 @@
             $this->loadModel("logs");
             $this->loadModel("workouts");
             
-            $auth_devices = $this->devices->getAuthDevices();
+            $member_id = $this->Auth->user('id');
+            
+            $auth_devices = $this->devices->getAuthDevices($member_id);
             $this->set("auth_devices",$auth_devices);
             
-            $waiting_devices = $this->devices->getWaitingDevices();
+            $waiting_devices = $this->devices->getWaitingDevices($member_id);
             $this->set("waiting_devices", $waiting_devices);
             
             $encoded_locations = $this->logs->getAllSeancesLocations();
