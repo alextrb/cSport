@@ -53,16 +53,28 @@ class WorkoutsTable extends Table {
     }
     
     public function getWorkDone($id){
-        $date_courante = Time::now();         
+        $date_courante = Time::now();
+        $work = array();
         $workout_done = $this
                 ->find('all', array('order' => array('Workouts.date' => 'desc')))                              
-                ->where(["end_date <" => $date_courante, "member_id =" => $id]);
-        return $workout_done;        
+                ->where(["end_date <" => $date_courante, "member_id =" => $id])
+                ->toArray();
+        foreach ($workout_done as $w){
+            //pr($w['date']);
+            //pr($w['end_date']);
+            if ($w['date'] != $w['end_date']){                
+                    array_push($work, $w); // on push cette ligne dans le tableau
+            }
+        }   
+        return $work;   
     }
     
     public function getWorkMissed($id){
         $date_courante = Time::now();
-        $work_done = $this->getWorkDone($id)->toArray();
+        $work_done = $this
+                ->find('all', array('order' => array('Workouts.date' => 'desc')))
+                ->where(["end_date <" => $date_courante, "member_id =" => $id, /*"end_date !=" => $date*/])
+                ->toArray();
         $final_array = array();
         foreach ($work_done as $w){
             //pr($w['date']);
