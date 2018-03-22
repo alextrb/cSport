@@ -42,19 +42,13 @@ class DevicesTable extends Table {
         return $this->save($asking_device);
     }
     
-    public function checkAuthDevice($serial)
+    public function checkAuthDevice($serial, $member_id)
     {
-        $statusDevice = $this
+        $device = $this
                 ->find()
-                ->select(['serial','trusted'])
-                ->where(['serial =' => $serial]);
-        $row = $statusDevice->first();
-        if(count($row) > 0)
-        {
-            if ((int)$row->trusted)
-            {
-                return true;
-            }
-        }
+                ->where(['serial =' => $serial, 'member_id =' => $member_id, 'trusted =' => 1])
+                ->first();
+
+        return $device;
     }
 }
