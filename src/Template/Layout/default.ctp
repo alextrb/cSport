@@ -50,10 +50,15 @@
     ?>
     
     <?= $this->Flash->render() ?>
-    <div class="container clearfix">
+    <div id ="main_view" class="container clearfix">
         <?= $this->fetch('content') ?> <!--Ne pas toucher, correspond à la vue-->
     </div>
-    <footer>
+    <footer class="footer text-center">
+        <div id="div_footer">
+            <p> OCRES </p>
+            <p> TRBOVIC Alexandre - LYONNARD DE LA GIRENNERIE Noémie - SEWERYN Antoine - ONG Philippe </p>
+            <p> OPTION C : Gestion de compétition  -  OPTION F : Cartographie </p>
+        </div>
     </footer>
 </body>
 </html>

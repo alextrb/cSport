@@ -1,3 +1,12 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+#main_view
+{
+    margin-bottom: 180px;
+}
 /* CSS POUR LA BARRE DE NAVIGATION */
 .navbar-default
 {
@@ -92,4 +101,20 @@
 .tableBlackHead td
 {
     font-size: 1em;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 150px;
+    background: #2A875C;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+footer
+{
+    margin-top: 300px;
 }
