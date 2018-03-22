@@ -252,6 +252,8 @@
                    
                 $this->Workouts->addWorkouts($d, $ed, $ln, $des, $s, $mi);
             }
+            $form_new_log = $this->Logs->newEntity();
+            $this->set("form_new_log", $form_new_log);
             $this->set("new", $new);
         }
         

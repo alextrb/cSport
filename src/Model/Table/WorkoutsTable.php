@@ -206,6 +206,14 @@ class WorkoutsTable extends Table {
                     'rule' => ['compareWith', 'm2_email']
                 ]
             ]);
+       
+        
+        $validator
+            ->notEmpty('date', 'Ce champs ne doit pas être vide')
+            ->notEmpty('end_date', 'Ce champs ne doit pas être vide')
+            ->notEmpty('location_name', 'Ce champs ne doit pas être vide')
+            ->notEmpty('sport', 'Ce champs ne doit pas être vide')
+            ->notEmpty('description', 'Ce champs ne doit pas être vide');
         return $validator;
     }
 }

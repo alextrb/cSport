@@ -3,6 +3,7 @@
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
+use Cake\Validation\Validator;
 
 class LogsTable extends Table {
     /*
@@ -255,5 +256,16 @@ class LogsTable extends Table {
         $log_row->log_value = $result;
         return $this->save($log_row);
     }
+    
+    public function validationDefault(Validator $validator){
+        $validator = new Validator();
+        $validator
+            ->notEmpty('location_latitude', 'Ce champs ne doit pas être vide')
+            ->notEmpty('location_logitude', 'Ce champs ne doit pas être vide')
+            ->notEmpty('log_type', 'Ce champs ne doit pas être vide')
+            ->notEmpty('log_value', 'Ce champs ne doit pas être vide');
+        return $validator;
+    }
+            
     
 }
