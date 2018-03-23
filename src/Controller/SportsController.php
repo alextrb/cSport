@@ -189,20 +189,36 @@
             $this->set("stat_array", $stat_array); 
         
             //¨prcentage de chaque relevé depuis l'inscription
-            $pompesTotal = $this->Logs->getPompesTotal($currentId);
-            $this->set("pompesTotal", $pompesTotal);
             
-            $pasTotal = $this->Logs->getPasTotal($currentId);
-            $this->set("pasTotal", $pasTotal);
-        
-            $abdosTotal = $this->Logs->getAbdosTotal($currentId);
-            $this->set("abdosTotal", $abdosTotal);
-        
-            $squatsTotal = $this->Logs->getSquatsTotal($currentId);
-            $this->set("squatsTotal", $squatsTotal);
-
             $logsTotal = $this->Logs->getLogsTotal($currentId);
             $this->set("logsTotal", $logsTotal);
+            
+            if ($logsTotal == 0){
+                $pompesTotal = 0;
+                $this->set("pompesTotal", $pompesTotal);
+
+                $pasTotal =0;
+                $this->set("pasTotal", $pasTotal);
+
+                $abdosTotal = 0;
+                $this->set("abdosTotal", $abdosTotal);
+
+                $squatsTotal = 0;
+                $this->set("squatsTotal", $squatsTotal);
+            }
+            else{
+                $pompesTotal = ($this->Logs->getPompesTotal($currentId))/$logsTotal;
+                $this->set("pompesTotal", $pompesTotal);
+
+                $pasTotal = ($this->Logs->getPasTotal($currentId))/$logsTotal;
+                $this->set("pasTotal", $pasTotal);
+
+                $abdosTotal = ($this->Logs->getAbdosTotal($currentId))/$logsTotal;
+                $this->set("abdosTotal", $abdosTotal);
+
+                $squatsTotal = ($this->Logs->getSquatsTotal($currentId))/$logsTotal;
+                $this->set("squatsTotal", $squatsTotal);
+            }           
             
             $workout_now = $this->Workouts->getWorknow($currentId);
             

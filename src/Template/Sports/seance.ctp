@@ -9,8 +9,6 @@
 
 <div>
       <h3>Séances à venir</h3>
-      <p>Hello</p>
-
       <table id="workoutsComing" class="table table-hover table-striped table-responsive tableBlackHead">
           <thead>
               <tr>
@@ -66,7 +64,7 @@
                             .$this->Form->input("location_logitude", array(
                                 "label" => "Longitude : "))
                             .$this->Form->select("log_type",array(
-                                'label' => "Selectionnez le relevé : ",
+                                'label' => "Sélectionnez le relevé : ",
                                 'Pas' => "Pas",
                                 'Pompes' => "Pompes",
                                 'Abdos' => "Abdos",
@@ -123,7 +121,7 @@
                             .$this->Form->input("location_logitude", array(
                                 "label" => "Longitude : "))
                             .$this->Form->input("log_type",array(
-                                'label' => "Selectionnez le relevé : ",
+                                'label' => "Sélectionnez le relevé : ",
                                 "type" => "select",
                                 "options" => $log_options))
                             .$this->Form->input("log_value", array(
@@ -195,23 +193,23 @@
 </div>
 
 <div>
-      <table id="seanStat" class="table table-hover table-striped table-responsive tableBlackHead">
-          <thead>
-              <tr>
-                  <th>Relevés</th> 
-                  <th>Pourcentage sur l'ensemble des relevés</th>
-              </tr>
-          </thead>
-          <tbody>
+    <table id="stat" class="table table-hover table-striped table-responsive tableBlackHead">
+        <thead>
+            <tr>
+                <th>Relevés</th> 
+                <th>Pourcentage sur l'ensemble des relevés</th>
+            </tr>
+        </thead>
+        <tbody>
             <?php //foreach ($stat_array as $row){
-             echo "<tr><td>Pompes</td><td>".(($pompesTotal/$logsTotal)*100)."</td></tr>";
-             echo "<tr><td>Pas</td><td>".(($pasTotal/$logsTotal)*100)."</td></tr>";
-             echo "<tr><td>Abdos</td><td>".(($abdosTotal/$logsTotal)*100)."</td></tr>";
-             echo "<tr><td>Squats</td><td>".(($squatsTotal/$logsTotal)*100)."</td></tr>";
+             echo "<tr><td>Pompes</td><td>".(($pompesTotal)*100)."</td></tr>";
+             echo "<tr><td>Pas</td><td>".(($pasTotal)*100)."</td></tr>";
+             echo "<tr><td>Abdos</td><td>".(($abdosTotal)*100)."</td></tr>";
+             echo "<tr><td>Squats</td><td>".(($squatsTotal)*100)."</td></tr>";
                  //}                            
              ?>  
-          </tbody>
-      </table>
+        </tbody>
+    </table>
 </div>
 
 <div>

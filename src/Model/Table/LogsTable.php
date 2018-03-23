@@ -102,16 +102,20 @@ class LogsTable extends Table {
             $pompes_total = $pompes_total + $p->log_value;
             //pr($pompes_total);
         }
-        //pr($pompes_total);
-
-        $pompes_logs1 = $this
+        //pr($pompes_total);        
+        if ($pompes_total == 0){
+            $pompesPourcent = 0;
+        }
+        else{
+            $pompes_logs1 = $this
                 ->find()
                 ->where(["log_type =" => "Pompes", "workout_id =" => $id]);
-        foreach ($pompes_logs1 as $p){
+            foreach ($pompes_logs1 as $p){
             $pompesPourcent = ($p->log_value/$pompes_total)*100;
             //pr($p->log_value);
             //pr($pompes_total);
             //pr($pompesPourcent);
+            }
         }
         //pr($pompes_total);
         return $pompesPourcent;
@@ -125,13 +129,18 @@ class LogsTable extends Table {
             ->where(["log_type =" => "Pas"]);
     foreach ($pas_logs as $p){
         $pas_total = $pas_total + $p->log_value;        
-    }    
-    $pas_logs1 = $this
+    }
+    if ($pas_total == 0){
+            $pasPourcent = 0;
+    }
+    else{
+        $pas_logs1 = $this
             ->find()
             ->where(["log_type =" => "Pas", "workout_id =" => $id]);
-    foreach ($pas_logs1 as $p){
-        $pasPourcent = ($p->log_value/$pas_total)*100;        
-    }    
+        foreach ($pas_logs1 as $p){
+            $pasPourcent = ($p->log_value/$pas_total)*100;        
+        } 
+    }          
     return $pasPourcent;
   }
   
@@ -143,13 +152,18 @@ class LogsTable extends Table {
             ->where(["log_type =" => "Abdos"]);
     foreach ($abdos_logs as $a){
         $abdos_total = $abdos_total + $a->log_value;        
-    }    
-    $abdos_logs1 = $this
+    }
+    if ($abdos_total == 0){
+            $abdosPourcent = 0;
+    }
+    else{
+        $abdos_logs1 = $this
             ->find()
             ->where(["log_type =" => "Abdos", "workout_id =" => $id]);
-    foreach ($abdos_logs1 as $a){
-        $abdosPourcent = ($a->log_value/$abdos_total)*100;
-    }    
+        foreach ($abdos_logs1 as $a){
+            $abdosPourcent = ($a->log_value/$abdos_total)*100;
+        }   
+    }
     return $abdosPourcent;
   }
   
@@ -161,12 +175,17 @@ class LogsTable extends Table {
             ->where(["log_type =" => "Squats"]);
     foreach ($squats_logs as $s){
         $squats_total = $squats_total + $s->log_value;
-    }    
-    $squats_logs1 = $this
+    }
+    if ($squats_total == 0){
+            $squatsPourcent = 0;
+    }
+    else{
+        $squats_logs1 = $this
             ->find()
             ->where(["log_type =" => "Squats", "workout_id =" => $id]);
-    foreach ($squats_logs1 as $s){
-        $squatsPourcent = ($s->log_value/$squats_total)*100;
+        foreach ($squats_logs1 as $s){
+            $squatsPourcent = ($s->log_value/$squats_total)*100;
+        }
     }
     return $squatsPourcent;
   }
@@ -179,7 +198,12 @@ class LogsTable extends Table {
         foreach ($pompes_logs as $p){
             $pompes_total = $pompes_total + $p->log_value;       
         }
-        return $pompes_total;
+        if ($pompes_total !=0){
+            return $pompes_total;
+        }
+        else{
+            return 0;
+        }      
     }
     
     public function getPasTotal($id){
@@ -190,7 +214,12 @@ class LogsTable extends Table {
         foreach ($pas_logs as $p){
             $pas_total = $pas_total + $p->log_value;       
         }
-        return $pas_total;
+        if ($pas_total !=0){
+            return $pas_total;
+        }
+        else{
+            return 0;
+        }        
     }
   
     public function getAbdosTotal($id){
@@ -200,8 +229,13 @@ class LogsTable extends Table {
                 ->where(["log_type =" => "Abdos", "member_id =" => $id]);
         foreach ($abdos_logs as $p){
             $abdos_total = $abdos_total + $p->log_value;       
-        }        
-        return $abdos_total;
+        }
+        if ($abdos_total !=0){
+            return $abdos_total;
+        }
+        else{
+            return 0;
+        }   
     }
   
     public function getSquatsTotal($id){
@@ -212,7 +246,12 @@ class LogsTable extends Table {
         foreach ($squats_logs as $p){
             $squats_total = $squats_total + $p->log_value;       
         }
-        return $squats_total;
+        if ($squats_total !=0){
+            return $squats_total;
+        }
+        else{
+            return 0;
+        }        
     }
   
     public function getLogsTotal($id) {
@@ -225,7 +264,12 @@ class LogsTable extends Table {
             //pr($logs_total);
         }
         //pr($logs_total);
-        return $logs_total;   
+        if ($logs_total !=0){
+            return $logs_total;
+        }
+        else{
+            return 0;
+        }     
     }
     
     public function calculateScoreOfMatch($member_id, $workout_id)
