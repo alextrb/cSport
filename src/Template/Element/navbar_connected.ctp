@@ -24,7 +24,7 @@
     </div>
 </nav>
 
-<nav class="mynavbar navbar navbar-default">
+<nav id="nav_tmp" class="mynavbar navbar navbar-default">
 
     <div >
       <div class="mynavbarheader navbar-header">

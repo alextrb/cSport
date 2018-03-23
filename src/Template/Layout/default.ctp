@@ -50,14 +50,16 @@
     ?>
     
     <?= $this->Flash->render() ?>
-    <div id ="main_view" class="container clearfix">
+    
+    <div id ="<?php if($page=="index"){echo "index_view";}else{echo "main_view";} ?>" class="container clearfix">
         <?= $this->fetch('content') ?> <!--Ne pas toucher, correspond à la vue-->
     </div>
-    <footer class="footer text-center">
+    
+    <footer class="footer ">
         <div id="div_footer">
-            <p> PROJET OCRES : CSPORT </p>
-            <p> TRBOVIC Alexandre - LYONNARD DE LA GIRENNERIE Noémie - SEWERYN Antoine - ONG Philippe </p>
-            <p> OPTION C : Gestion de compétition  -  OPTION F : Cartographie </p>
+            <h3> PROJET OCRES : CSPORT </h3>
+            <p>TRBOVIC Alexandre - LYONNARD DE LA GIRENNERIE Noémie - SEWERYN Antoine - ONG Philippe<br>
+            OPTION C : Gestion de compétition  -  OPTION F : Cartographie </p>
         </div>
     </footer>
 </body>
