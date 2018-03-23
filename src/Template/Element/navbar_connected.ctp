@@ -6,7 +6,6 @@
         <?= $this->Html->link("WorkItOut", ["controller"=>"Sports", "action"=>"index"], ["class" => "navbar-brand"])?>
       </div>
       <ul class="mynavbarnav nav navbar-nav">
-            <li class="<?php if($page=="index"){echo "active";}?>"><?= $this->Html->link("Accueil", ["controller"=>"Sports", "action"=>"index"])?></li>
             <li class="<?php if($page=="moncompte"){echo "active";}?>"><?= $this->Html->link("Mon compte", ["controller"=>"Sports", "action"=>"moncompte"])?></li>
             <li class="<?php if($page=="seance"){echo "active";}?>"><?= $this->Html->link("Mes séances", ["controller"=>"Sports", "action"=>"seance"])?></li>
             <li class="<?php if($page=="objetsco"){echo "active";}?>"><?= $this->Html->link("Mes objets connectés", ["controller"=>"Sports", "action"=>"objetsco"])?></li>

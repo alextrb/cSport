@@ -7,7 +7,6 @@
       </div>
       <ul class="mynavbarnav nav navbar-nav">
 
-            <li class="<?php if($page=="index"){echo "active";}?>"><?= $this->Html->link("Accueil", ["controller"=>"Sports", "action"=>"index"])?></li>
             <li class="<?php if($page=="classements"){echo "active";}?>"><?= $this->Html->link("Classement", ["controller"=>"Sports", "action"=>"classements"])?></li>
             
             <li class="<?php if($page=="contact"){echo "active";}?>"><?= $this->Html->link("Contact", ["controller"=>"Sports", "action"=>"contact"])?></li>
@@ -21,7 +20,7 @@
     </div>
 </nav>
 
-<nav class="mynavbar navbar navbar-default">
+<nav id="nav_tmp" class="mynavbar navbar navbar-default">
 
     <div >
       <div class="mynavbarheader navbar-header">
