@@ -2,13 +2,16 @@
 
 $this->assign('title', 'Compétition');?>
 
-
+<div class="page-header">
 <h2> <?= $this_contest->name ?> </h2>
+</div>
 <p> Type : <?= $this_contest->type ?> </p>
 <p> <?= $this_contest->description ?> </p>
 
 <div>
-<h3>Liste des matchs :</h3>
+    <div class="page-header">
+<h2>Liste des matchs :</h2>
+    </div>
 <table id="singTable" class="table table-hover table-striped table-responsive tableBlackHead" >
     <thead>
         <tr>
@@ -49,7 +52,9 @@ $this->assign('title', 'Compétition');?>
 </div>
 
 <div>
+    <div class="page-header">
     <h3 id="singForm">Ajouter un match : </h3>
+    </div>
         
         <?= $this->Form->create($new, array("class" => "form-horizontal")) 
             .$this->Form->input("m1_email", array("label" => "Joueur 1 : ", "type" => "select", "options" => $emails_array, "class" => "form-control"))
@@ -62,7 +67,9 @@ $this->assign('title', 'Compétition');?>
 </div>
 
 <div>
+    <div class="page-header">
 <h3>Classement des participants :</h3>
+    </div>
 <table id="singTableRank" class="table table-hover table-striped table-responsive tableBlackHead" >
     <thead>
         <tr>

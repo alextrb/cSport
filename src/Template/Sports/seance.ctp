@@ -8,7 +8,9 @@
 </figure> 
 
 <div>
+    <div class="page-header">
       <h3>Séances à venir</h3>
+    </div>
       <table id="workoutsComing" class="table table-hover table-striped table-responsive tableBlackHead">
           <thead>
               <tr>
@@ -31,7 +33,9 @@
 </div>
 
 <div>
+    <div class="page-header">
       <h3>Séances en cours</h3>
+    </div>
       <table id="workoutsNow" class="table table-hover table-striped table-responsive tableBlackHead">
           <thead>
               <tr>
@@ -79,7 +83,9 @@
 </div>
 
 <div>
+    <div class="page-header">
       <h3>Séances passées</h3>
+    </div>
 
       <table id="workoutsDone" class="table table-hover table-striped table-responsive tableBlackHead">
           <thead>
@@ -134,7 +140,9 @@
 </div>
 
 <div>
+    <div class="page-header">
       <h3>Séances manquées</h3>
+    </div>
       <table id="manque" class="table table-hover table-striped table-responsive tableBlackHead">
           <thead>
               <tr>
@@ -156,7 +164,9 @@
 </div>
 
 <div>
+    <div class="page-header">
       <h3 id="seanLoc">Emplacement de mes séances </h3>
+    </div>
       <script type="text/javascript">
           var json_locations = <?php echo $encoded_locations ?>;
       </script>
@@ -168,7 +178,9 @@
 </div>
 
 <div>
+    <div class="page-header">
       <h3>Statistiques des relevés depuis l'inscription</h3>
+    </div>
       <table id="pompes" class="table table-hover table-striped table-responsive tableBlackHead">
           <thead>
               <tr>
@@ -213,7 +225,9 @@
 </div>
 
 <div>
+    <div class="page-header">
       <h3>Pour ajouter une séance, remplir le formulaire</h3>
+    </div>
 
       <?php $options = array(
          'Badminton'=>__('Badminton'), 

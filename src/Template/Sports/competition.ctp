@@ -4,7 +4,9 @@ $this->assign('title', 'Compétitions');?>
 
 
 <div>
-    <h2>Compétitions :</h2>
+    <div class="page-header">
+    <h2>Compétitions</h2>
+    </div>
     <table id="compTable" class="table table-hover table-striped table-responsive tableBlackHead" >
         <thead>
             <tr>
@@ -26,7 +28,9 @@ $this->assign('title', 'Compétitions');?>
 </div>
 
 <div>
+    <div class="page-header">
     <h3 id="singForm">Créer une compétition</h3>
+    </div>
 
         <?php $options = array(
            'Badminton'=>__('Badminton'), 

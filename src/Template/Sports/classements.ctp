@@ -4,13 +4,16 @@ $this->assign('title', 'Classements');?>
 
 
 <h2 id="clasTitle">Classement</h2>
+
     <figure>
         <div class="header-image"><?= $this->Html->image('classement.jpg', ['width' => '1069px', 'max-width' =>  '1069px']) ?></div> 
     </figure> 
 
 
 <div>
+    <div class="page-header">
 <h3>Classement : BADMINTON </h3>
+    </div>
 <table id="clasTableBadminton" class="table table-hover table-striped table-responsive tableBlackHead" >
     <thead>
         <tr>
@@ -36,7 +39,9 @@ $this->assign('title', 'Classements');?>
 </div>
 
 <div>
+    <div class="page-header">
 <h3>Classement : BOXE </h3>
+    </div>
 <table id="clasTableBoxe" class="table table-hover table-striped table-responsive tableBlackHead" >
     <thead>
         <tr>
@@ -62,7 +67,9 @@ $this->assign('title', 'Classements');?>
 </div>
 
 <div>
+    <div class="page-header">
 <h3>Classement : CANNE DE COMBAT </h3>
+    </div>
 <table id="clasTableCanne" class="table table-hover table-striped table-responsive tableBlackHead" >
     <thead>
         <tr>
@@ -88,7 +95,9 @@ $this->assign('title', 'Classements');?>
 </div>
 
 <div>
+    <div class="page-header">
 <h3>Classement : GRS </h3>
+    </div>
 <table id="clasTableGRS" class="table table-hover table-striped table-responsive tableBlackHead" >
     <thead>
         <tr>
@@ -114,7 +123,9 @@ $this->assign('title', 'Classements');?>
 </div>
 
 <div>
+    <div class="page-header">
 <h3>Classement : JUDO </h3>
+    </div>
 <table id="clasTableJudo" class="table table-hover table-striped table-responsive tableBlackHead" >
     <thead>
         <tr>
@@ -140,7 +151,9 @@ $this->assign('title', 'Classements');?>
 </div>
 
 <div>
+    <div class="page-header">
 <h3>Classement : TAEKWONDO </h3>
+    </div>
 <table id="clasTableTaekwondo" class="table table-hover table-striped table-responsive tableBlackHead" >
     <thead>
         <tr>
@@ -166,7 +179,9 @@ $this->assign('title', 'Classements');?>
 </div>
 
 <div>
+    <div class="page-header">
 <h3>Classement : TENNIS </h3>
+    </div>
 <table id="clasTableTennis" class="table table-hover table-striped table-responsive tableBlackHead" >
     <thead>
         <tr>
