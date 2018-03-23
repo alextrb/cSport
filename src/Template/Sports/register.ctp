@@ -1,7 +1,7 @@
 <?php
 $this->assign('title', 'Inscription');?>
 
-<h3>Inscription</h3>
+<h2>Inscription</h2>
 <div>
 	<?= $this->Form->create($new, array("class" => "form-horizontal")) ?>
 	<?= $this->Form->control('email', array("label" => "Email : ", "class" => "form-control")) ?>

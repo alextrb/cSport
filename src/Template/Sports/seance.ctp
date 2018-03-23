@@ -4,7 +4,7 @@
 <h2 id="seanTitle">Mes Séances</h2>
 
 <figure>
-    <div class="header-image"><?= $this->Html->image('seance.jpg', ['width' => '1069px', 'max-width' =>'1069px']) ?></div> 
+    <div class="header-image"><?= $this->Html->image('seance.jpg', ['width' => '1100px', 'max-width' =>'1100px']) ?></div> 
 </figure> 
 
 <div>

@@ -2,7 +2,7 @@
 $this->assign('title', 'Connexion');?>
 
 <div class="page-header">
-    <h3>Connexion</h3>
+    <h2>Connexion</h2>
 </div>
 <div>
 	<?= $this->Form->create(null, array("class" => "form-horizontal")) ?>
