@@ -255,6 +255,9 @@
             $form_new_log = $this->Logs->newEntity();
             $this->set("form_new_log", $form_new_log);
             $this->set("new", $new);
+            
+            $encoded_locations = $this->Logs->getAllSeancesLocations();
+            $this->set("encoded_locations", $encoded_locations);
         }
         
         public function addLog(){        
@@ -308,8 +311,6 @@
             $waiting_devices = $this->devices->getWaitingDevices($member_id);
             $this->set("waiting_devices", $waiting_devices);
             
-            $encoded_locations = $this->logs->getAllSeancesLocations();
-            $this->set("encoded_locations", $encoded_locations);
             
             $comments = $this->workouts->getComments();
             $this->set("comments", $comments);

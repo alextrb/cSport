@@ -5,11 +5,11 @@ $this->assign('title', 'Classements');?>
 
 <h2 id="clasTitle">Classement</h2>
     <figure>
-        <div class="header-image"><?= $this->Html->image('classement.jpg', ['width' => '1069px']) ?></div> 
+        <div class="header-image"><?= $this->Html->image('classement.jpg', ['width' => '1069px', 'max-width' =>  '1069px']) ?></div> 
     </figure> 
 
 
-
+<div>
 <h3>Classement : BADMINTON </h3>
 <table id="clasTableBadminton" class="table table-hover table-striped table-responsive tableBlackHead" >
     <thead>
@@ -33,7 +33,9 @@ $this->assign('title', 'Classements');?>
         ?>
     </tbody>
 </table>
+</div>
 
+<div>
 <h3>Classement : BOXE </h3>
 <table id="clasTableBoxe" class="table table-hover table-striped table-responsive tableBlackHead" >
     <thead>
@@ -57,7 +59,9 @@ $this->assign('title', 'Classements');?>
         ?>
     </tbody>
 </table>
+</div>
 
+<div>
 <h3>Classement : CANNE DE COMBAT </h3>
 <table id="clasTableCanne" class="table table-hover table-striped table-responsive tableBlackHead" >
     <thead>
@@ -81,7 +85,9 @@ $this->assign('title', 'Classements');?>
         ?>
     </tbody>
 </table>
+</div>
 
+<div>
 <h3>Classement : GRS </h3>
 <table id="clasTableGRS" class="table table-hover table-striped table-responsive tableBlackHead" >
     <thead>
@@ -105,7 +111,9 @@ $this->assign('title', 'Classements');?>
         ?>
     </tbody>
 </table>
+</div>
 
+<div>
 <h3>Classement : JUDO </h3>
 <table id="clasTableJudo" class="table table-hover table-striped table-responsive tableBlackHead" >
     <thead>
@@ -129,7 +137,9 @@ $this->assign('title', 'Classements');?>
         ?>
     </tbody>
 </table>
+</div>
 
+<div>
 <h3>Classement : TAEKWONDO </h3>
 <table id="clasTableTaekwondo" class="table table-hover table-striped table-responsive tableBlackHead" >
     <thead>
@@ -153,7 +163,9 @@ $this->assign('title', 'Classements');?>
         ?>
     </tbody>
 </table>
+</div>
 
+<div>
 <h3>Classement : TENNIS </h3>
 <table id="clasTableTennis" class="table table-hover table-striped table-responsive tableBlackHead" >
     <thead>
@@ -177,4 +189,4 @@ $this->assign('title', 'Classements');?>
         ?>
     </tbody>
 </table>
-
+</div>

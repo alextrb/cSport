@@ -2,19 +2,13 @@
 
 $this->assign('title', 'Compétition');?>
 
-<script type="text/javascript" charset="utf-8">
-    $(document).ready(function () {
-        $('#singTable').DataTable( {
-            "order": [[ 3, "asc" ]]
-        } );
-    });
-</script>
 
-<h1> <?= $this_contest->name ?> </h1>
+<h2> <?= $this_contest->name ?> </h2>
 <p> Type : <?= $this_contest->type ?> </p>
 <p> <?= $this_contest->description ?> </p>
 
-<h2>Liste des matchs :</h2>
+<div>
+<h3>Liste des matchs :</h3>
 <table id="singTable" class="table table-hover table-striped table-responsive tableBlackHead" >
     <thead>
         <tr>
@@ -52,10 +46,10 @@ $this->assign('title', 'Compétition');?>
         } ?>
     </tbody>
 </table>
-
+</div>
 
 <div>
-    <h2 id="singForm">Ajouter un match : </h2>
+    <h3 id="singForm">Ajouter un match : </h3>
         
         <?= $this->Form->create($new, array("class" => "form-horizontal")) 
             .$this->Form->input("m1_email", array("label" => "Joueur 1 : ", "type" => "select", "options" => $emails_array, "class" => "form-control"))
@@ -67,7 +61,8 @@ $this->assign('title', 'Compétition');?>
             .$this->Form->end(); ?>
 </div>
 
-<h2>Classement des participants :</h2>
+<div>
+<h3>Classement des participants :</h3>
 <table id="singTableRank" class="table table-hover table-striped table-responsive tableBlackHead" >
     <thead>
         <tr>
@@ -89,4 +84,4 @@ $this->assign('title', 'Compétition');?>
         } ?>
     </tbody>
 </table>
-
+</div>

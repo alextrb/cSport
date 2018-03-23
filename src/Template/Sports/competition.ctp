@@ -26,7 +26,7 @@ $this->assign('title', 'Compétitions');?>
 </div>
 
 <div>
-    <h2 id="singForm">Créer une compétition</h2>
+    <h3 id="singForm">Créer une compétition</h3>
 
         <?php $options = array(
            'Badminton'=>__('Badminton'), 

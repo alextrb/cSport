@@ -13,6 +13,7 @@ body
     background-color: white;
     border-radius: 20px;
     padding: 50px;
+    width: 1200px;
 }
 
 
@@ -24,6 +25,7 @@ body
 .navbar-default
 {
     background: rgba(42, 135, 92, 0.7);
+    border-bottom: 0px;
 }
 .mynavbar .navbar-brand
 {

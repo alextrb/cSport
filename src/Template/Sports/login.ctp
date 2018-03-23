@@ -10,6 +10,4 @@ $this->assign('title', 'Connexion');?>
 	<?= $this->Form->end() ?>
 </div>
 
-<div>
-    <p>Pas de compte ? <?= $this->Html->link('Inscrivez-vous', array('controller' => 'Sports', 'action' => 'register')); ?></p>
-</div>
+<p>Pas de compte ? <?= $this->Html->link('Inscrivez-vous', array('controller' => 'Sports', 'action' => 'register')); ?></p>
