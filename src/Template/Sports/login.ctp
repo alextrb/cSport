@@ -8,7 +8,7 @@ $this->assign('title', 'Connexion');?>
 	<?= $this->Form->create(null, array("class" => "form-horizontal")) ?>
 	<?= $this->Form->control('email', array("label" => "Email : ", "class" => "form-control")) ?>
 	<?= $this->Form->control('password', array("label" => "Mot de passe : ", "class" => "form-control")) ?>
-	<?= $this->Form->submit('Se Connecter', ['class' => ' btn-primary']) ?>
+	<?= $this->Form->submit('Se Connecter', ['class' => 'btn btn-primary']) ?>
 	<?= $this->Form->end() ?>
 </div>
 
