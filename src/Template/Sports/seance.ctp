@@ -9,6 +9,7 @@
 
 <div>
       <h3>Séances à venir</h3>
+      <p>Hello</p>
 
       <table id="workoutsComing" class="table table-hover table-striped table-responsive tableBlackHead">
           <thead>
