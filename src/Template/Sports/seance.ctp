@@ -1,17 +1,21 @@
 <?php $this->assign('title', 'Mes Séances');?>
 
-
-<h2 id="seanTitle">Mes Séances</h2>
-
+<div class="text-center">
+<h2 class="page-header">Mes Séances</h2>
+</div>
 <figure>
     <div class="header-image"><?= $this->Html->image('seance.jpg', ['width' => '1100', 'style' =>'max-width: 1100px;']) ?></div> 
 </figure> 
 
-<div>
-    <div class="page-header">
-      <h3>Séances à venir</h3>
+<div class="well">
+    <div class="text-center">
+        <button class="btn btn-lg" data-toggle="collapse" data-target="#futur" aria-expanded="true" aria-controls="futur">
+          Séances à venir
+        </button>
     </div>
-      <table id="workoutsComing" class="table table-hover table-striped table-responsive tableBlackHead">
+    <div class="collapse multi-collapse" id="futur">
+      <div class="card-body">
+        <table id="workoutsComing" class="table table-hover table-striped table-responsive tableBlackHead">
           <thead>
               <tr>
               <th>Sport</th>
@@ -23,25 +27,26 @@
           <tbody>
           <!-- Remplissage du tableau-->
           <?php foreach ($workout_coming as $workout){
-              $print_match = " ";
-              if($workout->contest_id > 0)
-              {
-                  $print_match = "- MATCH - <br>";
-              }
               echo"<tr><td>".$workout->sport."</td><td>"
                             .$workout->date."</td><td>"
                             .$workout->location_name."</td><td>"
-                            .$print_match.$workout->description."</td></tr>";
+                            .$workout->description."</td></tr>";
           }?>
           </tbody>
-      </table>
+        </table>
+      </div>
+    </div>
 </div>
 
-<div>
-    <div class="page-header">
-      <h3>Séances en cours</h3>
+<div class="well">
+    <div class="text-center">
+        <button class="btn btn-lg collapsed" data-toggle="collapse" data-target="#present" aria-expanded="false" aria-controls="present">
+          Séances en cours
+        </button>
     </div>
-      <table id="workoutsNow" class="table table-hover table-striped table-responsive tableBlackHead">
+    <div class="collapse multi-collapse" id="present">
+      <div class="card-body">
+        <table id="workoutsNow" class="table table-hover table-striped table-responsive tableBlackHead">
           <thead>
               <tr>
               <th>Sport</th>
@@ -53,22 +58,7 @@
           </tr>
           </thead>
           <tbody>
-         <?php 
-         
-         $log_options = array(
-                  'Pas'=>__('Pas'), 
-                  'Pompes'=>__('Pompes'), 
-                  'Abdos'=>__('Abdos'), 
-                  'Squats'=>__('Squats')); 
-         
-         foreach ($workNow_tab as $details){
-             
-             $print_match = " ";
-              if($workout->contest_id > 0)
-              {
-                  $print_match = "- MATCH - <br>";
-              }
-              
+         <?php foreach ($workNow_tab as $details){
               $workout=$details['workout'];
               $logs=[];
 
@@ -78,19 +68,21 @@
               echo"<tr><td>".$workout->sport."</td><td>"
                             .$workout->date."</td><td>"
                             .$workout->location_name."</td><td>"
-                            .$print_match.$workout->description."</td><td>"
+                            .$workout->description."</td><td>"
                             .$this->Html->nestedList($logs)."</td><td>"
-                            .$this->Form->create($form_new_log, array('url'=>array('controller' => 'sports', 'action' => 'addLog')))
+                            .$this->Form->create($new, array('url'=>array('controller' => 'sports', 'action' => 'addLog')))
                             .$this->Form->hidden("id_workout", array(
                                 "value" => $workout['id']))                              
                             .$this->Form->input("location_latitude", array(
                                 "label" => "Latitude : "))
                             .$this->Form->input("location_logitude", array(
                                 "label" => "Longitude : "))
-                            .$this->Form->input("log_type",array(
+                            .$this->Form->select("log_type",array(
                                 'label' => "Sélectionnez le relevé : ",
-                                "type" => "select",
-                                "options" => $log_options))
+                                'Pas' => "Pas",
+                                'Pompes' => "Pompes",
+                                'Abdos' => "Abdos",
+                                'Squats' => "Squats"))
                             .$this->Form->input("log_value", array(
                                 "label" => "Nombre : "))
                             .$this->Form->submit("Ajouter", array("class" => "btn btn-success"))."</td></tr>"
@@ -98,14 +90,35 @@
           }?>
           </tbody>
       </table>
+      </div>
+    </div>
 </div>
 
 <div>
-    <div class="page-header">
-      <h3>Séances passées</h3>
-    </div>
+      <h3 id="seanLoc">Emplacement de mes séances </h3>
+      <script type="text/javascript">
+          var json_locations = <?php echo $encoded_locations ?>;
+      </script>
+      <div id='map'></div>
+      <?php echo $this->Html->script(['googleMap']);?>
+      <script async defer
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClw2W8vDjAdeSJkPnDO9CCI-01RLjYQcw&callback=initMap">
+      </script>
+</div>
 
-      <table id="workoutsDone" class="table table-hover table-striped table-responsive tableBlackHead">
+<div class="well">
+    <div class="text-center">
+        <button class="btn btn-lg collapsed" data-toggle="collapse" data-target="#passe" aria-expanded="false" aria-controls="passe">
+          Séances passées
+        </button>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+        Voir les statistiques des relevés
+        </button>
+    </div>
+    <div class="collapse multi-collapse" id="passe">
+      <div class="card-body">
+        <table id="workoutsDone" class="table table-hover table-striped table-responsive tableBlackHead">
           <thead>
               <tr>
               <th>Sport</th>
@@ -119,13 +132,6 @@
           <tbody>
           <!-- Remplissage du tableau-->
           <?php foreach ($workDone_tab as $details){
-              
-              $print_match = " ";
-              if($workout->contest_id > 0)
-              {
-                  $print_match = "- MATCH - <br>";
-              }
-              
               $workout=$details['workout'];
               $logs=[];
 
@@ -142,7 +148,7 @@
               echo"<tr><td>".$workout->sport."</td><td>"
                             .$workout->date."</td><td>"
                             .$workout->location_name."</td><td>"
-                            .$print_match.$workout->description."</td><td>"
+                            .$workout->description."</td><td>"
                             .$this->Html->nestedList($logs)."</td><td>"
                             .$this->Form->create($form_new_log, array('url'=>array('controller' => 'sports', 'action' => 'addLog')))
                             .$this->Form->hidden("id_workout", array(
@@ -161,59 +167,21 @@
                             .$this->Form->end();              
           }?>
           </tbody>
-      </table>
-</div>
-
-<div>
-    <div class="page-header">
-      <h3>Séances manquées</h3>
+        </table>
+      </div>
     </div>
-      <table id="manque" class="table table-hover table-striped table-responsive tableBlackHead">
-          <thead>
-              <tr>
-                  <th>Sport</th> 
-                  <th>Date</th>
-                  <th>Lieu</th> 
-                  <th>Description</th>                    
-              </tr>
-          </thead>
-          <tbody>
-            <?php foreach ($workout_missed as $workout){
-                
-                $print_match = " ";
-              if($workout->contest_id > 0)
-              {
-                  $print_match = "- MATCH - <br>";
-              }
-              
-              echo"<tr><td>".$workout->sport."</td><td>"
-                            .$workout->date."</td><td>"
-                            .$workout->location_name."</td><td>"
-                            .$print_match.$workout->description."</td></tr>";                              
-          }?>   
-          </tbody>
-      </table>
-</div>
-
-<div>
-    <div class="page-header">
-      <h3 id="seanLoc">Emplacement de mes séances </h3>
-    </div>
-      <script type="text/javascript">
-          var json_locations = <?php echo $encoded_locations ?>;
-      </script>
-      <div id='map'></div>
-      <?php echo $this->Html->script(['googleMap']);?>
-      <script async defer
-              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClw2W8vDjAdeSJkPnDO9CCI-01RLjYQcw&callback=initMap">
-      </script>
-</div>
-
-<div>
-    <div class="page-header">
-      <h3>Statistiques des relevés depuis l'inscription</h3>
-    </div>
-      <table id="pompes" class="table table-hover table-striped table-responsive tableBlackHead">
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Statistiques des relevés depuis l'inscription</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table id="pompes" class="table table-hover table-striped table-responsive tableBlackHead">
           <thead>
               <tr>
                   <th>Date de la séance</th> 
@@ -234,10 +202,7 @@
              ?>   
           </tbody>
       </table>
-</div>
-
-<div>
-    <table id="stat" class="table table-hover table-striped table-responsive tableBlackHead">
+      <table id="stat" class="table table-hover table-striped table-responsive tableBlackHead">
         <thead>
             <tr>
                 <th>Relevés</th> 
@@ -253,14 +218,51 @@
                  //}                            
              ?>  
         </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>        
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="well">
+<div class="text-center">    
+    <button class="btn btn-lg collapsed" data-toggle="collapse" data-target="#manque" aria-expanded="false" aria-controls="manque">
+    Séances manquées
+    </button>
+</div>
+
+<div class="collapse multi-collapse" id="manque">
+  <div class="card-body">
+    <table id="manque" class="table table-hover table-striped table-responsive tableBlackHead">
+      <thead>
+          <tr>
+              <th>Sport</th> 
+              <th>Date</th>
+              <th>Lieu</th> 
+              <th>Description</th>                    
+          </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($workout_missed as $workout){
+          echo"<tr><td>".$workout->sport."</td><td>"
+                        .$workout->date."</td><td>"
+                        .$workout->location_name."</td><td>"
+                        .$workout->description."</td></tr>";                              
+      }?>   
+      </tbody>
     </table>
+  </div>
+</div>
 </div>
 
 <div>
-    <div class="page-header">
-      <h3>Pour ajouter une séance, remplir le formulaire</h3>
+    <div class="text-center">
+    <h3 class="alert alert-info">Pour ajouter une séance, remplir le formulaire</h3>
     </div>
-
       <?php $options = array(
          'Badminton'=>__('Badminton'), 
          'Boxe'=>__('Boxe'), 
@@ -277,6 +279,6 @@
            .$this->Form->input("sport", array(
                'label' => "Selectionnez le sport souhaité : ", "type" => "select", "options" => $options, "class" => "form-control"))."</li><li>"                
            .$this->Form->input("description", array("label" => "Commentaires : ", "class" => "form-control", "type" => "textarea"))."</li><li>"             
-           .$this->Form->submit("Ajouter", array("class" => "btn btn-primary"))."</li></ul>"
+           .$this->Form->submit("Ajouter", array("class" => "btn btn-info"))."</li></ul>"
            .$this->Form->end();?>
 </div>

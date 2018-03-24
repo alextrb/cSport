@@ -185,10 +185,10 @@
             foreach($workout as $w) // pour chaque membre
             {              
                 //$member_score = $this->Logs->CalculMemberScore($member->id); // on calcule leur score
-                $pompesPourcent = $this->Logs->getPompes($w->id);
-                $pasPourcent = $this->Logs->getPas($w->id);
-                $abdosPourcent = $this->Logs->getAbdos($w->id);
-                $squatsPourcent = $this->Logs->getSquats($w->id);
+                $pompesPourcent = $this->Logs->getPompes($w->id, $currentId);
+                $pasPourcent = $this->Logs->getPas($w->id, $currentId);
+                $abdosPourcent = $this->Logs->getAbdos($w->id, $currentId);
+                $squatsPourcent = $this->Logs->getSquats($w->id, $currentId);
                 ///On crée une nouvelle ligne contenant le membre et son score
                 $new_row = array('date' => $w->date,
                                  'stat' => $pompesPourcent,

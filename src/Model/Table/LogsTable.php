@@ -92,12 +92,12 @@ class LogsTable extends Table {
         return json_encode($locations_array);
     }
     
-    public function getPompes($id){
+    public function getPompes($id, $member){
         $pompes_total = 0;
         $pompesPourcent = 0;
         $pompes_logs = $this
                 ->find()
-                ->where(["log_type =" => "Pompes"]);
+                ->where(["log_type =" => "Pompes", "member_id =" => $member]);
         foreach ($pompes_logs as $p){
             $pompes_total = $pompes_total + $p->log_value;
             //pr($pompes_total);
@@ -121,12 +121,12 @@ class LogsTable extends Table {
         return $pompesPourcent;
     }
     
-    public function getPas($id){
+    public function getPas($id, $member){
     $pas_total = 0;
     $pasPourcent = 0;
     $pas_logs = $this
             ->find()
-            ->where(["log_type =" => "Pas"]);
+            ->where(["log_type =" => "Pas", "member_id =" => $member]);
     foreach ($pas_logs as $p){
         $pas_total = $pas_total + $p->log_value;        
     }
@@ -144,12 +144,12 @@ class LogsTable extends Table {
     return $pasPourcent;
   }
   
-  public function getAbdos($id){
+  public function getAbdos($id, $member){
     $abdos_total = 0;
     $abdosPourcent = 0;
     $abdos_logs = $this
             ->find()
-            ->where(["log_type =" => "Abdos"]);
+            ->where(["log_type =" => "Abdos", "member_id =" => $member]);
     foreach ($abdos_logs as $a){
         $abdos_total = $abdos_total + $a->log_value;        
     }
@@ -167,12 +167,12 @@ class LogsTable extends Table {
     return $abdosPourcent;
   }
   
-  public function getSquats($id){
+  public function getSquats($id, $member){
     $squats_total = 0;
     $squatsPourcent = 0;
     $squats_logs = $this
             ->find()
-            ->where(["log_type =" => "Squats"]);
+            ->where(["log_type =" => "Squats", "member_id =" => $member]);
     foreach ($squats_logs as $s){
         $squats_total = $squats_total + $s->log_value;
     }
