@@ -185,10 +185,10 @@
           <thead>
               <tr>
                   <th>Date de la séance</th> 
-                  <th>Pompes réalisées pendant chaque séance (en %)</th>
-                  <th>Pas réalisés pendant chaque séance (en %)</th>
-                  <th>Abdos réalisés pendant chaque séance (en %)</th>
-                  <th>Squats réalisés pendant chaque séance (en %)</th>
+                  <th>Pompes (en %)</th>
+                  <th>Pas (en %)</th>
+                  <th>Abdos (en %)</th>
+                  <th>Squats (en %)</th>
               </tr>
           </thead>
           <tbody>
