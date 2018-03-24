@@ -10,7 +10,7 @@ $this->assign('title', 'Compétition');?>
 
 <div>
     <div class="page-header">
-<h2>Liste des matchs :</h2>
+<h3>Liste des matchs :</h3>
     </div>
 <table id="singTable" class="table table-hover table-striped table-responsive tableBlackHead" >
     <thead>

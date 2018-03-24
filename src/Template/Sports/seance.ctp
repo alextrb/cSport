@@ -4,7 +4,7 @@
 <h2 id="seanTitle">Mes Séances</h2>
 
 <figure>
-    <div class="header-image"><?= $this->Html->image('seance.jpg', ['width' => '1100px', 'style' =>'max-width: 1100px;']) ?></div> 
+    <div class="header-image"><?= $this->Html->image('seance.jpg', ['width' => '1100', 'style' =>'max-width: 1100px;']) ?></div> 
 </figure> 
 
 <div>
@@ -23,10 +23,15 @@
           <tbody>
           <!-- Remplissage du tableau-->
           <?php foreach ($workout_coming as $workout){
+              $print_match = " ";
+              if($workout->contest_id > 0)
+              {
+                  $print_match = "- MATCH - <br>";
+              }
               echo"<tr><td>".$workout->sport."</td><td>"
                             .$workout->date."</td><td>"
                             .$workout->location_name."</td><td>"
-                            .$workout->description."</td></tr>";
+                            .$print_match.$workout->description."</td></tr>";
           }?>
           </tbody>
       </table>
@@ -57,6 +62,13 @@
                   'Squats'=>__('Squats')); 
          
          foreach ($workNow_tab as $details){
+             
+             $print_match = " ";
+              if($workout->contest_id > 0)
+              {
+                  $print_match = "- MATCH - <br>";
+              }
+              
               $workout=$details['workout'];
               $logs=[];
 
@@ -66,7 +78,7 @@
               echo"<tr><td>".$workout->sport."</td><td>"
                             .$workout->date."</td><td>"
                             .$workout->location_name."</td><td>"
-                            .$workout->description."</td><td>"
+                            .$print_match.$workout->description."</td><td>"
                             .$this->Html->nestedList($logs)."</td><td>"
                             .$this->Form->create($form_new_log, array('url'=>array('controller' => 'sports', 'action' => 'addLog')))
                             .$this->Form->hidden("id_workout", array(
@@ -107,6 +119,13 @@
           <tbody>
           <!-- Remplissage du tableau-->
           <?php foreach ($workDone_tab as $details){
+              
+              $print_match = " ";
+              if($workout->contest_id > 0)
+              {
+                  $print_match = "- MATCH - <br>";
+              }
+              
               $workout=$details['workout'];
               $logs=[];
 
@@ -123,7 +142,7 @@
               echo"<tr><td>".$workout->sport."</td><td>"
                             .$workout->date."</td><td>"
                             .$workout->location_name."</td><td>"
-                            .$workout->description."</td><td>"
+                            .$print_match.$workout->description."</td><td>"
                             .$this->Html->nestedList($logs)."</td><td>"
                             .$this->Form->create($form_new_log, array('url'=>array('controller' => 'sports', 'action' => 'addLog')))
                             .$this->Form->hidden("id_workout", array(
@@ -160,10 +179,17 @@
           </thead>
           <tbody>
             <?php foreach ($workout_missed as $workout){
+                
+                $print_match = " ";
+              if($workout->contest_id > 0)
+              {
+                  $print_match = "- MATCH - <br>";
+              }
+              
               echo"<tr><td>".$workout->sport."</td><td>"
                             .$workout->date."</td><td>"
                             .$workout->location_name."</td><td>"
-                            .$workout->description."</td></tr>";                              
+                            .$print_match.$workout->description."</td></tr>";                              
           }?>   
           </tbody>
       </table>
