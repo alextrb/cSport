@@ -6,9 +6,9 @@ $this->assign('title', 'Équipe');?>
 </div>
 
 <p>
-   Notre équipe se constitue de quatre étudiants issus de l’école d’ingénieur ECE Paris en majeur Objet Connecté, 
+   Notre équipe se constitue de quatre étudiants issus de l’école d’ingénieurs ECE Paris en majeure Objets Connectés, 
    Réseaux et Services. Nous avons développé ce site web afin de répondre à votre besoin lié à vos activités sportives.
-   Nous contribuons à votre bien-être en vous proposant notre service <strong> WorkitOut !</strong>  
+   Nous contribuons à votre bien-être en vous proposant notre service <strong> WorkItOut !</strong>  
 </p>
 
 <div class=" well">

@@ -7,6 +7,30 @@ body
     background: url("../img/background_index.jpg");
 }
 
+#index_view
+{
+    margin-bottom: 140px;
+    background-color: white;
+    border-radius: 5px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    width: 1200px;
+    min-height: 480px;
+    background: rgba(0, 0, 0, 0.2);    
+    color: white;
+    font-size: 3em;
+    text-align: center;
+
+}
+.btn_index
+{
+    height: 55px;
+    width: 300px;
+    padding-top: 15px;
+    margin-top: 20px;
+    font-size: 0.4em;
+}
+
 #main_view
 {
     margin-bottom: 160px;
