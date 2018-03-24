@@ -6,7 +6,7 @@ $this->assign('title', 'Classements');?>
 <h2 id="clasTitle">Classement</h2>
 
     <figure>
-        <div class="header-image"><?= $this->Html->image('classement.jpg', ['width' => '1100px', 'max-width' =>  '1100px']) ?></div> 
+        <div class="header-image"><?= $this->Html->image('classement.jpg', ['width' => '1100px', 'style' =>'max-width: 1100px;']) ?></div> 
     </figure> 
 
 

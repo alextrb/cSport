@@ -37,25 +37,36 @@
         {
             $page = "register";
             $this->set("page", $page);
+            
             $this->loadModel("Members");
+            
             $new = $this->Members->newEntity();
             if($this->request->is("post"))
             {
                 $email = $this->request->data("email");
                 $password = $this->request->data("password");
-
-                $result = $this->Members->registerMember($email, $password);
-
-                if($result) // On vérifie si un utilisateur avec le même email n'existe pas déjà
+                $confirm_password = $this->request->data("confirm_password");
+                
+                if($password == $confirm_password)
                 {
-                    $authUser = $this->Members->get($result->id)->toArray();
-                    $this->Auth->setUser($authUser); // On connecte l'utilisateur qui vient de s'inscrire
-                     $this->redirect(['controller' => 'Sports', 'action' => 'index']);
+                    $result = $this->Members->registerMember($email, $password);
+
+                    if($result) // On vérifie si un utilisateur avec le même email n'existe pas déjà
+                    {
+                        $authUser = $this->Members->get($result->id)->toArray();
+                        $this->Auth->setUser($authUser); // On connecte l'utilisateur qui vient de s'inscrire
+                         $this->redirect(['controller' => 'Sports', 'action' => 'index']);
+                    }
+                    else
+                    {
+                        $this->Flash->error(__("Email déjà utilisé"));
+                    }
                 }
                 else
                 {
-                    $this->Flash->error(__("Email déjà utilisé"));
+                    $this->Flash->error(__("Mots de passe entrés différents"));
                 }
+                
             }
             $this->set("new", $new);
         }

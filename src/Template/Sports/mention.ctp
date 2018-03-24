@@ -1,4 +1,6 @@
+<div class="page-header">
 <h2>Mentions Légales</h2>
+</div>
 <p>
    Conformément aux dispositions de l'article 6 III-1 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie 
    numérique, le présent site est exploité par: <strong>WorkItOut</strong> pour la gestion des séances de sports des utilisateurs, 

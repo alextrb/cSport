@@ -20,7 +20,7 @@ $this->assign('title', 'Compétitions');?>
             <?php foreach ($contests as $contest){
                 echo"<tr><td>".$this->Html->Link("$contest->name", ["controller"=>"Sports", "action"=>"singlecompetition/".$contest->id])."</td><td>"
                               .$contest->type."</td><td>"
-                              .$contest->description."</td><tr>";
+                              .$contest->description."</td></tr>";
             } ?>
         </tbody>
     </table>
@@ -47,6 +47,6 @@ $this->assign('title', 'Compétitions');?>
             .$this->Form->input("name", array("label" => "Nom : ", "class" => "form-control"))."</li><li>"
             .$this->Form->input("type", array("label" => "Type : ", "type" => "select", "options" => $options, "class" => "form-control"))."</li><li>"                  
             .$this->Form->input("description", array("label" => "Description : ", "type" => "textarea", "class" => "form-control"))."</li><li>"    
-            .$this->Form->submit("Créer", ['class' => 'btn btn-primary'])
+            .$this->Form->submit("Créer", ['class' => 'btn btn-primary'])."</li></ul>"
             .$this->Form->end(); ?>
 </div>

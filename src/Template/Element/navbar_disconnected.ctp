@@ -15,6 +15,7 @@
             <li class="<?php if($page=="mention"){echo "active";}?>"><?= $this->Html->link("Mention", ["controller"=>"Sports", "action"=>"mention"])?></li>
       </ul>
         <ul class="mynavbarnavright nav navbar-nav navbar-right">
+            <li class="<?php if($page=="register"){echo "active";}?>"><?= $this->Html->link("Inscription", ["controller"=>"Sports", "action"=>"register"])?></li>
             <li class="<?php if($page=="login"){echo "active";}?>"><?= $this->Html->link("Connexion", ["controller"=>"Sports", "action"=>"login"])?></li>
         </ul>
     </div>
@@ -38,6 +39,7 @@
             <li class="<?php if($page=="mention"){echo "active";}?>"><?= $this->Html->link("Mention", ["controller"=>"Sports", "action"=>"mention"])?></li>
       </ul>
         <ul class="mynavbarnavright nav navbar-nav navbar-right">
+            <li class="<?php if($page=="register"){echo "active";}?>"><?= $this->Html->link("Inscription", ["controller"=>"Sports", "action"=>"register"])?></li>
             <li class="<?php if($page=="login"){echo "active";}?>"><?= $this->Html->link("Connexion", ["controller"=>"Sports", "action"=>"login"])?></li>
         </ul>
     </div>

@@ -4,7 +4,7 @@
 <h2 id="seanTitle">Mes Séances</h2>
 
 <figure>
-    <div class="header-image"><?= $this->Html->image('seance.jpg', ['width' => '1100px', 'max-width' =>'1100px']) ?></div> 
+    <div class="header-image"><?= $this->Html->image('seance.jpg', ['width' => '1100px', 'style' =>'max-width: 1100px;']) ?></div> 
 </figure> 
 
 <div>
@@ -48,7 +48,15 @@
           </tr>
           </thead>
           <tbody>
-         <?php foreach ($workNow_tab as $details){
+         <?php 
+         
+         $log_options = array(
+                  'Pas'=>__('Pas'), 
+                  'Pompes'=>__('Pompes'), 
+                  'Abdos'=>__('Abdos'), 
+                  'Squats'=>__('Squats')); 
+         
+         foreach ($workNow_tab as $details){
               $workout=$details['workout'];
               $logs=[];
 
@@ -60,19 +68,17 @@
                             .$workout->location_name."</td><td>"
                             .$workout->description."</td><td>"
                             .$this->Html->nestedList($logs)."</td><td>"
-                            .$this->Form->create($new, array('url'=>array('controller' => 'sports', 'action' => 'addLog')))
+                            .$this->Form->create($form_new_log, array('url'=>array('controller' => 'sports', 'action' => 'addLog')))
                             .$this->Form->hidden("id_workout", array(
                                 "value" => $workout['id']))                              
                             .$this->Form->input("location_latitude", array(
                                 "label" => "Latitude : "))
                             .$this->Form->input("location_logitude", array(
                                 "label" => "Longitude : "))
-                            .$this->Form->select("log_type",array(
+                            .$this->Form->input("log_type",array(
                                 'label' => "Sélectionnez le relevé : ",
-                                'Pas' => "Pas",
-                                'Pompes' => "Pompes",
-                                'Abdos' => "Abdos",
-                                'Squats' => "Squats"))
+                                "type" => "select",
+                                "options" => $log_options))
                             .$this->Form->input("log_value", array(
                                 "label" => "Nombre : "))
                             .$this->Form->submit("Ajouter", array("class" => "btn btn-success"))."</td></tr>"

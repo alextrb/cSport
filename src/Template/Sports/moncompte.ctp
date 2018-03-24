@@ -5,11 +5,11 @@ $this->assign('title', 'Mon Compte');?>
 <?php
     	if($user_image_extension != "none")
     	{
-    		echo $this->Html->image('photo_profil/'.$user_id.'.'.$user_image_extension, array('width'=>'120px', "style" => "float: left;"));
+    		echo $this->Html->image('photo_profil/'.$user_id.'.'.$user_image_extension, array('width'=>'120', "style" => "float: left;"));
     	} 
     	else
     	{
-    		echo $this->Html->image('photo_profil/photo_defaut.png', array('width'=>'120px', "style" => "float:left;"));
+    		echo $this->Html->image('photo_profil/photo_defaut.png', array('width'=>'120', "style" => "float:left;"));
     	}
  ?>
 <ul style="list-style-type: none;">
