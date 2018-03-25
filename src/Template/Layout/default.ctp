@@ -58,7 +58,7 @@
                 <h3> PROJET OCRES : CSPORT </h3>
                 <p>TRBOVIC Alexandre - LYONNARD DE LA GIRENNERIE Noémie - SEWERYN Antoine - ONG Philippe<br>
                     OPTION C : Gestion de compétition  -  OPTION F : Cartographie<br>
-                    <?= $this->Html->link("Logs de versionning", "../../../versions.log.txt")?><br>
+                    <?= $this->Html->link("Logs de versionning", "versions.ctp")?><br>
                     Site web de WorkItOut : <?= $this->Html->link("http://rescord.fr/workitout/sports", "http://rescord.fr/workitout/sports")?></p>
             </div>
         </footer>
