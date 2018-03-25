@@ -17,21 +17,48 @@ $this->assign('title', 'Accueil');?>
       <div class="item active">
         <div id="div_caption1">
           <p class="caption_text">Organisez vos séances</p>
-            <?php echo $this->Html->Link("Connectez-vous !", array("controller"=>"Sports", "action"=>"login"), array('class' => 'btn_index btn btn-success', 'style' => 'margin-bottom: 60px;')); ?>
+            <?php 
+              if ($this->request->session()->read('Auth.User.id'))
+              {
+                  echo $this->Html->Link("Accéder à mes séances", array("controller"=>"Sports", "action"=>"seance"), array('class' => 'btn_index btn btn-success', 'style' => 'margin-bottom: 60px;')); 
+              }
+              else
+              {
+                  echo $this->Html->Link("Connectez-vous !", array("controller"=>"Sports", "action"=>"login"), array('class' => 'btn_index btn btn-success', 'style' => 'margin-bottom: 60px;')); 
+              }
+            ?>
         </div>
       </div>
 
       <div class="item">
         <div id="div_caption2">
           <p class="caption_text">Participez à des compétitions</p>
-            <?php echo $this->Html->Link("Connectez-vous !", array("controller"=>"Sports", "action"=>"login"), array('class' => 'btn_index btn btn-success', 'style' => 'margin-bottom: 60px;')); ?>
+            <?php 
+              if ($this->request->session()->read('Auth.User.id'))
+              {
+                  echo $this->Html->Link("Accéder aux compétitions", array("controller"=>"Sports", "action"=>"competition"), array('class' => 'btn_index btn btn-success', 'style' => 'margin-bottom: 60px;')); 
+              }
+              else
+              {
+                  echo $this->Html->Link("Connectez-vous !", array("controller"=>"Sports", "action"=>"login"), array('class' => 'btn_index btn btn-success', 'style' => 'margin-bottom: 60px;')); 
+              }
+            ?>
         </div>
       </div>
     
       <div class="item">
         <div id="div_caption3">
           <p class="caption_text">Montrez votre supériorité !</p>
-            <?php echo $this->Html->Link("Connectez-vous !", array("controller"=>"Sports", "action"=>"login"), array('class' => 'btn_index btn btn-success', 'style' => 'margin-bottom: 60px;')); ?>
+            <?php 
+              if ($this->request->session()->read('Auth.User.id'))
+              {
+                  echo $this->Html->Link("Accéder aux classements", array("controller"=>"Sports", "action"=>"classements"), array('class' => 'btn_index btn btn-success', 'style' => 'margin-bottom: 60px;')); 
+              }
+              else
+              {
+                  echo $this->Html->Link("Connectez-vous !", array("controller"=>"Sports", "action"=>"login"), array('class' => 'btn_index btn btn-success', 'style' => 'margin-bottom: 60px;')); 
+              }
+            ?>
         </div>
       </div>
   
