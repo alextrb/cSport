@@ -650,11 +650,12 @@
                     $member_id = $this->Auth->user('id');
 
                     $this->Members->updateMemberPassword($member_id, $new_pw);
-
+                    $this->Flash->success(__('Mot de passe modifié avec succès'));
                     $this->redirect(['controller' => 'Sports', 'action' => 'moncompte']);
                 }
                 else
                 {
+                    $this->Flash->error(__("Erreur dans la confirmation du mot de passe ! "));
                     $this->redirect(['controller' => 'Sports', 'action' => 'moncompte']);
                 }
             }
@@ -676,12 +677,18 @@
                     if(count($member) > 0)
                     {
                         $this->Members->updateMemberPassword($member[0]->id, $new_password);
+                        $this->Flash->success(__('Mot de passe modifié avec succès'));
+                        $this->redirect(['controller' => 'Sports', 'action' => 'login']);
                     }
-
-                    $this->redirect(['controller' => 'Sports', 'action' => 'login']);
+                    else
+                    {
+                        $this->Flash->error(__("Nous ne vous avons pas trouvé ! "));
+                        $this->redirect(['controller' => 'Sports', 'action' => 'login']);
+                    }
                 }
                 else
                 {
+                    $this->Flash->error(__("Erreur dans la confirmation du mot de passe ! "));
                     $this->redirect(['controller' => 'Sports', 'action' => 'login']);
                 }
             }

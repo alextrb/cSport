@@ -49,9 +49,9 @@ $this->assign('title', 'Mon Compte');?>
       <div class="modal-body">
         <div>
             <?= $this->Form->create($new, array('url'=>array('controller' => 'sports', 'action' => 'changepassword'))); ?>
-                <?= $this->Form->input('new_pw', array('label' => 'Nouveau mot de passe : ', 'type' => 'password')); ?>
-                <?= $this->Form->input('confirm_new_pw', array('label' => 'Confirmer votre nouveau mot de passe : ', 'type' => 'password')); ?>
-                <?= $this->Form->submit('Modifier votre mot de passe', ['class' => 'btn btn-primary']); ?>
+                <?= $this->Form->input('new_pw', array('label' => 'Nouveau mot de passe : ', 'type' => 'password', 'class' => 'form-control')); ?> <br>
+                <?= $this->Form->input('confirm_new_pw', array('label' => 'Confirmer votre nouveau mot de passe : ', 'type' => 'password', 'class' => 'form-control')); ?> <br>
+                <?= $this->Form->submit('Modifier votre mot de passe', ['class' => 'btn btn-info']); ?>
                 <?= $this->Form->end(); ?>
             
         </div>
