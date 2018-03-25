@@ -532,7 +532,7 @@
                     $des_workout = "- / -";
                     if($d > $ed)
                     {
-                        echo 'Problème de date!';
+                        $this->Flash->error(__("Problème de date !"));
                         $this->redirect(['controller' => 'Sports', 'action' => 'singlecompetition/'.$contest_id]);
                     }
                     else
