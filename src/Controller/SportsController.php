@@ -17,6 +17,8 @@
             $this->set("page", $page);
             
             $this->loadModel("Members");
+            
+            $new = $this->Members->newEntity();
             if ($this->request->is('post')) {
                 $user = $this->Auth->identify(); // On regarde si le membre existe bien
                 if ($user) {
@@ -26,6 +28,8 @@
                     $this->Flash->error(__("Nom d'utilisateur ou mot de passe incorrect"));
                 }
             }
+            
+            $this->set("new", $new);
         }
 
         public function logout()
@@ -613,7 +617,7 @@
             
             if($this->Devices->validateDevice($device))
             {
-                $this->Flash->success(__('Le device avec id: {0} a été appareillé.', h($device)));
+                $this->Flash->success(__('Le device avec id: {0} a été apparié.', h($device)));
                 return $this->redirect(['controller' => 'Sports', 'action' => 'objetsco']);
             }
         }
@@ -652,6 +656,33 @@
                 else
                 {
                     $this->redirect(['controller' => 'Sports', 'action' => 'moncompte']);
+                }
+            }
+        }
+        
+        public function recuppassword(){
+
+            $this->loadModel("Members");
+
+            if ($this->request->is('post')){
+                $member_email = $this->request->data("member_email");
+                $new_password = $this->request->data("new_password");
+                $confirm_new_password = $this->request->data("confirm_new_password");
+
+                if($new_password == $confirm_new_password)
+                {
+                    $member = $this->Members->findByEmail($member_email)->toArray();
+
+                    if(count($member) > 0)
+                    {
+                        $this->Members->updateMemberPassword($member[0]->id, $new_password);
+                    }
+
+                    $this->redirect(['controller' => 'Sports', 'action' => 'login']);
+                }
+                else
+                {
+                    $this->redirect(['controller' => 'Sports', 'action' => 'login']);
                 }
             }
         }

@@ -29,12 +29,12 @@ $this->assign('title', 'Compétition');?>
         <!-- Remplissage du tableau-->
         <?php foreach ($matchs as $match){
             echo"<tr><td>"
-            			  .$match['member_email1']."</td><td>"
-            			  .$match['member_email2']."</td><td>"
-                          .$match['date']."</td><td>"
-                          .$match['end_date']."</td><td>"
-                          .$match['location_name']."</td><td>"
-                          .$match['description']."</td><td>";
+            		.$match['member_email1']."</td><td>"
+            		.$match['member_email2']."</td><td>"
+                        .$match['date']."</td><td>"
+                        .$match['end_date']."</td><td>"
+                        .$match['location_name']."</td><td>"
+                        .$match['description']."</td><td>";
             $time_now = Cake\I18n\Time::now();
             if($match['end_date'] < $time_now)
             {
@@ -52,17 +52,17 @@ $this->assign('title', 'Compétition');?>
 </div>
 
 <div>
-    <div class="page-header">
-    <h3 id="singForm">Ajouter un match : </h3>
+    <div class="text-center">
+    <h3 id="singForm" class="alert alert-info">Ajouter un match</h3>
     </div>
         
-        <?= $this->Form->create($new, array("class" => "form-horizontal")) 
-            .$this->Form->input("m1_email", array("label" => "Joueur 1 : ", "type" => "select", "options" => $emails_array, "class" => "form-control"))
-            .$this->Form->input("m2_email", array("label" => "Joueur 2 : ", "type" => "select", "options" => $emails_array, "class" => "form-control"))
-            .$this->Form->input("date", array("label" => "Date et heure du début de la séance : ", "type" => "datetime", "class" => "form-control"))
-            .$this->Form->input("end_date", array("label" => "Date et heure de fin de la séance : "))
-            .$this->Form->input("location_name", array("label" => "Lieu : ", "type" => "text", "class" => "form-control"))           
-            .$this->Form->submit("Ajouter", ['class' => 'btn btn-primary'])
+        <?= $this->Form->create($new, array("class" => "form-horizontal"))."<ul style='list-style-type: none;'><li>"
+            .$this->Form->input("m1_email", array("label" => "Joueur 1 : ", "type" => "select", "options" => $emails_array, "class" => "form-control"))."</li><br><li>"
+            .$this->Form->input("m2_email", array("label" => "Joueur 2 : ", "type" => "select", "options" => $emails_array, "class" => "form-control"))."</li><br><li>"
+            .$this->Form->input("date", array("label" => "Date et heure du début de la séance : ", "type" => "datetime", "class" => "form-control"))."</li><br><li>"
+            .$this->Form->input("end_date", array("label" => "Date et heure de fin de la séance : "))."</li><br><li>"
+            .$this->Form->input("location_name", array("label" => "Lieu : ", "type" => "text", "class" => "form-control"))  ."</li><br><li>"         
+            .$this->Form->submit("Ajouter un match", ['class' => 'btn btn-info'])."</li></ul>"
             .$this->Form->end(); ?>
 </div>
 

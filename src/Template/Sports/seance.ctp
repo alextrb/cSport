@@ -273,12 +273,12 @@
          'Tennis'=>__('Tennis')); 
       ?>
       <?= $this->Form->create($new)."<ul style='list-style-type: none;'><li>"
-           .$this->Form->input("date", array("label" => "Date et heure du début de la séance : "))."</li><li>"
-           .$this->Form->input("end_date", array("label" => "Date et heure de fin de la séance : "))."</li><li>"
-           .$this->Form->input("location_name", array("label" => "Lieu : ", "class" => "form-control"))."</li><li>"             
+           .$this->Form->input("date", array("label" => "Date et heure du début de la séance : "))."</li><br><li>"
+           .$this->Form->input("end_date", array("label" => "Date et heure de fin de la séance : "))."</li><br><li>"
+           .$this->Form->input("location_name", array("label" => "Lieu : ", "class" => "form-control"))."</li><br><li>"             
            .$this->Form->input("sport", array(
-               'label' => "Selectionnez le sport souhaité : ", "type" => "select", "options" => $options, "class" => "form-control"))."</li><li>"                
-           .$this->Form->input("description", array("label" => "Commentaires : ", "class" => "form-control", "type" => "textarea"))."</li><li>"             
+               'label' => "Selectionnez le sport souhaité : ", "type" => "select", "options" => $options, "class" => "form-control"))."</li><br><li>"                
+           .$this->Form->input("description", array("label" => "Commentaires : ", "class" => "form-control", "type" => "textarea"))."</li><br><li>"             
            .$this->Form->submit("Ajouter", array("class" => "btn btn-info"))."</li></ul>"
            .$this->Form->end();?>
 </div>

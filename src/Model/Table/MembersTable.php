@@ -86,6 +86,11 @@ class MembersTable extends Table {
         $validator
             ->notEmpty('new_pw', 'Ce champs ne doit pas être vide')
             ->notEmpty('confirm_new_pw', 'Ce champs ne doit pas être vide');
+        
+        $validator
+            ->notEmpty('member_email', 'Ce champs ne doit pas être vide')
+            ->notEmpty('new_password', 'Ce champs ne doit pas être vide')
+            ->notEmpty('confirm_new_password', 'Ce champs ne doit pas être vide');
         return $validator;
     }
 

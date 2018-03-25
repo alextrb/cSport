@@ -11,8 +11,8 @@
             
             <li class="<?php if($page=="contact"){echo "active";}?>"><?= $this->Html->link("Contact", ["controller"=>"Sports", "action"=>"contact"])?></li>
             <li class="<?php if($page=="equipe"){echo "active";}?>"><?= $this->Html->link("Équipe", ["controller"=>"Sports", "action"=>"equipe"])?></li>
-            <li class="<?php if($page=="tuto"){echo "active";}?>"><?= $this->Html->link("Tutoriels", ["controller"=>"Sports", "action"=>"tuto"])?></li>
-            <li class="<?php if($page=="mention"){echo "active";}?>"><?= $this->Html->link("Mention", ["controller"=>"Sports", "action"=>"mention"])?></li>
+            <li class="<?php if($page=="tuto"){echo "active";}?>"><?= $this->Html->link("FAQ", ["controller"=>"Sports", "action"=>"tuto"])?></li>
+            <li class="<?php if($page=="mention"){echo "active";}?>"><?= $this->Html->link("Mentions légales", ["controller"=>"Sports", "action"=>"mention"])?></li>
       </ul>
         <ul class="mynavbarnavright nav navbar-nav navbar-right">
             <li class="<?php if($page=="register"){echo "active";}?>"><?= $this->Html->link("Inscription", ["controller"=>"Sports", "action"=>"register"])?></li>
@@ -35,8 +35,8 @@
             
             <li class="<?php if($page=="contact"){echo "active";}?>"><?= $this->Html->link("Contact", ["controller"=>"Sports", "action"=>"contact"])?></li>
             <li class="<?php if($page=="equipe"){echo "active";}?>"><?= $this->Html->link("Équipe", ["controller"=>"Sports", "action"=>"equipe"])?></li>
-            <li class="<?php if($page=="tuto"){echo "active";}?>"><?= $this->Html->link("Tutoriels", ["controller"=>"Sports", "action"=>"tuto"])?></li>
-            <li class="<?php if($page=="mention"){echo "active";}?>"><?= $this->Html->link("Mention", ["controller"=>"Sports", "action"=>"mention"])?></li>
+            <li class="<?php if($page=="tuto"){echo "active";}?>"><?= $this->Html->link("FAQ", ["controller"=>"Sports", "action"=>"tuto"])?></li>
+            <li class="<?php if($page=="mention"){echo "active";}?>"><?= $this->Html->link("Mentions légales", ["controller"=>"Sports", "action"=>"mention"])?></li>
       </ul>
         <ul class="mynavbarnavright nav navbar-nav navbar-right">
             <li class="<?php if($page=="register"){echo "active";}?>"><?= $this->Html->link("Inscription", ["controller"=>"Sports", "action"=>"register"])?></li>

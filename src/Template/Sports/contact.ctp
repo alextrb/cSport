@@ -6,7 +6,7 @@ $this->assign('title', 'Contact');?>
 </div>
  
 <div class="well">
-    <p>Une remarque ? Une question ? N'hésitez pas à nous envoyer un commentaire, nous vous répondrons rapidement.</p>
+    <p>Une remarque ? Une question ? N'hésitez pas à nous envoyer un commentaire, nous vous répondrons rapidement.</p> <br>
 
  <div class="col-sm-12 row">
           <?= $this->Form->create(); ?>
@@ -18,6 +18,7 @@ $this->assign('title', 'Contact');?>
                     <?php echo $this->Form->input('email', array("label" => "Votre Email : ", "class" => "form-control")); ?>
                 </div>
              </div>
+                <br>
              <?php echo $this->Form->input('content', array( "type"=>"textarea", "label" => "Votre message : ", "class" => "form-control")); ?>
             <?= $this->Form->submit('Envoyer', ['class' => 'btn btn-info']); ?>
            </form><?= $this->Form->end(); ?>

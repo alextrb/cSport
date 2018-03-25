@@ -28,8 +28,8 @@ $this->assign('title', 'Compétitions');?>
 </div>
 
 <div>
-    <div class="page-header">
-    <h3 id="singForm">Créer une compétition</h3>
+    <div class="text-center">
+    <h3 id="compForm" class="alert alert-info">Créer une compétition</h3>
     </div>
 
         <?php $options = array(
@@ -44,9 +44,9 @@ $this->assign('title', 'Compétitions');?>
         
         <?= $this->Form->create($new, array("class" => "form-horizontal"))."<ul style='list-style-type: none;'><li>"
             
-            .$this->Form->input("name", array("label" => "Nom : ", "class" => "form-control"))."</li><li>"
-            .$this->Form->input("type", array("label" => "Type : ", "type" => "select", "options" => $options, "class" => "form-control"))."</li><li>"                  
-            .$this->Form->input("description", array("label" => "Description : ", "type" => "textarea", "class" => "form-control"))."</li><li>"    
-            .$this->Form->submit("Créer", ['class' => 'btn btn-primary'])."</li></ul>"
+            .$this->Form->input("name", array("label" => "Nom : ", "class" => "form-control"))."</li><br><li>"
+            .$this->Form->input("type", array("label" => "Type : ", "type" => "select", "options" => $options, "class" => "form-control"))."</li><br><li>"                  
+            .$this->Form->input("description", array("label" => "Description : ", "type" => "textarea", "class" => "form-control"))."</li><br><li>"    
+            .$this->Form->submit("Créer une compétition", ['class' => 'btn btn-info'])."</li></ul>"
             .$this->Form->end(); ?>
 </div>
