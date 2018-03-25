@@ -12,6 +12,8 @@
     class SportsController extends AppController
     {   
         public function versions(){
+            $page = "versions";
+            $this->set("page", $page);
             
         }
         public function login()

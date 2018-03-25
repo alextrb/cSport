@@ -30,7 +30,7 @@ class AppController extends Controller
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['index', 'login', 'register', 'classements', 'contact', 'equipe', 'mention', 'tuto', 'apiRegisterDevice', 'apiWorkoutParameters', 'apiGetSummary', 'apiAddLog', 'recuppassword']);
+        $this->Auth->allow(['index', 'login', 'register', 'classements', 'contact', 'equipe', 'mention', 'tuto', 'apiRegisterDevice', 'apiWorkoutParameters', 'apiGetSummary', 'apiAddLog', 'recuppassword', 'versions']);
     }
     /**
      * Initialization hook method.
