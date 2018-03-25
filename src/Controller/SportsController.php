@@ -610,6 +610,11 @@
                 $this->Flash->success(__('Le device avec id: {0} a été supprimé.', h($device)));
                 return $this->redirect(['controller' => 'Sports', 'action' => 'objetsco']);
             }
+            else
+            {
+                $this->Flash->error(__("Le device n'a pas pu être supprimé"));
+                return $this->redirect(['controller' => 'Sports', 'action' => 'objetsco']);
+            }
         }
         
         public function validateOC($device) {
@@ -618,6 +623,11 @@
             if($this->Devices->validateDevice($device))
             {
                 $this->Flash->success(__('Le device avec id: {0} a été apparié.', h($device)));
+                return $this->redirect(['controller' => 'Sports', 'action' => 'objetsco']);
+            }
+            else
+            {
+                $this->Flash->error(__("Le device n'a pas pu être validé"));
                 return $this->redirect(['controller' => 'Sports', 'action' => 'objetsco']);
             }
         }
