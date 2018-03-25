@@ -20,7 +20,8 @@
             $new->description = $description;
             $new->trusted = 0;
             $this->Devices->save($new);
-
+            
+            $this->Flash->success(__("Le device avec id: {0} a bien demandé sa validation à l'utilisateur: {1}", h($id_device), h($id_member)));
             return $this->redirect(['controller' => 'Sports', 'action' => 'index']);
         }
         
@@ -94,6 +95,7 @@
                 $lat = 10;
                 $long = 10;
                 $this->Logs->addLogs($id_member, $id_workout, $device->id, $date_courante, $lat, $long, $log_type, $log_value);
+                $this->Flash->success(__("Le relevé {0} {1} a bien été ajouté avec succès à la séance {3} du membre {4}", h($log_value), h($log_type), h($id_workout), h($id_member)));
                 return $this->redirect(['controller' => 'Sports', 'action' => 'index']);
             }
             else{
