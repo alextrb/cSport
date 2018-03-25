@@ -1,3 +1,6 @@
+<?php
+$this->assign('title', 'Mentions légales');?>
+
 <div class="page-header">
 <h2>Mentions Légales</h2>
 </div>

@@ -1,2 +1,2 @@
 <?php
-$this->assign('title', 'Tutoriels');?>
+$this->assign('title', 'FAQ');?>
