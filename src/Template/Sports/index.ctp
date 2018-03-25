@@ -2,7 +2,7 @@
 $this->assign('title', 'Accueil');?>
 
 
-<div class="container" style="width: 1100px;">
+<div id="div_carousel" class="container" style="width: 100%;">
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -15,23 +15,23 @@ $this->assign('title', 'Accueil');?>
     <div class="carousel-inner">
 
       <div class="item active">
-        <?= $this->Html->Link($this->Html->image('slider1.jpg',array('alt' => "seances", 'style' =>'width: 1100px;', "class"=>"imgs_index")), array("controller"=>"Sports", "action"=>'seance'), array("escape" => false)); ?>
-        <div class="carousel-caption">
-          <p>Organisez vos entraînements</p>
+        <div id="div_caption1">
+          <p class="caption_text">Organisez vos séances</p>
+            <?php echo $this->Html->Link("Connectez-vous !", array("controller"=>"Sports", "action"=>"login"), array('class' => 'btn_index btn btn-success', 'style' => 'margin-bottom: 60px;')); ?>
         </div>
       </div>
 
       <div class="item">
-        <?= $this->Html->Link($this->Html->image('slider2.jpg',array('alt' => "seances", 'style' =>'width: 1100px;', "class"=>"imgs_index")), array("controller"=>"Sports", "action"=>'competition'), array("escape" => false)); ?>
-        <div class="carousel-caption">
-          <p>Participez à des compétitions</p>
+        <div id="div_caption2">
+          <p class="caption_text">Participez à des compétitions</p>
+            <?php echo $this->Html->Link("Connectez-vous !", array("controller"=>"Sports", "action"=>"login"), array('class' => 'btn_index btn btn-success', 'style' => 'margin-bottom: 60px;')); ?>
         </div>
       </div>
     
       <div class="item">
-        <?= $this->Html->Link($this->Html->image('slider3.jpg',array('alt' => "seances", 'style' =>'width: 1100px;', "class"=>"imgs_index")), array("controller"=>"Sports", "action"=>'classements'), array("escape" => false)); ?>
-        <div class="carousel-caption">
-          <p>Montrez votre supériorité !</p>
+        <div id="div_caption3">
+          <p class="caption_text">Montrez votre supériorité !</p>
+            <?php echo $this->Html->Link("Connectez-vous !", array("controller"=>"Sports", "action"=>"login"), array('class' => 'btn_index btn btn-success', 'style' => 'margin-bottom: 60px;')); ?>
         </div>
       </div>
   
@@ -46,9 +46,3 @@ $this->assign('title', 'Accueil');?>
     </a>
   </div>
 </div>
-
-<?php echo $this->Html->Link("Rejoignez-nous !", array("controller"=>"Sports", "action"=>"login"), array('class' => 'btn_index btn btn-success')); ?>
-
-
-
-

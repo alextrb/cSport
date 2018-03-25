@@ -52,7 +52,7 @@
         <?= $this->fetch('content') ?> <!--Ne pas toucher, correspond à la vue-->
     </div>
     
-    <footer class="footer ">
+    <footer id ="<?php if($page=="index"){echo "index_footer";}else{echo "main_footer";} ?>" class="footer ">
         <div id="div_footer">
             <h3> PROJET OCRES : CSPORT </h3>
             <p>TRBOVIC Alexandre - LYONNARD DE LA GIRENNERIE Noémie - SEWERYN Antoine - ONG Philippe<br>
