@@ -21,7 +21,7 @@ $this->assign('title', 'Compétition');?>
             <th>DATE DE FIN</th>
             <th>LIEU</th>
             <th>SCORE</th>
-            <th>STATUS</th>
+            <th>STATUT</th>
             
         </tr>
     </thead>
